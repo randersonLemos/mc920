@@ -1,0 +1,14 @@
+name: cenv-mc920
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - opencv
+  - pip
+  - python
+  - ipython
+
+  - pip:
+    - numpy
+    - pandas
+    - matplotlib

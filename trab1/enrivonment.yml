@@ -1,4 +1,4 @@
-name: cenv-mc920
+name: mc920-trab1
 channels:
   - defaults
   - conda-forge
@@ -10,5 +10,6 @@ dependencies:
 
   - pip:
     - numpy
+    - scipy
     - pandas
     - matplotlib

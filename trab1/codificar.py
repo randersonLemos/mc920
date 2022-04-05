@@ -22,13 +22,13 @@ if __name__ == '__main__':
     parser.add_argument('-imagem_entrada', required=True, help="Imagem utilizada para inserção de mensagem escondida")
     parser.add_argument('-texto_entrada',  required=True, help="Mensagem a ser escondida na imagem")
     parser.add_argument('-plano_bits',     required=True, type=int, help="Plano de bits: ou 0 ou 1 ou 2")
-    parser.add_argument('-imagem_saida',   required=True, help="Nome da imagem salva com a mensagem escondida")
 
     args = parser.parse_args()
-    imagem_entrada = cv2.imread(args.imagem_entrada)
+    imagem = args.imagem_entrada
+    mat = cv2.imread(imagem)
 
-    original = imagem_entrada
-    modified = copy.copy(imagem_entrada)
+    original = mat
+    modified = copy.copy(mat)
     shape = original.shape
 
     with open(args.texto_entrada, 'r') as fh:
@@ -49,15 +49,20 @@ if __name__ == '__main__':
     for bit, position in zip(bites, positions):
         pixel = original[position]
         byte = int_to_byte(pixel)
+        #print(byte, end=' ')    
         if plano_bits == 0:
             byte = byte[:-1] + bit
-        elif plano_bits < 3:
-            num = plano_bits
-            byte = byte[:-num+1] + bit + byte[-num:]
+        elif plano_bits == 1:
+            byte = byte[:-2] + bit + byte[-1]
+        elif plano_bits == 2:
+            byte = byte[:-3] + bit + byte[-2:]
         else:
             raise(Exception('Only 0, 1, and 2 are allowed for "plano_bits"'))
 
+        #print(bit, '\n'+byte, end='\n---\n')    
+
         modified[position] = int(byte, 2)
 
-    imagem_saida = args.imagem_saida
-    cv2.imwrite(imagem_saida, modified)
+    name = imagem.split('/')[-1].split('.')[0]
+    name = 'out/{}m_plano{}.png'.format(name, plano_bits)
+    cv2.imwrite(name, modified)

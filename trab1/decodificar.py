@@ -29,17 +29,16 @@ EFMBITS = ''.join(word_to_byte(EFM))
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Script para inserção de mensagem escondida em images (Esteganografia)')
-    parser.add_argument('-imagem_saida', required=True, help="Imagem com mensagem escondida")
+    parser = argparse.ArgumentParser(description='Script para recuperação de mensagem escondida em images (Esteganografia)')
+    parser.add_argument('-imagem_entrada', required=True, help="Imagem com mensagem escondida")
     parser.add_argument('-plano_bits',   required=True, type=int, help="Plano de bits: ou 0 ou 1 ou 2")
-    parser.add_argument('-texto_saida',  required=True, help="Nome do arquivo de saida com a mensagem escondida na image")
 
     args = parser.parse_args()
-    imagem_saida = cv2.imread(args.imagem_saida)
+    imagem = args.imagem_entrada
+    mat = cv2.imread(imagem)
     plano_bits = args.plano_bits
-    texto_saida = args.texto_saida
 
-    modified = imagem_saida
+    modified = mat
     shape = modified.shape
 
     nrows, ncols, nchannels = shape
@@ -72,5 +71,7 @@ if __name__ == '__main__':
     for byte in grouper(8, bits):
         message += chr(int(''.join(byte), 2))
     
-    with open(texto_saida, 'w') as fh:
+    name = imagem.split('/')[-1].split('.')[0]
+    name = 'out/{}.txt'.format(name)
+    with open(name, 'w') as fh:
         fh.write(message)

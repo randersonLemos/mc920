@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.5cm}% too much in my eyes delete this
+% line and use the default ...
+
+
+\title{
+	Escondendo uma mensagem em uma imagem (trabalho 1) \\
+	\Large Introdução ao Processamento de Imagem Digital \\
+	Randerson A. Lemos (103897)
+	2022-1S
+}
+
+\date{\vspace{-5ex}}
+
+\begin{document}
+  \pagenumbering{gobble}
+  \maketitle
+
+\section{Introdução}
+A esteganografia é a área de conhecimento que se dedica a estudar técnicas de ocultação de informações (por exemplo, mensagens) em imagens sem que estas sofram alterações perceptíveis ao olho humano. A esteganografia, neste trabalho, será aplicada por meio da substituição dos bits menos significativos dos pixes das imagens escolhidas pelos bits da mensagem de interesse que se deseja ocultar na imagem. A seguir teremos três seções, a de Solução, a de Resultado e a de Conclusão. Na seção de Solução, detalhes técnicos, de usabilidade e de decisões da solução proposta são fornecidos. Na seção de Resultado, os principais resultados são apresentados. Na seção de Conclusão, há não apenas a apresentação de conclusões, mas também de discussões.
+
+\section{Solução}
+A solução utiliza a linguagem de programação Python e conta com o auxílio do gerenciador de projetos e pacotes Conda. Assumindo que o usuário tenha o Conda instalado em sua máquina, a configuração do projeto pode ser feita pela execução do comando \lstinline{conda env create -f environment.yml} a partir da pasta \textbf{trab1}. Esse comando cria o ambiente de trabalho \textbf{mc920-trab1} e instala os seguintes módulos: opencv, numpy, scipy, pandas, matplotlib. Finalizada a configuração do ambiente de trabalho mc920-trab1, o usuário deve executar o comando \lstinline{source source.sh}\footnote{O comando que configura o ambiente de trabalho mc920-trab1 precisa ser executado apenas um vez. Assim sendo, depois que este ambiente está configurado, o usuário precisa apenas executar o comando \lstinline{source source.sh}} para carregar as variáveis de ambiente adequadas e, assim, poder usar os programas do projeto dentro do ambiente de trabalho recém configurado. 
+
+Três programas foram criados, os quais são: \textbf{codificar.py}, \textbf{decodificar.py}, \textbf{mostrar\_planos.py}. Na sequencia, as funcionalidades de cada um desses programas é detalhada.
+
+\subsection{Codificar.py}
+O programa \textbf{codificar.py} é responsável por ocultar uma mensagem de interesse em uma imagem escolhida que deve ser colorida e estar no formato png. Para ser executado, esse programa precisa receber os parâmetros \textbf{imagem\_entrada}, \textbf{texto\_entrada}, e \textbf{planos\_bits}:
+
+
+\begin{itemize}
+	\item ao parâmetro \textbf{imagem\_entrada} deve-se fornecer o nome do arquivo da imagem a ser utilizada como `bau' da mensagem que se deseja esconder;
+	\item ao parâmetro \textbf{texto\_entrada} deve-se fornecer o nome do arquivo do texto que contém a mensagem que
+	se deseja ocultar;
+	\item ao parâmetro \textbf{planos\_bits} deve-se fornecer os planos de bits menos significativos dos pixels da imagem escolhida que serão utilizados para registrar a mensagem de interesse. Os valores esperados para esse parâmetro são: 0, ou 1, ou 2, ou combinações desses valores separados por ‘:’. Quando mais de um plano de bits são passados ao programa pelo parâmetro \textbf{planos\_bits}, ocorre a ordenação em ordem crescente desses planos de modo que a utilização dos bits dos pixels da imagem se dê sempre do plano de bits menos significativo para o mais significativo.
+\end{itemize}
+
+\end{document}

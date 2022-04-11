@@ -43,10 +43,11 @@ if __name__ == '__main__':
     if len(bytes)*8 > nrows*ncols*nchannels*nplanos:
         raise(Exception('Text is to long...'))
     
-    cartesian = itertools.product(range(nrows), range(ncols), range(nchannels), range(nplanos))
+    cartesian = itertools.product(planos_bits, range(nrows), range(ncols), range(nchannels))
 
-    for bit, (row, col, channel, plano_bits) in zip(bites, cartesian):
+    for bit, (plano_bits, row, col, channel) in zip(bites, cartesian):
         position = (row, col, channel)
+        print(plano_bits, position)
         pixel = imagem[position]
         byte = int_to_byte(pixel) # Pega valor do pixel em representação de bits
         #print(byte, end=' ')    

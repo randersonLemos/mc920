@@ -68,7 +68,6 @@ Dos arquivos presentes na pasta do projeto \textbf{mc920-trab1}, destacam-se as 
 \subsection{Codificar.py}
 O programa \textbf{codificar.py} é responsável por ocultar uma mensagem de interesse em uma imagem escolhida que deve ser colorida e estar no formato png. Para ser executado, esse programa precisa receber os parâmetros \textbf{imagem\_entrada}, \textbf{texto\_entrada}, e \textbf{planos\_bits}:
 
-
 \begin{itemize}
 	\item ao parâmetro \textbf{imagem\_entrada} deve-se fornecer o nome do arquivo da imagem a ser utilizada como `bau' da mensagem que se deseja esconder;
 	\item ao parâmetro \textbf{texto\_entrada} deve-se fornecer o nome do arquivo do texto que contém a mensagem que
@@ -85,12 +84,31 @@ Exemplos de como utilizar o programa \textbf{codificar.py} utilizando os recurso
 
 \lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto1.txt -planos_bits=1:2};
 
-\lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto1.txt -planos_bits=0:1:2} 
+\lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto1.txt -planos_bits=0:1:2}.
 
 \noindent
-Após executado, o programa \textbf{codificar.py} gerá uma imagem de saída. Esse imagem nada mais é que a imagem de entrada contendo a mensagem do texto de entrada oculta nos seus bits menos significativos de acordo com os planos de bits passados pelo usuário. Essa imagem de saída é salva automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem de entrada tem o nome \textbf{img\_ent} a imagem de saída apresentará o nome \textbf{img\_ent\underline{m\_planoX}}, onde o letra X é um \textit{placeholder} para os números dos planos de bits escolhidos pelo usuário.
+Após executado, o programa \textbf{codificar.py} gera uma imagem de saída. Esse imagem nada mais é que a imagem de entrada contendo a mensagem do texto de entrada oculta nos seus bits menos significativos de acordo com os planos de bits passados pelo usuário. Essa imagem de saída é salva automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem de entrada tem o nome \textbf{img\_ent} a imagem de saída apresentará o nome \textbf{img\_ent\underline{m\_planoX}}, onde o letra X é um \textit{placeholder} para os números dos planos de bits escolhidos pelo usuário.
+
+\subsection{Decodificar.py}
+
 
 \subsection{Mostrar\_planos.py}
-\lstinline{python3 mostrar_planos.py -imagem_entrada=out/watchm_plano12.png -planos_bits=0:1:2};
+O programa \textbf{mostrar\_planos.py} é responsável por gerar mapas de bits dos três canais (RGB) de uma imagem selecionada. Para funcionar esse programa precisa receber os parâmetros \textbf{imagem\_entrada} e \textbf{planos\_bits}:
+
+\begin{itemize}
+	\item ao parâmetro \textbf{imagem\_entrada} deve-se fornecer o nome do arquivo da imagem que se deseja visualizar os planos de bits;
+	\item ao parâmetro \textbf{planos\_bits} deve-se fornecer os valores numéricos dos planos de bits que se deseja visualizar. Essa parâmetro aceita valores de 0 (referente ao plano de bits menos significativo) até 7 (referente ao plano de bits mais significativo). Para gerar imagens de múltiplos planos de bits, basta passar os valores dos planos de interesse separados por `:'.
+\end{itemize}
+
+\noindent
+Exemplo de como executar o programa \textbf{mostrar\_planos.py} utilizando os recursos\footnote{É necessário que o comando adequado do programa codificar.py tenha sido executado.} contidos dentro do próprio projeto são:
+
+\lstinline{python3 mostrar_planos.py -imagem_entrada=out/watchm_plano12.png -planos_bits=3},
+
+\lstinline{python3 mostrar_planos.py -imagem_entrada=out/watchm_plano12.png -planos_bits=0:1:2:7}.
+
+\noindent
+Após executado, o programa \textbf{mostrar\_planos.py} gera imagens dos planos de bits passados pelo usuário dos canais RGB da imagem selecionada. Essa imagem de saída é salva automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem de entrada tem o nome \textbf{img\_entm\_planoX}, as imagens de saída apresentarão nome segundo o padrão \textbf{img\_entm\_planoX\underline{\_plano\_bits\_Y\_Z}} em que Y é o número do plano de bits apresentado na imagem e Z é de qual canal (R, G ou B) este planos de bits provém.
+
 
 \end{document}

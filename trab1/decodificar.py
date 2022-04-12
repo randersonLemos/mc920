@@ -31,26 +31,30 @@ EFMBITS = ''.join(word_to_byte(EFM))
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Script para recuperação de mensagem escondida em images (Esteganografia)')
     parser.add_argument('-imagem_entrada', required=True, help="Imagem com mensagem escondida")
-    parser.add_argument('-plano_bits',   required=True, type=int, help="Plano de bits: ou 0 ou 1 ou 2")
+    parser.add_argument('-planos_bits',    required=True, help="Planos de bits: ou 0 ou 1 ou 2, ou combinações desses valores separados por ':'")
 
     args = parser.parse_args()
-    imagem = args.imagem_entrada
-    mat = cv2.imread(imagem)
-    plano_bits = args.plano_bits
+    imagem_entrada = args.imagem_entrada
+    imagem = cv2.imread(imagem_entrada)
+    planos_bits = sorted(list(map(int, args.planos_bits.split(':')))) # Começar sempre do plano de bits menos significativo
 
-    modified = mat
-    shape = modified.shape
+    shape = imagem.shape
 
     nrows, ncols, nchannels = shape
+    nplanos = len(planos_bits)
     
-    positions = itertools.product(range(nrows), range(ncols), range(nchannels))
+    cartesian = itertools.product(planos_bits, range(nrows), range(ncols), range(nchannels))
 
     queue = deque(maxlen=len(EFMBITS))
     bits= []
 
-    for position in positions:
-        pixel = modified[position]
+    for (plano_bits, row, col, channel) in cartesian:
+        position = (row, col, channel)
+
+        pixel = imagem[position]
+
         byte = int_to_byte(pixel)
+
         if plano_bits == 0:
             bit = byte[-1]
         elif plano_bits == 1:
@@ -58,7 +62,7 @@ if __name__ == '__main__':
         elif plano_bits == 2:
             bit = byte[-3]
         else:
-            raise(Exception('Only 0, 1, and 2 are allowed for "plano_bits"'))
+            raise(Exception('Apenas 0, 1, and 2 são permitidos para "plano_bits"'))
 
         queue.append(bit)
 
@@ -71,7 +75,7 @@ if __name__ == '__main__':
     for byte in grouper(8, bits):
         message += chr(int(''.join(byte), 2))
     
-    name = imagem.split('/')[-1].split('.')[0]
+    name = imagem_entrada.split('/')[-1].split('.')[0]
     name = 'out/{}.txt'.format(name)
     with open(name, 'w') as fh:
         fh.write(message)

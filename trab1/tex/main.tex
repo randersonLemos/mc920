@@ -168,9 +168,9 @@ Duas mensagem serão aplicadas em cada uma desses imagens (em momentos diferente
 
 Os comandos utilizados para ocultação da mensagem contida no arquivo \textbf{texto1.txt} foram:
 
-\lstinline{python3 codificar.py -imagem\_entrada=png/baboon.png -texto\_entrada=txt/texto1.txt -planos\_bits=0};
+\lstinline{python3 codificar.py -imagem_entrada=png/baboon.png -texto_entrada=txt/texto1.txt -planos_bits=0};
 
-\lstinline{python3 codificar.py -imagem\_entrada=png/watch.png -texto\_entrada=txt/texto1.txt -planos\_bits=0}.
+\lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto1.txt -planos_bits=0}.
 
 \noindent
 As imagens resultados com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida}.
@@ -184,8 +184,32 @@ As imagens resultados com a mensagem escondida estão apresentadas na Figura \re
 \label{fig:imagem:saida}%
 \end{figure}	
 
+\newpage\noindent
+Os comandos utilizados para ocultação de mensagem contida no arquivo \textbf{texto\_longo\_1.txt} foram:
+
+\lstinline{python3 codificar.py -imagem_entrada=png/baboon.png -texto_entrada=txt/texto_longo_1.txt -planos_bits=0};
+
+\lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto_longo_1.txt -planos_bits=0}.
+
 \noindent
-Nota-se que visualmente, essas imagens, apesar de modificadas pelos bits da mensagem escolhida, não apresentam alterações visuais perceptíveis ao olho humano. Vamos visualizar os planos 0, 1, 2 e 7 dessas imagens. Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão o 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon}.
+As imagens resultados com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida2}.
+
+\begin{figure}[htp]%
+	\centering
+	\subfloat[\centering Baboon com mensagem escondida do arquivo texto\_longo\_1.txt (/out/baboonm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto_longo_1.png} }}%
+	\qquad
+	\subfloat[\centering Watch com mensagem escondida do arquivo texto1.txt (out/watchm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto_longo_1.png} }}%
+	\caption{Imagens que apresentam mensagem escondida do arquivo do \textbf{texto\_longo\_1.txt}.}%
+	\label{fig:imagem:saida2}%
+\end{figure}
+
+
+Nota-se que visualmente, essas imagens, apesar de modificadas pelos bits da mensagem escondida, não apresentam alterações visuais perceptíveis ao olho humano. Vamos visualizar os planos 0, 1, 2 e 7 dessas imagens para cada umas das duas mensagens \textbf{texto1.txt} e \textbf{texto\_longo\_1.txt}. 
+
+
+\subsection{Planos de bits da imagem Baboon e Watch modifica pela mensagem contida no arquivo texto1.txt}
+
+Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão o 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon}.
 
 \begin{figure}[htp]%
 	\centering
@@ -217,36 +241,131 @@ Nota-se que visualmente, essas imagens, apesar de modificadas pelos bits da mens
 	\label{fig:imagem:plano:baboon}%
 \end{figure}	
 
+
 Para as imagens apresentadas na Figura \ref{fig:imagem:plano:baboon}, notamos que não é possível visualmente verificar que a imagem foi modificada a partir da análise visual dos seus planos de bits. Essa condição deve ser propiciada tanto pela ruído apresentado nos planos de bits menos significativos quanto pelo tamanho da mensagem que é pequeno. 
+
+\newpage
+Agora vamos verificar o planos de bits 0, 1, 2 e 7 da imagem Watch modificada. Esses planos de bits estão apresentados na Figura \ref{fig:imagem:plano:watch}. 
 
 \begin{figure}[htp]%
 	\centering
-	\subfloat[\centering Plano de bits 0 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_R.png} }}%
+	\subfloat[\centering Plano de bits 0 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_R.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 0 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_G.png} }}%
+	\subfloat[\centering Plano de bits 0 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_G.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 0 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_B.png} }}%
+	\subfloat[\centering Plano de bits 0 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_B.png} }}%
 	
-	\subfloat[\centering Plano de bits 1 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_R.png} }}%
+	\subfloat[\centering Plano de bits 1 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_R.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 1 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_G.png} }}%
+	\subfloat[\centering Plano de bits 1 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_G.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 1 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_B.png} }}%
+	\subfloat[\centering Plano de bits 1 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_B.png} }}%
 	
-	\subfloat[\centering Plano de bits 2 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_R.png} }}%
+	\subfloat[\centering Plano de bits 2 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_R.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 2 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_G.png} }}%
+	\subfloat[\centering Plano de bits 2 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_G.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 2 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_B.png} }}%
+	\subfloat[\centering Plano de bits 2 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_B.png} }}%
 	
-	\subfloat[\centering Plano de bits 7 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_R.png} }}%
+	\subfloat[\centering Plano de bits 7 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_R.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 7 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_G.png} }}%
+	\subfloat[\centering Plano de bits 7 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_G.png} }}%
 	\qquad
-	\subfloat[\centering Plano de bits 7 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_B.png} }}%
+	\subfloat[\centering Plano de bits 7 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_B.png} }}%
 	
-	\caption{Planos de bits da imagem do Baboon modificada pelos bits da mensagem do arquivo \textbf{texto1.txt}.}%
+	\caption{Planos de bits da imagem do Watch modificada pelos bits da mensagem do arquivo \textbf{texto1.txt}.}%
 	\label{fig:imagem:plano:watch}%
 \end{figure}
+
+No caso dessa imagem, é possível notar uma alteração dos padrões de bits apresentados no seu plano de bits 0 (que é o plano onde a mensagem foi inserida). A visualização dessa quebra de padrão está dificuldade pelo tamanho da imagem, mas um olhar atento ainda é capaz de verificá-lo (olhar canto superior esquerdo da primeira linha de imagens).
+
+\subsection{Planos de bits da imagem Baboon e Watch modifica pela mensagem contida no arquivo texto\_longo\_1.txt}
+
+Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão o 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon2}.
+
+\begin{figure}[htp]%
+	\centering
+	\subfloat[\centering Plano de bits 0 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 0 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 0 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_0_B.png} }}%
+	
+	\subfloat[\centering Plano de bits 1 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_1_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 1 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_1_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 1 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_1_B.png} }}%
+	
+	\subfloat[\centering Plano de bits 2 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_2_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 2 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 2 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png} }}%
+	
+	\subfloat[\centering Plano de bits 7 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 7 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_7_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 7 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_7_B.png} }}%
+	
+	\caption{Planos de bits da imagem do Baboon modificada pelos bits da mensagem do arquivo \textbf{texto\_longo\_1.txt}.}%
+	\label{fig:imagem:plano:baboon2}%
+\end{figure}
+
+Para as imagens apresentadas na Figura \ref{fig:imagem:plano:baboon2}, notamos que é possível visualmente verificar que a imagem foi modificada a partir da análise visual dos seus planos de bits. Logo, para mensagens muito grandes, pode-se constatar que é possível verificar que uma imagem foi modificada pela análise dos padrões dos seus planos de bits.
+
+\newpage
+Agora vamos verificar o planos de bits 0, 1, 2 e 7 da imagem Watch modificada. Esses planos de bits estão apresentados na Figura \ref{fig:imagem:plano:watch2}. 
+
+\begin{figure}[htp]%
+	\centering
+	\subfloat[\centering Plano de bits 0 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 0 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_0_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 0 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_0_B.png} }}%
+	
+	\subfloat[\centering Plano de bits 1 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_1_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 1 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_1_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 1 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png} }}%
+	
+	\subfloat[\centering Plano de bits 2 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 2 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_2_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 2 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_2_B.png} }}%
+	
+	\subfloat[\centering Plano de bits 7 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_7_R.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 7 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_7_G.png} }}%
+	\qquad
+	\subfloat[\centering Plano de bits 7 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_7_B.png} }}%
+	
+	\caption{Planos de bits da imagem do Watch modificada pelos bits da mensagem do arquivo \textbf{texto\_longo\_1.txt}.}%
+	\label{fig:imagem:plano:watch2}%
+\end{figure}
+
+Neste caso, assim como no anterior, é possível notar uma alteração dos padrões de bits apresentados no seu plano de bits 0 (que é o plano onde a mensagem foi inserida).
+
+\subsection{Recuperação das mensagens}
+A recuperação das mensagens escondidas pode ser feita pela execução do programa \textbf{decodificar.py}. Para as codificações realizadas anteriormente a seguintes comandos para decodificar podem ser utilizados:
+
+\lstinline{python3 decodificar.py -imagem_entrada=out/baboonm_plano0_texto1.png -planos_bits=0};
+
+\lstinline{python3 decodificar.py -imagem_entrada=out/watchm_plano0_texto1.png -planos_bits=0};
+
+\lstinline{python3 decodificar.py -imagem_entrada=out/baboonm_plano0_texto_longo_1.png -planos_bits=0};
+
+\lstinline{python3 decodificar.py -imagem_entrada=out/watchm_plano0_texto_longo_1.png -planos_bits=0}.
+
+\noindent
+As mensagens recuperadas das imagens são salvas na pasta \textbf{out} que está dentro da pasta to projeto \textbf{trab1}.
+
+\section{Conclusão}
+Do apresentado neste trabalho, podemos concluir que a esteganografia é uma técnica interessante e promissora de ocultação de mensagens em imagens sem que estas aparentem modificações visuais ao olho humano. De qualquer maneira, mesmo que visualmente a mensagem não seja alterada, verificamos que ainda sim é possível identificar que a imagem está modifica e, assim, possivelmente com alguma mensagem escondida. Neste trabalho, essa verificação foi feita pela análise dos planos de bits das imagens modificadas.
+
 
 \end{document}

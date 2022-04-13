@@ -6,17 +6,18 @@ import itertools
 import matplotlib.pyplot as plt
 
 
-def word_to_byte(text):
+def word_to_byte(text): # Converte uma string na lista de bytes correspondente
     lst = []
     for letter in text:
         lst.append('{:08b}'.format(ord(letter)))
     return lst
 
 
-def int_to_byte(num):
+def int_to_byte(num): # Converte um inteiro na sua representação em bytes correspondente
+                      # Estamos assumindo que o inteiro pertence ao intervalo [0, 255] 
+                      # Para caber apenas em um byte
     return '{:08b}'.format(num)
-
-
+ 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Script para inserção de mensagem escondida em images (Esteganografia)')
@@ -47,7 +48,7 @@ if __name__ == '__main__':
 
     for bit, (plano_bits, row, col, channel) in zip(bites, cartesian):
         position = (row, col, channel)
-        print(plano_bits, position)
+        #print(plano_bits, position)
         pixel = imagem[position]
         byte = int_to_byte(pixel) # Pega valor do pixel em representação de bits
         #print(byte, end=' ')    
@@ -69,6 +70,7 @@ if __name__ == '__main__':
     except FileExistsError:
         pass
 
+    texto_entrada = args.texto_entrada.split('/')[-1].split('.')[0]
     name = imagem_entrada.split('/')[-1].split('.')[0]
-    name = 'out/{}m_plano{}.png'.format(name, ''.join(map(str, planos_bits)))
+    name = 'out/{}m_plano{}_{}.png'.format(name, ''.join(map(str, planos_bits)), texto_entrada)
     cv2.imwrite(name, imagem)

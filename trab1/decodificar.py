@@ -6,24 +6,30 @@ from collections import deque
 import matplotlib.pyplot as plt
 
 
-def word_to_byte(text):
+def word_to_byte(text): # Converte uma string na lista de bytes correspondente
     lst = []
     for letter in text:
         lst.append('{:08b}'.format(ord(letter)))
     return lst
 
 
-def int_to_byte(num):
+def int_to_byte(num): # Converte um inteiro na sua representação em bytes correspondente
+                      # Estamos assumindo que o inteiro pertence ao intervalo [0, 255] 
+                      # Para caber apenas em um byte
     return '{:08b}'.format(num)
 
 
-def grouper(n, iterable, fillvalue=None):
+def grouper(n, iterable, fillvalue=None): # Agrupa valores de n em n
+                                          # Utilizado para organizar a sequencia de bits da
+                                          # mensagem escondida na imagem
     "grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx"
     args = [iter(iterable)] * n
     return itertools.zip_longest(fillvalue=fillvalue, *args)
 
 
-EFM = '@#FIM#@' # End of Message
+
+EFM = '!@#FIM#@!' # End of Message
+
 
 EFMBITS = ''.join(word_to_byte(EFM))
 
@@ -45,17 +51,22 @@ if __name__ == '__main__':
     
     cartesian = itertools.product(planos_bits, range(nrows), range(ncols), range(nchannels))
 
-    queue = deque(maxlen=len(EFMBITS))
-    bits= []
+    queue = deque(maxlen=len(EFMBITS)) # Deque utilizado como janela móvel da sequencia de bits. 
+                                       # Possui o tamanho do código de fim de mensagem
+                                       # Assim, quando a sequencia de bits do fim de mensagem for 
+                                       # alcançado, ele estará integralmene no deque e sua identifi
+                                       # cação será realizada facilmente
 
-    for (plano_bits, row, col, channel) in cartesian:
+    bits= [] # Sequencia de bits da mensagem escondida no deque
+
+    for (plano_bits, row, col, channel) in cartesian: # Varrendo a imagem
         position = (row, col, channel)
 
         pixel = imagem[position]
 
         byte = int_to_byte(pixel)
 
-        if plano_bits == 0:
+        if plano_bits == 0: # Recuperando os bits da mensagem escondida
             bit = byte[-1]
         elif plano_bits == 1:
             bit = byte[-2]
@@ -67,13 +78,15 @@ if __name__ == '__main__':
         queue.append(bit)
 
         if len(queue) == len(EFMBITS):
-            if ''.join(queue) == EFMBITS:
+            if ''.join(queue) == EFMBITS: # Verifica se chegou no final de mensagem
                 break
 
             bits.append(queue.popleft())
+
     message = ''    
-    for byte in grouper(8, bits):
-        message += chr(int(''.join(byte), 2))
+    for byte in grouper(8, bits): # Agrupando a sequencia de bits em uma lista de bytes
+                                  # Varrendo essa lista de bites
+        message += chr(int(''.join(byte), 2)) # montando mensagem
     
     name = imagem_entrada.split('/')[-1].split('.')[0]
     name = 'out/{}.txt'.format(name)

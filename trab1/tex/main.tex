@@ -72,7 +72,7 @@ A esteganografia é a área de conhecimento que se dedica a estudar técnicas de
 %
 %%
 \section{Solução}
-A solução utiliza a linguagem de programação Python e conta com o auxílio do gerenciador de projetos e pacotes Conda. Assumindo que o usuário tenha o Conda instalado em sua máquina, a configuração do projeto pode ser feita pela execução do comando \lstinline{conda env create -f environment.yml} a partir da pasta \textbf{trab1}. Esse comando cria o ambiente de trabalho \textbf{mc920-trab1} e instala os seguintes módulos: opencv, numpy, scipy, pandas, matplotlib. Finalizada a configuração do ambiente de trabalho em questão, o usuário deve executar o comando \lstinline{source source.sh}\footnote{O comando que configura o ambiente de trabalho mc920-trab1 precisa ser executado apenas um vez. Assim sendo, depois que este ambiente está configurado, o usuário precisa apenas executar o comando \lstinline{source source.sh}} para carregar as variáveis de ambiente adequadas e, assim, poder usar os programas do projeto dentro do próprio ambiente de trabalho recém configurado. 
+A solução utiliza a linguagem de programação Python e conta com o auxílio do gerenciador de projetos e pacotes Conda. Assumindo que o usuário tenha o Conda instalado em sua máquina, a configuração do projeto pode ser feita pela execução do comando \lstinline{conda env create -f environment.yml} a partir da pasta do projeto \textbf{trab1}. Esse comando cria o ambiente de trabalho \textbf{mc920-trab1} e instala os seguintes módulos: opencv, numpy, scipy, pandas, matplotlib. Finalizada a configuração do ambiente de trabalho em questão, o usuário deve executar o comando \lstinline{source source.sh}\footnote{O comando que configura o ambiente de trabalho mc920-trab1 precisa ser executado apenas um vez. Assim sendo, depois que este ambiente está configurado, o usuário precisa apenas executar o comando \lstinline{source source.sh}} para carregar as variáveis de ambiente adequadas e, assim, poder usar os programas do projeto dentro do próprio ambiente de trabalho recém configurado. 
 
 Dos arquivos presentes na pasta do projeto \textbf{trab1}, destacam-se as pastas \textbf{png}, \textbf{tex}, \textbf{txt} e os programas \textbf{codificar.py}, \textbf{decodificar.py}, \textbf{mostrar\_planos.py}. A pasta \textbf{png} contém imagens no formato png que podem ser utilizadas como esconderijos das mensagens a serem ocultadas. A pasta \textbf{txt} contém exemplos de textos que podem ser utilizados no processo de ocultação de suas mensagens. A pasta \textbf{tex} contém os arquivos Latex deste relatório. As informações pertinentes dos programas \textbf{codificar.py}, \textbf{decodificar.py}, \textbf{mostrar\_planos.py} são detalhadas a seguir.
 
@@ -101,11 +101,11 @@ Exemplos de como utilizar o programa \textbf{codificar.py} utilizando os recurso
 \noindent
 Após executado, o programa \textbf{codificar.py} gera uma imagem de saída. Esse imagem nada mais é que a imagem de entrada contendo a mensagem do texto de entrada oculta nos seus bits menos significativos de acordo com os planos de bits passados pelo usuário. Essa imagem de saída é salva automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem de entrada tem o nome \textbf{img\_ent.png} a imagem de saída apresentará o nome \textbf{img\_ent\underline{m\_planoX}.png}, onde o letra X é um \textit{placeholder} para os números dos planos de bits escolhidos pelo usuário.
 
-Para demais informações acerta das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
+Para demais informações acerca das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
 
 %
 \subsection{Decodificar.py}
-O programa \textbf{decodificar.py} é responsável por recuperar a mensagem escondida presente em um imagem previamente codificada com esse mensagem pelo programa \textbf{codificar.py}. Para ser executado, esse programa precisa receber os parâmetros \textbf{imagem\_entrada} e \textbf{planos\_bits}:
+O programa \textbf{decodificar.py} é responsável por recuperar a mensagem escondida em um imagem previamente codificada com esse mensagem pelo programa \textbf{codificar.py}. Para ser executado, esse programa precisa receber os parâmetros \textbf{imagem\_entrada} e \textbf{planos\_bits}:
 
 \begin{itemize}
 	\item ao parâmetro \textbf{imagem\_entrada} deve-se fornecer o nome do arquivo da imagem que possui uma mensagem escondida cujo conteúdo se deseja recuperar;
@@ -124,7 +124,7 @@ Exemplos de como executar o programa \textbf{decodificar.py} utilizando os recur
 \noindent
 Após executado, o programa \textbf{decodificar.py} é responsável por gerar um arquivo de texto contendo a mensagem que estava escondida na imagem repositório. Esse texto é salvo automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem com a mensagem escondida tiver o nome \textbf{img\_entm\_planoX.png} o arquivo texto da mensagem terá o nome \textbf{img\_entm\_planoX.txt}.
 
-Para demais informações acerta das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
+Para demais informações acerca das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
 
 %
 \subsection{Mostrar\_planos.py}
@@ -143,9 +143,9 @@ Exemplos de como executar o programa \textbf{mostrar\_planos.py} utilizando os r
 \lstinline{python3 mostrar_planos.py -imagem_entrada=out/watchm_plano12.png -planos_bits=0:1:2:7}.
 
 \noindent
-Após executado, o programa \textbf{mostrar\_planos.py} gera imagens dos planos de bits passados pelo usuário dos canais RGB da imagem selecionada. Essa imagem de saída é salva automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem de entrada tem o nome \textbf{img\_entm\_planoX.png}, as imagens de saída apresentarão nome segundo o padrão \textbf{img\_entm\_planoX\underline{\_plano\_bits\_Y\_Z}.png} em que Y é o número do plano de bits apresentado na imagem e Z é de qual canal (R, G ou B) este planos de bits provém.
+Após executado, o programa \textbf{mostrar\_planos.py} gera imagens dos planos de bits passados pelo usuário dos canais RGB da imagem selecionada. Essa imagem de saída é salva automaticamente na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}. Se a imagem de entrada tem o nome \textbf{img\_entm\_planoX.png}, as imagens de saída apresentarão nome segundo o padrão \textbf{img\_entm\_planoX\underline{\_plano\_bits\_Y\_Z}.png} em que Y é o \textit{placeholder} para o número do plano de bits apresentado na imagem e Z é o \textit{placeholder} para os canais (R, G ou B) dos planos de bits.
 
-Para demais informações acerta das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
+Para demais informações acerca das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
 
 %
 %%
@@ -157,14 +157,14 @@ Os resultados levantados são provenientes da aplicação dos programas \textbf{
 	\subfloat[\centering Baboon (png/baboon.png)]{{\includegraphics[width=5cm]{../png/baboon.png} }}%
 	\qquad
 	\subfloat[\centering Watch (png/watch.png)]{{\includegraphics[width=5cm]{../png/watch.png} }}%
-	\caption{Imagens utilizadas para aplicação da solução de esteganografia}%
+	\caption{Imagens utilizadas para aplicação da solução de esteganografia.}%
 	\label{fig:imagem:entrada}%
 \end{figure}
 
 \noindent
 Ambas as imagens estão no formato requerido (png) e estão localizadas na pasta \textbf{png} que está dentro da pasta do projeto \textbf{trab1}. A imagem Baboon apresenta dimensões de 512x512. A imagem Watch apresenta dimensões de 1024x768. 
 
-Duas mensagem serão aplicadas em cada uma desses imagens (em momentos diferentes). Uma mensagem é \textbf{TAMO JUNTO!!!} que está armazenada do arquivo \textbf{texto1.txt}, localizado na pasta \textbf{txt} que está dentro da pasta do projeto \textbf{trab1}. Importante salientar que nessa mensagem também há o conjunto de caracteres \textbf{!@\#FIM\#@!} que codificam o final de mensagem. A outra mensagem é uma sequencia de letras `a's cujo tamanho é suficiente para encher um plano de bits dos três canais completamente da imagem Baboon. Essa mensagem está armazenada no arquivo \textbf{texto\_longo\_1.txt} que está também localizada na pasta \textbf{txt}.
+Duas mensagem serão aplicadas em cada uma desses imagens (em momentos diferentes). Uma mensagem é \textbf{TAMO JUNTO!!!} que está armazenada no arquivo \textbf{texto1.txt}, localizado na pasta \textbf{txt} que está dentro da pasta do projeto \textbf{trab1}. Importante salientar que nessa mensagem também há o conjunto de caracteres \textbf{!@\#FIM\#@!} que codificam o final de mensagem. A outra mensagem é uma sequencia de letras `a's cujo tamanho é suficiente para encher um plano de bits dos três canais completamente da imagem Baboon. Essa mensagem está armazenada no arquivo \textbf{texto\_longo\_1.txt} que está também localizada na pasta \textbf{txt}.
 
 Os comandos utilizados para ocultação da mensagem contida no arquivo \textbf{texto1.txt} foram:
 
@@ -173,14 +173,14 @@ Os comandos utilizados para ocultação da mensagem contida no arquivo \textbf{t
 \lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto1.txt -planos_bits=0}.
 
 \noindent
-As imagens resultados com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida}.
+As imagens resultantes com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida}.
 	
 \begin{figure}[htp]%
 \centering
-\subfloat[\centering Baboon com mensagem escondida do arquivo texto1.txt (out/baboonm\_plano0\_texto1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto1.png} }}%
+\subfloat[\centering Baboon com mensagem escondida (out/baboonm\_plano0\_texto1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto1.png} }}%
 \qquad
-\subfloat[\centering Watch com mensagem escondida do arquivo texto1.txt (out/watchm\_plano0\_texto1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto1.png} }}%
-\caption{Imagens que apresentam mensagem escondida do arquivo do \textbf{texto1.txt}.}%
+\subfloat[\centering Watch com mensagem escondida (out/watchm\_plano0\_texto1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto1.png} }}%
+\caption{Imagens que apresentam mensagem escondida do arquivo \textbf{texto1.txt}.}%
 \label{fig:imagem:saida}%
 \end{figure}	
 
@@ -192,13 +192,13 @@ Os comandos utilizados para ocultação de mensagem contida no arquivo \textbf{t
 \lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto_longo_1.txt -planos_bits=0}.
 
 \noindent
-As imagens resultados com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida2}.
+As imagens resultantes com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida2}.
 
 \begin{figure}[htp]%
 	\centering
-	\subfloat[\centering Baboon com mensagem escondida do arquivo texto\_longo\_1.txt (/out/baboonm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto_longo_1.png} }}%
+	\subfloat[\centering Baboon com mensagem escondida (/out/baboonm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto_longo_1.png} }}%
 	\qquad
-	\subfloat[\centering Watch com mensagem escondida do arquivo texto1.txt (out/watchm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto_longo_1.png} }}%
+	\subfloat[\centering Watch com mensagem escondida (out/watchm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto_longo_1.png} }}%
 	\caption{Imagens que apresentam mensagem escondida do arquivo do \textbf{texto\_longo\_1.txt}.}%
 	\label{fig:imagem:saida2}%
 \end{figure}
@@ -209,7 +209,7 @@ Nota-se que visualmente, essas imagens, apesar de modificadas pelos bits da mens
 
 \subsection{Planos de bits da imagem Baboon e Watch modifica pela mensagem contida no arquivo texto1.txt}
 
-Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão o 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon}.
+Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão os 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon}.
 
 \begin{figure}[htp]%
 	\centering
@@ -242,7 +242,7 @@ Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os p
 \end{figure}	
 
 
-Para as imagens apresentadas na Figura \ref{fig:imagem:plano:baboon}, notamos que não é possível visualmente verificar que a imagem foi modificada a partir da análise visual dos seus planos de bits. Essa condição deve ser propiciada tanto pela ruído apresentado nos planos de bits menos significativos quanto pelo tamanho da mensagem que é pequeno. 
+Para as imagens apresentadas na Figura \ref{fig:imagem:plano:baboon}, notamos que não é possível visualmente verificar que a imagem foi modificada a partir da análise visual dos seus planos de bits. Essa condição deve ser propiciada tanto pela ruído apresentado nos planos de bits menos significativos quanto pelo tamanho da mensagem que é pequeno. Também podemos perceber que os planos bits menos significativos carregam menos informações da composição da imagem do que os planos de bits mais significativos. Logo, é por isso que modificar esse bits (os menos significativos) não altera perceptivelmente a imagem de saída.
 
 \newpage
 Agora vamos verificar o planos de bits 0, 1, 2 e 7 da imagem Watch modificada. Esses planos de bits estão apresentados na Figura \ref{fig:imagem:plano:watch}. 
@@ -351,7 +351,7 @@ Agora vamos verificar o planos de bits 0, 1, 2 e 7 da imagem Watch modificada. E
 Neste caso, assim como no anterior, é possível notar uma alteração dos padrões de bits apresentados no seu plano de bits 0 (que é o plano onde a mensagem foi inserida).
 
 \subsection{Recuperação das mensagens}
-A recuperação das mensagens escondidas pode ser feita pela execução do programa \textbf{decodificar.py}. Para as codificações realizadas anteriormente a seguintes comandos para decodificar podem ser utilizados:
+A recuperação das mensagens escondidas pode ser feita pela execução do programa \textbf{decodificar.py}. Para as codificações realizadas anteriormente os seguintes comandos para decodificar podem ser utilizados:
 
 \lstinline{python3 decodificar.py -imagem_entrada=out/baboonm_plano0_texto1.png -planos_bits=0};
 
@@ -362,10 +362,10 @@ A recuperação das mensagens escondidas pode ser feita pela execução do progr
 \lstinline{python3 decodificar.py -imagem_entrada=out/watchm_plano0_texto_longo_1.png -planos_bits=0}.
 
 \noindent
-As mensagens recuperadas das imagens são salvas na pasta \textbf{out} que está dentro da pasta to projeto \textbf{trab1}.
+As mensagens recuperadas das imagens são salvas na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}.
 
 \section{Conclusão}
-Do apresentado neste trabalho, podemos concluir que a esteganografia é uma técnica interessante e promissora de ocultação de mensagens em imagens sem que estas aparentem modificações visuais ao olho humano. De qualquer maneira, mesmo que visualmente a mensagem não seja alterada, verificamos que ainda sim é possível identificar que a imagem está modifica e, assim, possivelmente com alguma mensagem escondida. Neste trabalho, essa verificação foi feita pela análise dos planos de bits das imagens modificadas.
+Do apresentado neste trabalho, podemos concluir que a esteganografia é uma técnica interessante e promissora de ocultação de mensagens em imagens sem que estas apresentem modificações visuais ao olho humano. De qualquer maneira, mesmo que visualmente as imagens não sejam alteradas, verificamos que ainda sim é possível identificar que a imagem está modifica e, assim, possivelmente com alguma mensagem escondida. Neste trabalho, essa verificação foi feita pela análise dos planos de bits das imagens modificadas. Nesse verificação, foi possível visualizar uma alteração do padrão de bits do plano de bits 0 (plano onde foi inserida a mensagem) em ambas as imagens Baboon e Watch utilizadas. A única exceção aconteceu com a imagem Baboon e a mensagem escondida \textbf{texto1.txt} que se deu, principalmente, porque a mensagem utilizada é muito pequena.
 
 
 \end{document}

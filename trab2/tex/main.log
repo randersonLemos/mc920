@@ -1,0 +1,742 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.5)  13 APR 2022 15:04
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrextend.sty
+Package: scrextend 2020/01/24 v3.29 KOMA-Script package (extend other classes w
+ith features of KOMA-Script classes)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2020/01/24 v3.29 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2020/01/24 v3.29 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2020/01/24 v3.29 KOMA-Script package (loading files)
+))))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+))
+\Gm@cnth=\count175
+\Gm@cntv=\count176
+\c@Gm@tempcnt=\count177
+\Gm@bindingoffset=\dimen135
+\Gm@wd@mp=\dimen136
+\Gm@odd@mp=\dimen137
+\Gm@even@mp=\dimen138
+\Gm@layoutwidth=\dimen139
+\Gm@layoutheight=\dimen140
+\Gm@layouthoffset=\dimen141
+\Gm@layoutvoffset=\dimen142
+\Gm@dimlist=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen143
+\Gin@req@width=\dimen144
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/02/14 3.40 The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/02/14 3.40 Babel switching mechanism
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel-portuges/portuges.ldf
+Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/02/14 3.40 Babel common definitions
+\babel@savecnt=\count178
+\U@D=\dimen145
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count179
+)
+Package babel Info: Making " an active character on input line 145.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen146
+\captionmargin@=\dimen147
+\captionwidth=\dimen148
+\caption@tempdima=\dimen149
+\caption@indent=\dimen150
+\caption@parindent=\dimen151
+\caption@hangindent=\dimen152
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count180
+\c@continuedfloat=\count181
+)
+\c@KVtest=\count182
+\sf@farskip=\skip49
+\sf@captopadj=\dimen153
+\sf@capskip=\skip50
+\sf@nearskip=\skip51
+\c@subfigure=\count183
+\c@subfigure@save=\count184
+\c@lofdepth=\count185
+\c@subtable=\count186
+\c@subtable@save=\count187
+\c@lotdepth=\count188
+\sf@top=\skip52
+\sf@bottom=\skip53
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count189
+\lst@gtempboxa=\box45
+\lst@token=\toks18
+\lst@length=\count190
+\lst@currlwidth=\dimen154
+\lst@column=\count191
+\lst@pos=\count192
+\lst@lostspace=\dimen155
+\lst@width=\dimen156
+\lst@newlines=\count193
+\lst@lineno=\count194
+\lst@maxwidth=\dimen157
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
+\c@lstnumber=\count195
+\lst@skipnumbers=\count196
+\lst@framebox=\box46
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2019/09/10 1.8c listings configuration
+))
+Package: listings 2019/09/10 1.8c (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count197
+\l__pdf_internal_box=\box47
+)
+(./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, 483.69684pt, 56.90553pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23582pt, 56.90552pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=483.69684pt
+* \textheight=731.23582pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-52.36449pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count198
+\scratchdimen=\dimen158
+\scratchbox=\box48
+\nofMPsegments=\count199
+\nofMParguments=\count266
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count267
+\MPscratchDim=\dimen159
+\MPnumerator=\count268
+\makeMPintoPDFobject=\count269
+\everyMPtoPDFconversion=\toks20
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count270
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 65.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 65.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 65.
+
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 75.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 75.
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<../png/baboon.png, id=20, 30.8352pt x 30.8352pt>
+File: ../png/baboon.png Graphic file (type png)
+<use ../png/baboon.png>
+Package pdftex.def Info: ../png/baboon.png  used on input line 157.
+(pdftex.def)             Requested size: 142.26378pt x 142.29575pt.
+<../png/watch.png, id=21, 61.6704pt x 46.2528pt>
+File: ../png/watch.png Graphic file (type png)
+<use ../png/watch.png>
+Package pdftex.def Info: ../png/watch.png  used on input line 159.
+(pdftex.def)             Requested size: 142.26378pt x 106.72148pt.
+<../out/baboonm_plano0_texto1.png, id=22, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1.png  used on input line 1
+80.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<../out/watchm_plano0_texto1.png, id=23, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1.png  used on input line 18
+2.
+(pdftex.def)             Requested size: 142.26378pt x 106.68738pt.
+ [3 <../png/baboon.png (PNG copy)> <../png/watch.png (PNG copy)> <../out/baboon
+m_plano0_texto1.png (PNG copy)> <../out/watchm_plano0_texto1.png (PNG copy)>]
+<../out/baboonm_plano0_texto_longo_1.png, id=27, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto_longo_1.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto_longo_1.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1.png  used on input
+ line 199.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<../out/watchm_plano0_texto_longo_1.png, id=28, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto_longo_1.png Graphic file (type png)
+<use ../out/watchm_plano0_texto_longo_1.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1.png  used on input 
+line 201.
+(pdftex.def)             Requested size: 142.26378pt x 106.68738pt.
+<../out/baboonm_plano0_texto1_plano_bits_0_R.png, id=29, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_0_R.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_0_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_0_R.png  used 
+on input line 216.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_0_G.png, id=30, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_0_G.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_0_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_0_G.png  used 
+on input line 218.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_0_B.png, id=31, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_0_B.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_0_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_0_B.png  used 
+on input line 220.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_1_R.png, id=32, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_1_R.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_1_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_1_R.png  used 
+on input line 222.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_1_G.png, id=33, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_1_G.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_1_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_1_G.png  used 
+on input line 224.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_1_B.png, id=34, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_1_B.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_1_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_1_B.png  used 
+on input line 226.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_2_R.png, id=35, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_2_R.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_2_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_2_R.png  used 
+on input line 228.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_2_G.png, id=36, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_2_G.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_2_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_2_G.png  used 
+on input line 230.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_2_B.png, id=37, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_2_B.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_2_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_2_B.png  used 
+on input line 232.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_7_R.png, id=38, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_7_R.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_7_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_7_R.png  used 
+on input line 234.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_7_G.png, id=39, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_7_G.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_7_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_7_G.png  used 
+on input line 236.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto1_plano_bits_7_B.png, id=40, 513.92pt x 513.92pt>
+File: ../out/baboonm_plano0_texto1_plano_bits_7_B.png Graphic file (type png)
+<use ../out/baboonm_plano0_texto1_plano_bits_7_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto1_plano_bits_7_B.png  used 
+on input line 238.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+ [4 <../out/baboonm_plano0_texto_longo_1.png (PNG copy)> <../out/watchm_plano0_
+texto_longo_1.png (PNG copy)>] [5 <../out/baboonm_plano0_texto1_plano_bits_0_R.
+png (PNG copy)> <../out/baboonm_plano0_texto1_plano_bits_0_G.png (PNG copy)> <.
+./out/baboonm_plano0_texto1_plano_bits_0_B.png (PNG copy)> <../out/baboonm_plan
+o0_texto1_plano_bits_1_R.png (PNG copy)> <../out/baboonm_plano0_texto1_plano_bi
+ts_1_G.png (PNG copy)> <../out/baboonm_plano0_texto1_plano_bits_1_B.png (PNG co
+py)> <../out/baboonm_plano0_texto1_plano_bits_2_R.png (PNG copy)> <../out/baboo
+nm_plano0_texto1_plano_bits_2_G.png (PNG copy)> <../out/baboonm_plano0_texto1_p
+lano_bits_2_B.png (PNG copy)> <../out/baboonm_plano0_texto1_plano_bits_7_R.png 
+(PNG copy)> <../out/baboonm_plano0_texto1_plano_bits_7_G.png (PNG copy)> <../ou
+t/baboonm_plano0_texto1_plano_bits_7_B.png (PNG copy)>]
+<../out/watchm_plano0_texto1_plano_bits_0_R.png, id=47, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_0_R.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_0_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_0_R.png  used o
+n input line 252.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_0_G.png, id=48, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_0_G.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_0_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_0_G.png  used o
+n input line 254.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_0_B.png, id=49, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_0_B.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_0_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_0_B.png  used o
+n input line 256.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_1_R.png, id=50, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_1_R.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_1_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_1_R.png  used o
+n input line 258.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_1_G.png, id=51, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_1_G.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_1_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_1_G.png  used o
+n input line 260.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_1_B.png, id=52, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_1_B.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_1_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_1_B.png  used o
+n input line 262.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_2_R.png, id=53, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_2_R.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_2_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_2_R.png  used o
+n input line 264.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_2_G.png, id=54, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_2_G.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_2_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_2_G.png  used o
+n input line 266.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_2_B.png, id=55, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_2_B.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_2_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_2_B.png  used o
+n input line 268.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_7_R.png, id=56, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_7_R.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_7_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_7_R.png  used o
+n input line 270.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_7_G.png, id=57, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_7_G.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_7_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_7_G.png  used o
+n input line 272.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto1_plano_bits_7_B.png, id=58, 1027.84pt x 770.88pt>
+File: ../out/watchm_plano0_texto1_plano_bits_7_B.png Graphic file (type png)
+<use ../out/watchm_plano0_texto1_plano_bits_7_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto1_plano_bits_7_B.png  used o
+n input line 274.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png, id=59, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png
+  used on input line 288.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png, id=60, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png
+  used on input line 290.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_0_B.png, id=61, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_0_B.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_0_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_0_B.png
+  used on input line 292.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_1_R.png, id=62, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_1_R.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_1_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_1_R.png
+  used on input line 294.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_1_G.png, id=63, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_1_G.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_1_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_1_G.png
+  used on input line 296.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_1_B.png, id=64, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_1_B.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_1_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_1_B.png
+  used on input line 298.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_2_R.png, id=65, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_2_R.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_2_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_2_R.png
+  used on input line 300.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png, id=66, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png
+  used on input line 302.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png, id=67, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png
+  used on input line 304.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png, id=68, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png
+  used on input line 306.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_7_G.png, id=69, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_7_G.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_7_G.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_7_G.png
+  used on input line 308.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboonm_plano0_texto_longo_1_plano_bits_7_B.png, id=70, 513.92pt x 513.
+92pt>
+File: ../out/baboonm_plano0_texto_longo_1_plano_bits_7_B.png Graphic file (type
+ png)
+<use ../out/baboonm_plano0_texto_longo_1_plano_bits_7_B.png>
+Package pdftex.def Info: ../out/baboonm_plano0_texto_longo_1_plano_bits_7_B.png
+  used on input line 310.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+
+Underfull \hbox (badness 1629) in paragraph at lines 312--312
+[]\OT1/cmr/m/n/10 Figura 6: |Pla-nos de bits da ima-gem do Ba-boon mo-di-fi-cad
+a pe-los bits da men-sa-gem do ar-quivo
+ []
+
+[6 <../out/watchm_plano0_texto1_plano_bits_0_R.png (PNG copy)> <../out/watchm_p
+lano0_texto1_plano_bits_0_G.png (PNG copy)> <../out/watchm_plano0_texto1_plano_
+bits_0_B.png (PNG copy)> <../out/watchm_plano0_texto1_plano_bits_1_R.png (PNG c
+opy)> <../out/watchm_plano0_texto1_plano_bits_1_G.png (PNG copy)> <../out/watch
+m_plano0_texto1_plano_bits_1_B.png (PNG copy)> <../out/watchm_plano0_texto1_pla
+no_bits_2_R.png (PNG copy)> <../out/watchm_plano0_texto1_plano_bits_2_G.png (PN
+G copy)> <../out/watchm_plano0_texto1_plano_bits_2_B.png (PNG copy)> <../out/wa
+tchm_plano0_texto1_plano_bits_7_R.png (PNG copy)> <../out/watchm_plano0_texto1_
+plano_bits_7_G.png (PNG copy)> <../out/watchm_plano0_texto1_plano_bits_7_B.png 
+(PNG copy)>] [7 <../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png (PNG co
+py)> <../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png (PNG copy)> <../ou
+t/baboonm_plano0_texto_longo_1_plano_bits_0_B.png (PNG copy)> <../out/baboonm_p
+lano0_texto_longo_1_plano_bits_1_R.png (PNG copy)> <../out/baboonm_plano0_texto
+_longo_1_plano_bits_1_G.png (PNG copy)> <../out/baboonm_plano0_texto_longo_1_pl
+ano_bits_1_B.png (PNG copy)> <../out/baboonm_plano0_texto_longo_1_plano_bits_2_
+R.png (PNG copy)> <../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png (PNG 
+copy)> <../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png (PNG copy)> <../
+out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png (PNG copy)> <../out/baboonm
+_plano0_texto_longo_1_plano_bits_7_G.png (PNG copy)> <../out/baboonm_plano0_tex
+to_longo_1_plano_bits_7_B.png (PNG copy)>]
+<../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png, id=78, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png 
+ used on input line 323.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_0_G.png, id=79, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_0_G.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_0_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_0_G.png 
+ used on input line 325.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_0_B.png, id=80, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_0_B.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_0_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_0_B.png 
+ used on input line 327.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_1_R.png, id=81, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_1_R.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_1_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_1_R.png 
+ used on input line 329.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_1_G.png, id=82, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_1_G.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_1_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_1_G.png 
+ used on input line 331.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png, id=83, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png 
+ used on input line 333.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png, id=84, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png 
+ used on input line 335.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_2_G.png, id=85, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_2_G.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_2_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_2_G.png 
+ used on input line 337.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_2_B.png, id=86, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_2_B.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_2_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_2_B.png 
+ used on input line 339.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_7_R.png, id=87, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_7_R.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_7_R.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_7_R.png 
+ used on input line 341.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_7_G.png, id=88, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_7_G.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_7_G.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_7_G.png 
+ used on input line 343.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+<../out/watchm_plano0_texto_longo_1_plano_bits_7_B.png, id=89, 1027.84pt x 770.
+88pt>
+File: ../out/watchm_plano0_texto_longo_1_plano_bits_7_B.png Graphic file (type 
+png)
+<use ../out/watchm_plano0_texto_longo_1_plano_bits_7_B.png>
+Package pdftex.def Info: ../out/watchm_plano0_texto_longo_1_plano_bits_7_B.png 
+ used on input line 345.
+(pdftex.def)             Requested size: 85.35826pt x 64.01242pt.
+
+Underfull \hbox (badness 2080) in paragraph at lines 347--347
+[]\OT1/cmr/m/n/10 Figura 7: |Pla-nos de bits da ima-gem do Watch mo-di-fi-cada 
+pe-los bits da men-sa-gem do ar-quivo
+ []
+
+[8 <../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png (PNG copy)> <../out/w
+atchm_plano0_texto_longo_1_plano_bits_0_G.png (PNG copy)> <../out/watchm_plano0
+_texto_longo_1_plano_bits_0_B.png (PNG copy)> <../out/watchm_plano0_texto_longo
+_1_plano_bits_1_R.png (PNG copy)> <../out/watchm_plano0_texto_longo_1_plano_bit
+s_1_G.png (PNG copy)> <../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png (P
+NG copy)> <../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png (PNG copy)> <.
+./out/watchm_plano0_texto_longo_1_plano_bits_2_G.png (PNG copy)> <../out/watchm
+_plano0_texto_longo_1_plano_bits_2_B.png (PNG copy)> <../out/watchm_plano0_text
+o_longo_1_plano_bits_7_R.png (PNG copy)> <../out/watchm_plano0_texto_longo_1_pl
+ano_bits_7_G.png (PNG copy)> <../out/watchm_plano0_texto_longo_1_plano_bits_7_B
+.png (PNG copy)>] [9] (./main.aux) ) 
+Here is how much of TeX's memory you used:
+ 6734 strings out of 481239
+ 111549 string characters out of 5920378
+ 416867 words of memory out of 5000000
+ 21907 multiletter control sequences out of 15000+600000
+ 537610 words of font info for 42 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 53i,10n,63p,1051b,1141s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/
+cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmtt8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm100
+0.pfb>
+Output written on main.pdf (9 pages, 7895648 bytes).
+PDF statistics:
+ 133 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 271 words of extra memory for PDF output out of 10000 (max. 10000000)
+

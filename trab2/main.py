@@ -186,22 +186,27 @@ if __name__ == '__main__':
     masks.append(Mask(Stucki))
     masks.append(Mask(Jarvis))
 
-    ## BANDA MONOBRAMATICA
-    for mask in masks:
-        print(mask.name)  
-        Process( target=handle_grayscale_image, args=( gray, mask,) ).start()
+    #### BANDA MONOBRAMATICA
+    #for mask in masks:
+    #    print(mask.name)  
+    #    Process( target=handle_grayscale_image, args=( gray, mask,) ).start()
 
     #### BANDA DE COR
-    #hls = cv2.cvtColor(color, cv2.COLOR_BGR2HLS)
+    hsv = cv2.cvtColor(color, cv2.COLOR_BGR2HSV)
+    v = hsv[:, :, 2]
 
-    #l = hls[:,:,1]
+    mask = masks[0]
+    original, control, dotted = apply_dotted(v, mask)
 
-    #original, control, dotted = apply_dotted(l, mask)
-    #
-    #ohls = copy.copy(hls)
-    #ohls[:, :, 1] = original
-    #obgr = cv2.cvtColor(ohls, cv2.COLOR_HLS2BGR)
-    #cv2.imshow('o', obgr)
+    hsv[:, :, 2] = original
+    bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+    cv2.imshow('o', bgr)
+
+    hsv[:, :, 2] = dotted
+    bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+    cv2.imshow('d', bgr)
+
+
 
     #chls = copy.copy(hls)
     #chls[:, :, 1] = control
@@ -210,7 +215,7 @@ if __name__ == '__main__':
 
     ##cv2.imshow('c', control)
     ##cv2.imshow('d', dotted)
-    #cv2.waitKey(0)
+    cv2.waitKey(0)
 
     #l = original
     #hls[:,:,1] = l

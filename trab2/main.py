@@ -1,4 +1,5 @@
 import cv2
+import time
 import copy
 import argparse
 import numpy as np
@@ -159,11 +160,35 @@ def apply_dotted(gray, dotted_mask):
 
 
 def handle_grayscale_image(gray, mask):
+    start = time.time()
     original, control, dotted = apply_dotted(gray, mask)
+    print('GRAY', mask.name, time.time() - start)
     
     cv2.imwrite('./out/{}.png'.format(name), original)
     cv2.imwrite('./out/{}_control.png'.format(name) , control)
     cv2.imwrite('./out/{}_{}.png'.format(name,mask.name.lower()) , dotted)
+
+
+def handle_bgr_images(bgr, mask):
+    start = time.time()
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    v = hsv[:, :, 2]
+
+    original, control, dotted = apply_dotted(v, mask)
+
+    hsv[:, :, 2] = original
+    original  = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+    hsv[:, :, 2] = control
+    control= cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+    hsv[:, :, 2] = dotted
+    dotted = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+    print('COLOR', mask.name, time.time() - start)
+
+    cv2.imwrite('./out/c{}.png'.format(name), original)
+    cv2.imwrite('./out/c{}_control.png'.format(name) , control)
+    cv2.imwrite('./out/c{}_{}.png'.format(name,mask.name.lower()) , dotted)
 
 
 if __name__ == '__main__':
@@ -175,8 +200,8 @@ if __name__ == '__main__':
     path = args.imagem_entrada
     name = path.split('/')[-1].split('.')[0]
 
-    color = cv2.imread(path)
-    gray  = cv2.cvtColor(color, cv2.COLOR_BGR2GRAY)   
+    bgr = cv2.imread(path)
+    gray  = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)   
 
     masks = []
     masks.append(Mask(FloydSteinberg))
@@ -186,49 +211,10 @@ if __name__ == '__main__':
     masks.append(Mask(Stucki))
     masks.append(Mask(Jarvis))
 
-    #### BANDA MONOBRAMATICA
-    #for mask in masks:
-    #    print(mask.name)  
-    #    Process( target=handle_grayscale_image, args=( gray, mask,) ).start()
+    ### IMAGEM EM ESCALA DE CINZA
+    for mask in masks:
+        Process( target=handle_grayscale_image, args=( gray, mask,) ).start()
 
-    #### BANDA DE COR
-    hsv = cv2.cvtColor(color, cv2.COLOR_BGR2HSV)
-    v = hsv[:, :, 2]
-
-    mask = masks[0]
-    original, control, dotted = apply_dotted(v, mask)
-
-    hsv[:, :, 2] = original
-    bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-    cv2.imshow('o', bgr)
-
-    hsv[:, :, 2] = dotted
-    bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-    cv2.imshow('d', bgr)
-
-
-
-    #chls = copy.copy(hls)
-    #chls[:, :, 1] = control
-    #cbgr = cv2.cvtColor(chls, cv2.COLOR_HLS2BGR)
-    #cv2.imshow('c', cbgr)
-
-    ##cv2.imshow('c', control)
-    ##cv2.imshow('d', dotted)
-    cv2.waitKey(0)
-
-    #l = original
-    #hls[:,:,1] = l
-    #ocolor = cv2.cvtColor(hls, cv2.COLOR_HLS2BGR)
-    #cv2.imwrite('./out/c{}.png'.format(name), ocolor)
-
-    #l = control
-    #hls[:,:,1] = l
-    #ccolor = cv2.cvtColor(hls, cv2.COLOR_HLS2BGR)
-    #cv2.imwrite('./out/c{}_control.png'.format(name) , ccolor)
-
-    #l = dotted
-    #hls[:,:,1] = l
-    #dcolor = cv2.cvtColor(hls, cv2.COLOR_HLS2BGR)
-    #cv2.imwrite('./out/c{}_{}.png'.format(name,mask.name.lower()) , dcolor)
-    #import IPython; IPython.embed()
+    ### IMAGEM EM BGR
+    for mask in masks:
+        Process( target=handle_bgr_images, args=( bgr, mask,) ).start()

@@ -1,4 +1,4 @@
-# Escondendo uma mensagem em uma imagem (trabalho 1)
+# Aplicando técnicas de meios-tons por difusão de erro (trabalho 2)
 Documento sintético para auxiliar o usuário na execução dos códigos do projeto. Para informações mais detalhadas consultar o arquivo REPORT.pdf.
 
 # Configurando ambiente de trabalho
@@ -14,10 +14,6 @@ Depois de configurar o ambiente de trabalho é necessário carregá-lo. Para iss
 
 Pronto, seu ambiente de trabalho que se chama **mc920-trab2** está configurado e carregado.
 
-# Rodando os programas codificar.py, decodificar.py e mostrar_planos.py
+# Rodando o programa main.py
 
-> python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto1.txt -planos_bits=0
-
-> python3 decodificar.py -imagem_entrada=out/watchm_plano0_texto1.png -plano_bits=0
-
-> python3 mostrar_planos.py -imagem_entrada=out/watchm_plano0_texto1.png -planos_bits=0:1:2:7
+> python3 main.py -imagem_entrada=png/baboon.png

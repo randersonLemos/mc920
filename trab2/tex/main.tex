@@ -142,7 +142,7 @@ As técnicas de meios-tons se prestam a quantizar as cores de uma imagem (reduzi
 	\end{tabular}
 \end{table}
 
-Detalhes se solução e implementação, assim como de análise e conclusão, serão abordados nas seções subsequentes.
+Detalhes da solução e implementação, assim como de análise e conclusão, serão abordados nas seções subsequentes.
 
 %
 %%
@@ -161,7 +161,7 @@ O programa \textbf{main.py} é responsável pela aplicação de todas as técnic
 	
 \noindent
 
-O programa \textbf{main.py} disponibiliza todas as imagens resultantes da aplicação das técnicas de meios-tons em duas versões: uma versão preto e branco e outra versão colorida. Todas essas imagens são salvas dentro da pasta \textbf{out} localizada dentro da pasta do projeto \textbf{trab2}. Há também uma imagem de controle, na qualquer se aplicou um técnica de meio-tom rudimentar, isto é, apenas considerando o limiar de 128 e não utilizando a difusão de erro. Esta imagem também está salva na pasta \textbf{trab2}.
+O programa \textbf{main.py} disponibiliza todas as imagens resultantes da aplicação das técnicas de meios-tons em duas versões: uma versão preto e branco e outra versão colorida. Todas essas imagens são salvas dentro da pasta \textbf{out} localizada dentro da pasta do projeto \textbf{trab2}. Há também uma imagem de controle, na qualquer se aplicou uma técnica de meio-tom rudimentar, isto é, apenas considerando o limiar de 128 e não utilizando a difusão de erro. Esta imagem também está salva na pasta \textbf{trab2}.
 
 Um exemplo de como executar o programa \textbf{main.py} utilizando os recursos contidos dentro do próprio projeto é: \lstinline{python3 main.py -imagem_entrada=png/baboon.png}.
 
@@ -176,7 +176,9 @@ Sobre a direção de varredura para aplicação das técnicas de meios-tons opto
 
 Essa opção de varredura foi considera porque a aparência visual das imagens resultantes se mostrou satisfatório, não havendo padrões estranhos que causassem desconforto ao olhar do observador.
 
-Um dos destaques das implementações realizadas é a classe \textbf{Mask}. Essa classe ficou responsável pelo encapsulamento da lógica de recuperação dos pesos das mascaras das técnicas de meios-tons por difusão de erro bem como das posições nas quais estes pesos deveriam ser aplicados na imagem original. Dessa maneira, para o usuário, só ficou necessário passar a matriz da mascara da técnica de meio-tom em questão e a posição de referência do posicionamento na mascara do pixel \textbf{f(x,y)} da imagem original. Essa classe foi implementada como um objeto \textbf{iterador} do Python de modo que a recuperação do pesos bem como da posição de aplicação destes na imagem original era facilmente alcançada dentro de uma estrutura de laço de repetição. Isso tornou bastante conveniente a integração da instancia da classe \textbf{Mask} dentro da função responsável por construir a imagem \textbf{g(x, y)} possuidora dos pixels em meios-tons. A implementação da classe \textbf{Mask} é apresentada a baixo.
+Para o processo de aplicação das técnicas de meios-tons em imagens coloridas optou-se por trabalhar no mapa de cores HSV cujas letras são abreviações de \textit{Hue} (matiz), \textit{Saturation} (saturação) e \textit{Value} (valor). Assim, as imagens que, quando carregadas pelo opencv, eram disponibilizadas no mapa de cores BGR tiveram este mapa de cores convertido para o mapa HSV. Já no mapa de cores HSV, apenas o canal V (Value) da imagem (que é o que contém a intensidade luminosa) foi passado para as funções responsáveis pela aplicação das técnicas de meios-tons por difusão de erro. Obtido o canal V em meios-tons, este foi integrado ao esquema HSV original e a nova imagem foi reconvertida para o mapa de cores BGR.
+
+Um dos destaques das implementações realizadas é a classe \textbf{Mask}. Essa classe ficou responsável pelo encapsulamento da lógica de recuperação dos pesos das mascaras das técnicas de meios-tons por difusão de erro bem como das posições nas quais estes pesos deveriam ser aplicados na imagem original. Dessa maneira, para o usuário, só ficou necessário passar a matriz da mascara da técnica de meio-tom em questão e a posição de referência do posicionamento na mascara do pixel \textbf{f(x,y)} da imagem original. Essa classe foi implementada como um objeto \textbf{iterador} do Python de modo que a obtenção dos pesos bem como da posição de aplicação destes na imagem original era facilmente alcançada dentro de uma estrutura de laço de repetição. Isso tornou bastante conveniente a integração da instancia da classe \textbf{Mask} dentro da função responsável por construir a imagem \textbf{g(x, y)} possuidora dos pixels em meios-tons. A implementação da classe \textbf{Mask} é apresentada a baixo.
 
 \begin{lstlisting}
 class Mask:
@@ -263,229 +265,55 @@ Na sequência, teremos a apresentação das imagens resultantes da aplicação d
 \subsection{Técnicas de meios-tons sobre images em escala de cinza}
 Aqui serão apresentados as imagens resultados da aplicação das técnicas de meios-tons sobre a imagem de entrada em escala de cinza.
 
-\begin{figure}[htp]%
+\begin{figure}[!htp]%
 	\centering
-    \subfloat[\centering Imagem em meio-tom controle (aplicação apenas do limiar de 128)]{{ \includegraphics[width=3cm]{../out/baboon_control.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=4cm]{../out/baboon_floydsteinberg.png} }}%
 	\qquad
-	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/baboon_floydsteinberg.png} }}%
+    \subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=4cm]{../out/baboon_stevensonarce.png} }}%
 	\qquad
-    \subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/baboon_stevensonarce.png} }}%
-	
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_1_R.png} }}%
-	%\qquad
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_1_G.png} }}%
-	%\qquad
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_1_B.png} }}%
-	%
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_2_R.png} }}%
-	%\qquad
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_2_G.png} }}%
-	%\qquad
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_2_B.png} }}%
-	%
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_7_R.png} }}%
-	%\qquad
-	%\subfloat[\centering ]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_7_G.png} }}%
-	%\qquad
-	%\subfloat[\centering Plano de bits 7 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_7_B.png} }}%
+    \subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=4cm]{../out/baboon_burkers.png} }}%
 
-	\caption{Planos de bits da imagem do Baboon modificada pelos bits da mensagem do arquivo \textbf{texto1.txt}.}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=4cm]{../out/baboon_sierra.png} }}%
+    \qquad
+   	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=4cm]{../out/baboon_stucki.png} }}%
+   	\quad
+ 	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=4cm]{../out/baboon_jarvis.png} }}%
+	
+	\caption{Imagens resultantes em escala de cinza da aplicação das técnicas de meios-tons por difusão de erro em questão.}%
 	\label{fig:imagem:plano:baboon}%
 \end{figure}	
 
+Nota-se que dentro das dimensões apresentadas, todas as técnicas de meios-tons apresentaram resultados similares.
 
+\newpage
+\subsection{Técnicas de meios-tons sobre images coloridas}
+Temos a seguir apresentadas as imagens resultados da aplicação das técnicas de meios-tons sobre a imagem de entrada colorida.
 
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=4cm]{../out/cbaboon_floydsteinberg.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=4cm]{../out/cbaboon_stevensonarce.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=4cm]{../out/cbaboon_burkers.png} }}%
 	
-%\begin{figure}[htp]%
-%\centering
-%\subfloat[\centering Baboon com mensagem escondida (out/baboonm\_plano0\_texto1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto1.png} }}%
-%\qquad
-%\subfloat[\centering Watch com mensagem escondida (out/watchm\_plano0\_texto1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto1.png} }}%
-%\caption{Imagens que apresentam mensagem escondida do arquivo \textbf{texto1.txt}.}%
-%\label{fig:imagem:saida}%
-%\end{figure}	
-%
-%\newpage\noindent
-%Os comandos utilizados para ocultação de mensagem contida no arquivo \textbf{texto\_longo\_1.txt} foram:
-%
-%\lstinline{python3 codificar.py -imagem_entrada=png/baboon.png -texto_entrada=txt/texto_longo_1.txt -planos_bits=0};
-%
-%\lstinline{python3 codificar.py -imagem_entrada=png/watch.png -texto_entrada=txt/texto_longo_1.txt -planos_bits=0}.
-%
-%\noindent
-%As imagens resultantes com a mensagem escondida estão apresentadas na Figura \ref{fig:imagem:saida2}.
-%
-%\begin{figure}[htp]%
-%	\centering
-%	\subfloat[\centering Baboon com mensagem escondida (/out/baboonm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/baboonm_plano0_texto_longo_1.png} }}%
-%	\qquad
-%	\subfloat[\centering Watch com mensagem escondida (out/watchm\_plano0\_texto\_longo\_1.png)]{{\includegraphics[width=5cm]{../out/watchm_plano0_texto_longo_1.png} }}%
-%	\caption{Imagens que apresentam mensagem escondida do arquivo do \textbf{texto\_longo\_1.txt}.}%
-%	\label{fig:imagem:saida2}%
-%\end{figure}
-%
-%
-%Nota-se que visualmente, essas imagens, apesar de modificadas pelos bits da mensagem escondida, não apresentam alterações visuais perceptíveis ao olho humano. Vamos visualizar os planos 0, 1, 2 e 7 dessas imagens para cada umas das duas mensagens \textbf{texto1.txt} e \textbf{texto\_longo\_1.txt}. 
-%
-%
-%\subsection{Planos de bits da imagem Baboon e Watch modifica pela mensagem contida no arquivo texto1.txt}
-%
-%Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão os 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon}.
-%
-%\begin{figure}[htp]%
-%	\centering
-%	\subfloat[\centering Plano de bits 0 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_0_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_0_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_0_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 1 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_1_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_1_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_1_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 2 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_2_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_2_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_2_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 7 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_7_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_7_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto1_plano_bits_7_B.png} }}%
-%
-%	\caption{Planos de bits da imagem do Baboon modificada pelos bits da mensagem do arquivo \textbf{texto1.txt}.}%
-%	\label{fig:imagem:plano:baboon}%
-%\end{figure}	
-%
-%
-%Para as imagens apresentadas na Figura \ref{fig:imagem:plano:baboon}, notamos que não é possível visualmente verificar que a imagem foi modificada a partir da análise visual dos seus planos de bits. Essa condição deve ser propiciada tanto pela ruído apresentado nos planos de bits menos significativos quanto pelo tamanho da mensagem que é pequeno. Também podemos perceber que os planos bits menos significativos carregam menos informações da composição da imagem do que os planos de bits mais significativos. Logo, é por isso que modificar esse bits (os menos significativos) não altera perceptivelmente a imagem de saída.
-%
-%\newpage
-%Agora vamos verificar o planos de bits 0, 1, 2 e 7 da imagem Watch modificada. Esses planos de bits estão apresentados na Figura \ref{fig:imagem:plano:watch}. 
-%
-%\begin{figure}[htp]%
-%	\centering
-%	\subfloat[\centering Plano de bits 0 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_0_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 1 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_1_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 2 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_2_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 7 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto1_plano_bits_7_B.png} }}%
-%	
-%	\caption{Planos de bits da imagem do Watch modificada pelos bits da mensagem do arquivo \textbf{texto1.txt}.}%
-%	\label{fig:imagem:plano:watch}%
-%\end{figure}
-%
-%No caso dessa imagem, é possível notar uma alteração dos padrões de bits apresentados no seu plano de bits 0 (que é o plano onde a mensagem foi inserida). A visualização dessa quebra de padrão está dificuldade pelo tamanho da imagem, mas um olhar atento ainda é capaz de verificá-lo (olhar canto superior esquerdo da primeira linha de imagens).
-%
-%\subsection{Planos de bits da imagem Baboon e Watch modifica pela mensagem contida no arquivo texto\_longo\_1.txt}
-%
-%Começaremos visualizando os planos de bits da imagem do Baboon modificada. Os planos apresentados serão o 0, 1, 2, e 7 (0 menos significativo, 7 o mais significativo). As imagens dos planos de bits podem ser visualizadas na Figura \ref{fig:imagem:plano:baboon2}.
-%
-%\begin{figure}[htp]%
-%	\centering
-%	\subfloat[\centering Plano de bits 0 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_0_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_0_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_0_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 1 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_1_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_1_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_1_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 2 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_2_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_2_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_2_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 7 do canal R da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_7_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal G da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_7_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal B da Baboon com mensagem escondida]{{\includegraphics[width=3cm]{../out/baboonm_plano0_texto_longo_1_plano_bits_7_B.png} }}%
-%	
-%	\caption{Planos de bits da imagem do Baboon modificada pelos bits da mensagem do arquivo \textbf{texto\_longo\_1.txt}.}%
-%	\label{fig:imagem:plano:baboon2}%
-%\end{figure}
-%
-%Para as imagens apresentadas na Figura \ref{fig:imagem:plano:baboon2}, notamos que é possível visualmente verificar que a imagem foi modificada a partir da análise visual dos seus planos de bits. Logo, para mensagens muito grandes, pode-se constatar que é possível verificar que uma imagem foi modificada pela análise dos padrões dos seus planos de bits.
-%
-%\newpage
-%Agora vamos verificar o planos de bits 0, 1, 2 e 7 da imagem Watch modificada. Esses planos de bits estão apresentados na Figura \ref{fig:imagem:plano:watch2}. 
-%
-%\begin{figure}[htp]%
-%	\centering
-%	\subfloat[\centering Plano de bits 0 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_0_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_0_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 0 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_0_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 1 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_1_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_1_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 1 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_1_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 2 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_2_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_2_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 2 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_2_B.png} }}%
-%	
-%	\subfloat[\centering Plano de bits 7 do canal R da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_7_R.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal G da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_7_G.png} }}%
-%	\qquad
-%	\subfloat[\centering Plano de bits 7 do canal B da Watch com mensagem escondida]{{\includegraphics[width=3cm]{../out/watchm_plano0_texto_longo_1_plano_bits_7_B.png} }}%
-%	
-%	\caption{Planos de bits da imagem do Watch modificada pelos bits da mensagem do arquivo \textbf{texto\_longo\_1.txt}.}%
-%	\label{fig:imagem:plano:watch2}%
-%\end{figure}
-%
-%Neste caso, assim como no anterior, é possível notar uma alteração dos padrões de bits apresentados no seu plano de bits 0 (que é o plano onde a mensagem foi inserida).
-%
-%\subsection{Recuperação das mensagens}
-%A recuperação das mensagens escondidas pode ser feita pela execução do programa \textbf{decodificar.py}. Para as codificações realizadas anteriormente os seguintes comandos para decodificar podem ser utilizados:
-%
-%\lstinline{python3 decodificar.py -imagem_entrada=out/baboonm_plano0_texto1.png -planos_bits=0};
-%
-%\lstinline{python3 decodificar.py -imagem_entrada=out/watchm_plano0_texto1.png -planos_bits=0};
-%
-%\lstinline{python3 decodificar.py -imagem_entrada=out/baboonm_plano0_texto_longo_1.png -planos_bits=0};
-%
-%\lstinline{python3 decodificar.py -imagem_entrada=out/watchm_plano0_texto_longo_1.png -planos_bits=0}.
-%
-%\noindent
-%As mensagens recuperadas das imagens são salvas na pasta \textbf{out} que está dentro da pasta do projeto \textbf{trab1}.
-%
-%\section{Conclusão}
+	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=4cm]{../out/cbaboon_sierra.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=4cm]{../out/cbaboon_stucki.png} }}%
+	\quad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=4cm]{../out/cbaboon_jarvis.png} }}%
+	
+	\caption{Imagens resultantes coloridas da aplicação das técnicas de meios-tons por difusão de erro em questão.}%
+	\label{fig:imagem:plano:baboon}%
+\end{figure}
+
+Nota-se que dentro das dimensões apresentadas, todas as técnicas de meios-tons apresentaram resultados similares.
+
+\section{Conclusão}
+Do apresentado, podemos concluir que as técnicas de meios-tons foram aplicadas satisfatoriamente tanto sobre imagens coloridas quanto sobre imagens em escala de cinza. Para a imagem utilizada e dentro das dimensões consideradas, as ténicas de meios-tons tiveram resultados visuais semelhantes e bastante satisfatórios. Agora, dentro de uma análise mais minuciosa (ampliando-se as imagens) a técnica de meio-tom de Floyd e Steinberg apresentou uma imagem resultante com algumas falhas e vazios pretos na imagem resultante que não foram apresentados pelas imagens resultantes da aplicação das outras técnicas de meios-tons. Desse modo, quanto ao criterio visual, pode-se afirmar que a técnica de meio-tom de Floyd Steinberg apresentou os resultados menos interessantes com relação a harmonia visual da imagem resultante. Por outro lado, a aplicação da técnica de meio-tom de Floyd Steinberg é a menos custosa computacionalmente, dado que dispõe da menor mascara.
+
+Sobre a direção de varredura, notamos que a direção selecionada não foi um empeditivo para obtenção de boas imagens em meios-tons. Talvez para aplicações mais sofisticadas em que a qualidade das imagens em meios-tons seja crítica, a utilização de padrões de varredura mais complexos seja justificado, o que não é o caso dentro do contexto deste trabalho.
+
 %Do apresentado neste trabalho, podemos concluir que a esteganografia é uma técnica interessante e promissora de ocultação de mensagens em imagens sem que estas apresentem modificações visuais ao olho humano. De qualquer maneira, mesmo que visualmente as imagens não sejam alteradas, verificamos que ainda sim é possível identificar que a imagem está modifica e, assim, possivelmente com alguma mensagem escondida. Neste trabalho, essa verificação foi feita pela análise dos planos de bits das imagens modificadas. Nesse verificação, foi possível visualizar uma alteração do padrão de bits do plano de bits 0 (plano onde foi inserida a mensagem) em ambas as imagens Baboon e Watch utilizadas. A única exceção aconteceu com a imagem Baboon e a mensagem escondida \textbf{texto1.txt} que se deu, principalmente, porque a mensagem utilizada é muito pequena.
 
 

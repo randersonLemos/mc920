@@ -6,6 +6,15 @@ import numpy as np
 from multiprocessing import Process
 
 
+###
+# Classes das mascaras das tecnicas de meios-tons
+# por difusao de erro consideradas do trabalho.
+# Essas mascaras sao passadas para a classe Mask
+# que contem toda a logica de obtacao dos valores
+# corretos das mascaras
+###
+
+
 class FloydSteinberg:
     name = 'FloydSteinberg'
 
@@ -78,6 +87,15 @@ class Jarvis:
 
 
 class Mask:
+    """ Classe responsavel por abstrair a logica de utlizacao
+    das mascaras das tecnicas de meios-tons por difusao de erro
+    consideradas. Essa classe e um iterador, de modo que basta
+    fazer um laco de repeticao nela para recuperar os valores
+    junto com a posicao relativa de onde esses pesos sao aplicados
+    na imagem original.
+    """
+
+
     def __init__(self, mask):
         self.name = mask.name
         self.mask = mask.mask
@@ -91,6 +109,11 @@ class Mask:
 
 
     def __next__(self):
+        """ Metodo que encapsula a logica de recuperacao de valores
+        e de posicao relativas a serem utilizadas na imagem original
+        para difusao do erro
+        """
+
         mask = self.mask
         row, col = mask.shape
         _r = self._r; _c = self._c
@@ -122,6 +145,13 @@ class Mask:
 
             
 def apply_dotted(gray, dotted_mask):
+    """ Funcao que aplica as tecnicas de meios-tons
+    sobre imagens monocromatica (de apenas um canal)
+    Parametros de entrada:
+        gray : imagem monocromatica
+        dotted_mask : objeto da class Mask
+    """
+
     row, col = gray.shape
     
     original = copy.copy(gray)
@@ -153,13 +183,18 @@ def apply_dotted(gray, dotted_mask):
                 except IndexError:
                     pass
 
-    original = (    original).astype('uint8')
-    control  = ( control*255).astype('uint8')
-    dotted   = (  dotted*255).astype('uint8')
+    original = (    original).astype('uint8') # Imagem original
+    control  = ( control*255).astype('uint8') # Imagem em meio-tom (controle) apenas aplicando o limiar 128
+    dotted   = (  dotted*255).astype('uint8') # Imagem em meio-tom por difusao de erro
     return original, control, dotted
 
 
 def handle_grayscale_image(gray, mask):
+    """ Funcao responsavel por fazer todo processo de 
+    aplicacao das tecnicas de meios-tons por difusao
+    de erro sobre imagens monocromaticas
+    """
+
     start = time.time()
     original, control, dotted = apply_dotted(gray, mask)
     print('GRAY', mask.name, time.time() - start)
@@ -170,11 +205,16 @@ def handle_grayscale_image(gray, mask):
 
 
 def handle_bgr_images(bgr, mask):
-    start = time.time()
-    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
-    v = hsv[:, :, 2]
+    """ Funcao responsavel por fazer todo o processo de
+    aplicacao das tecnicas de meios-tons por difusao de
+    erro sobre imagens coloridas
+    """
 
-    original, control, dotted = apply_dotted(v, mask)
+    start = time.time()
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
+    v = hsv[:, :, 2] # Pegando apenas o canal associado a intencidade luminosa
+
+    original, control, dotted = apply_dotted(v, mask) # Aplicando tecnica de meio-tom
 
     hsv[:, :, 2] = original
     original  = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)

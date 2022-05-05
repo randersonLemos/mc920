@@ -189,19 +189,85 @@ def apply_dotted(gray, dotted_mask):
     return original, control, dotted
 
 
+def apply_dotted_zigzag(gray, dotted_mask):
+    """ Funcao que aplica as tecnicas de meios-tons
+    sobre imagens monocromatica (de apenas um canal)
+    Parametros de entrada:
+        gray : imagem monocromatica
+        dotted_mask : objeto da class Mask
+    """
+
+    row, col = gray.shape
+    
+    original = copy.copy(gray)
+    dotted   = np.zeros((row, col, ))
+    control  = np.zeros((row, col, ))
+
+    for r in range(row):
+        for c in range(col):
+            if gray[r][c] < 128:
+                control[r][c] = 0
+            
+            else:
+                control[r][c] = 1
+
+    for r in range(row):
+        rangecol = range(col) # Da esquerda para direita
+        if r%2 == 1:
+            rangecol = reversed(rangecol) # Da direita para esquerda
+
+        for c in rangecol:
+            if gray[r][c] < 128:
+                dotted[r][c] = 0
+            
+            else:
+                dotted[r][c] = 1
+
+            error = gray[r][c] - dotted[r][c]*255
+            
+            for val, inc in dotted_mask:
+                ir, ic = inc # Valores de incremento corretos para o caminho da esquerda para direita
+
+                if r%2 == 1: # Para o caminho da direita para esquerda, a mascara precisa ser espelha.
+                             # Para alcancar esse efeito basta usar o negativo desses valores
+                    ir = -ir
+                    ic = -ic
+
+                try:
+                    gray[r + ir][c + ic] = gray[r + ir][c + ic] + val*error
+                except IndexError:
+                    pass
+
+    original = (    original).astype('uint8') # Imagem original
+    control  = ( control*255).astype('uint8') # Imagem em meio-tom (controle) apenas aplicando o limiar 128
+    dotted   = (  dotted*255).astype('uint8') # Imagem em meio-tom por difusao de erro
+    return original, control, dotted
+
+
 def handle_grayscale_image(gray, mask):
     """ Funcao responsavel por fazer todo processo de 
     aplicacao das tecnicas de meios-tons por difusao
     de erro sobre imagens monocromaticas
     """
 
+    ### DEFAULT PATH ###
     start = time.time()
-    original, control, dotted = apply_dotted(gray, mask)
+    original, control, dotted = apply_dotted(copy.copy(gray), mask)
     print('GRAY', mask.name, time.time() - start)
     
     cv2.imwrite('./out/{}.png'.format(name), original)
     cv2.imwrite('./out/{}_control.png'.format(name) , control)
     cv2.imwrite('./out/{}_{}.png'.format(name,mask.name.lower()) , dotted)
+
+    
+    ### ZIGZAG PATH ###
+    start = time.time()
+    original, control, dotted = apply_dotted_zigzag(copy.copy(gray), mask)
+    print('GRAY', mask.name, time.time() - start)
+    
+    cv2.imwrite('./out/z{}.png'.format(name), original)
+    cv2.imwrite('./out/z{}_control.png'.format(name) , control)
+    cv2.imwrite('./out/z{}_{}.png'.format(name,mask.name.lower()) , dotted)
 
 
 def handle_bgr_images(bgr, mask):
@@ -210,11 +276,12 @@ def handle_bgr_images(bgr, mask):
     erro sobre imagens coloridas
     """
 
+    ### DEFAULT PATH ###
     start = time.time()
     hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
     v = hsv[:, :, 2] # Pegando apenas o canal associado a intencidade luminosa
 
-    original, control, dotted = apply_dotted(v, mask) # Aplicando tecnica de meio-tom
+    original, control, dotted = apply_dotted(copy.copy(v), mask) # Aplicando tecnica de meio-tom
 
     hsv[:, :, 2] = original
     original  = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
@@ -229,6 +296,28 @@ def handle_bgr_images(bgr, mask):
     cv2.imwrite('./out/c{}.png'.format(name), original)
     cv2.imwrite('./out/c{}_control.png'.format(name) , control)
     cv2.imwrite('./out/c{}_{}.png'.format(name,mask.name.lower()) , dotted)
+
+
+    ### ZIGZAG PATH ###
+    start = time.time()
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
+    v = hsv[:, :, 2] # Pegando apenas o canal associado a intencidade luminosa
+
+    original, control, dotted = apply_dotted_zigzag(copy.copy(v), mask) # Aplicando tecnica de meio-tom
+
+    hsv[:, :, 2] = original
+    original  = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+    hsv[:, :, 2] = control
+    control= cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+    hsv[:, :, 2] = dotted
+    dotted = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+    print('COLOR', mask.name, time.time() - start)
+
+    cv2.imwrite('./out/cz{}.png'.format(name), original)
+    cv2.imwrite('./out/cz{}_control.png'.format(name) , control)
+    cv2.imwrite('./out/cz{}_{}.png'.format(name,mask.name.lower()) , dotted)
 
 
 if __name__ == '__main__':

@@ -147,6 +147,7 @@ class Mask:
 def apply_dotted(gray, dotted_mask):
     """ Funcao que aplica as tecnicas de meios-tons
     sobre imagens monocromatica (de apenas um canal)
+    Percorre o caminho da ESQUERDA PARA DIREITA.
     Parametros de entrada:
         gray : imagem monocromatica
         dotted_mask : objeto da class Mask
@@ -192,6 +193,7 @@ def apply_dotted(gray, dotted_mask):
 def apply_dotted_zigzag(gray, dotted_mask):
     """ Funcao que aplica as tecnicas de meios-tons
     sobre imagens monocromatica (de apenas um canal)
+    Percorre o caminho ZIG-ZAG
     Parametros de entrada:
         gray : imagem monocromatica
         dotted_mask : objeto da class Mask

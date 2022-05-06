@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.5)  3 MAY 2022 04:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.5.5)  6 MAY 2022 15:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -249,11 +249,7 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count275
 \l__pdf_internal_box=\box49
 )
-(./main.aux
-
-LaTeX Warning: Label `fig:imagem:plano:baboon' multiply defined.
-
-)
+(./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
@@ -339,135 +335,208 @@ LaTeX Warning: No \author given.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<./varredura.png, id=10, 474.77374pt x 474.77374pt>
-File: ./varredura.png Graphic file (type png)
-<use ./varredura.png>
-Package pdftex.def Info: ./varredura.png  used on input line 172.
-(pdftex.def)             Requested size: 142.26378pt x 142.25935pt.
- [2 <./varredura.png>]
-<../out/cbaboon.png, id=23, 513.92pt x 513.92pt>
+<varredura.png, id=10, 474.77374pt x 474.77374pt>
+File: varredura.png Graphic file (type png)
+<use varredura.png>
+Package pdftex.def Info: varredura.png  used on input line 171.
+(pdftex.def)             Requested size: 113.81102pt x 113.81038pt.
+<varredura_zigzag.png, id=12, 300.12125pt x 296.10625pt>
+File: varredura_zigzag.png Graphic file (type png)
+<use varredura_zigzag.png>
+Package pdftex.def Info: varredura_zigzag.png  used on input line 173.
+(pdftex.def)             Requested size: 113.81102pt x 112.28659pt.
+ [2 <./varredura.png> <./varredura_zigzag.png>]
+<../out/cbaboon.png, id=26, 513.92pt x 513.92pt>
 File: ../out/cbaboon.png Graphic file (type png)
 <use ../out/cbaboon.png>
-Package pdftex.def Info: ../out/cbaboon.png  used on input line 240.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/baboon.png, id=24, 513.92pt x 513.92pt>
+Package pdftex.def Info: ../out/cbaboon.png  used on input line 241.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<../out/baboon.png, id=27, 513.92pt x 513.92pt>
 File: ../out/baboon.png Graphic file (type png)
 <use ../out/baboon.png>
-Package pdftex.def Info: ../out/baboon.png  used on input line 242.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/cbaboon_control.png, id=25, 513.92pt x 513.92pt>
+Package pdftex.def Info: ../out/baboon.png  used on input line 243.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<../out/cbaboon_control.png, id=28, 513.92pt x 513.92pt>
 File: ../out/cbaboon_control.png Graphic file (type png)
 <use ../out/cbaboon_control.png>
-Package pdftex.def Info: ../out/cbaboon_control.png  used on input line 252.
+Package pdftex.def Info: ../out/cbaboon_control.png  used on input line 253.
 (pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
-<../out/baboon_control.png, id=26, 513.92pt x 513.92pt>
+<../out/baboon_control.png, id=29, 513.92pt x 513.92pt>
 File: ../out/baboon_control.png Graphic file (type png)
 <use ../out/baboon_control.png>
-Package pdftex.def Info: ../out/baboon_control.png  used on input line 254.
+Package pdftex.def Info: ../out/baboon_control.png  used on input line 255.
 (pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
-<../out/baboon_floydsteinberg.png, id=27, 513.92pt x 513.92pt>
+<../out/baboon_floydsteinberg.png, id=30, 513.92pt x 513.92pt>
 File: ../out/baboon_floydsteinberg.png Graphic file (type png)
 <use ../out/baboon_floydsteinberg.png>
 Package pdftex.def Info: ../out/baboon_floydsteinberg.png  used on input line 2
 70.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/baboon_stevensonarce.png, id=28, 513.92pt x 513.92pt>
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboon_stevensonarce.png, id=31, 513.92pt x 513.92pt>
 File: ../out/baboon_stevensonarce.png Graphic file (type png)
 <use ../out/baboon_stevensonarce.png>
 Package pdftex.def Info: ../out/baboon_stevensonarce.png  used on input line 27
 2.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/baboon_burkers.png, id=29, 513.92pt x 513.92pt>
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboon_burkers.png, id=32, 513.92pt x 513.92pt>
 File: ../out/baboon_burkers.png Graphic file (type png)
 <use ../out/baboon_burkers.png>
 Package pdftex.def Info: ../out/baboon_burkers.png  used on input line 274.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/baboon_sierra.png, id=30, 513.92pt x 513.92pt>
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboon_sierra.png, id=33, 513.92pt x 513.92pt>
 File: ../out/baboon_sierra.png Graphic file (type png)
 <use ../out/baboon_sierra.png>
 Package pdftex.def Info: ../out/baboon_sierra.png  used on input line 276.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/baboon_stucki.png, id=31, 513.92pt x 513.92pt>
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboon_stucki.png, id=34, 513.92pt x 513.92pt>
 File: ../out/baboon_stucki.png Graphic file (type png)
 <use ../out/baboon_stucki.png>
 Package pdftex.def Info: ../out/baboon_stucki.png  used on input line 278.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/baboon_jarvis.png, id=32, 513.92pt x 513.92pt>
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/baboon_jarvis.png, id=35, 513.92pt x 513.92pt>
 File: ../out/baboon_jarvis.png Graphic file (type png)
 <use ../out/baboon_jarvis.png>
 Package pdftex.def Info: ../out/baboon_jarvis.png  used on input line 280.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-
-[3] [4 <../out/cbaboon.png (PNG copy)> <../out/baboon.png (PNG copy)> <../out/c
-baboon_control.png (PNG copy)> <../out/baboon_control.png (PNG copy)>] [5 <../o
-ut/baboon_floydsteinberg.png (PNG copy)> <../out/baboon_stevensonarce.png (PNG 
-copy)> <../out/baboon_burkers.png (PNG copy)> <../out/baboon_sierra.png (PNG co
-py)> <../out/baboon_stucki.png (PNG copy)> <../out/baboon_jarvis.png (PNG copy)
->]
-<../out/cbaboon_floydsteinberg.png, id=43, 513.92pt x 513.92pt>
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+ [3] [4 <../out/cbaboon.png (PNG copy)> <../out/baboon.png (PNG copy)> <../out/
+cbaboon_control.png (PNG copy)> <../out/baboon_control.png (PNG copy)>]
+<../out/zbaboon_floydsteinberg.png, id=43, 513.92pt x 513.92pt>
+File: ../out/zbaboon_floydsteinberg.png Graphic file (type png)
+<use ../out/zbaboon_floydsteinberg.png>
+Package pdftex.def Info: ../out/zbaboon_floydsteinberg.png  used on input line 
+292.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/zbaboon_stevensonarce.png, id=44, 513.92pt x 513.92pt>
+File: ../out/zbaboon_stevensonarce.png Graphic file (type png)
+<use ../out/zbaboon_stevensonarce.png>
+Package pdftex.def Info: ../out/zbaboon_stevensonarce.png  used on input line 2
+94.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/zbaboon_burkers.png, id=45, 513.92pt x 513.92pt>
+File: ../out/zbaboon_burkers.png Graphic file (type png)
+<use ../out/zbaboon_burkers.png>
+Package pdftex.def Info: ../out/zbaboon_burkers.png  used on input line 296.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/zbaboon_sierra.png, id=46, 513.92pt x 513.92pt>
+File: ../out/zbaboon_sierra.png Graphic file (type png)
+<use ../out/zbaboon_sierra.png>
+Package pdftex.def Info: ../out/zbaboon_sierra.png  used on input line 298.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/zbaboon_stucki.png, id=47, 513.92pt x 513.92pt>
+File: ../out/zbaboon_stucki.png Graphic file (type png)
+<use ../out/zbaboon_stucki.png>
+Package pdftex.def Info: ../out/zbaboon_stucki.png  used on input line 300.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/zbaboon_jarvis.png, id=48, 513.92pt x 513.92pt>
+File: ../out/zbaboon_jarvis.png Graphic file (type png)
+<use ../out/zbaboon_jarvis.png>
+Package pdftex.def Info: ../out/zbaboon_jarvis.png  used on input line 302.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/cbaboon_floydsteinberg.png, id=49, 513.92pt x 513.92pt>
 File: ../out/cbaboon_floydsteinberg.png Graphic file (type png)
 <use ../out/cbaboon_floydsteinberg.png>
 Package pdftex.def Info: ../out/cbaboon_floydsteinberg.png  used on input line 
-294.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/cbaboon_stevensonarce.png, id=44, 513.92pt x 513.92pt>
+314.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/cbaboon_stevensonarce.png, id=50, 513.92pt x 513.92pt>
 File: ../out/cbaboon_stevensonarce.png Graphic file (type png)
 <use ../out/cbaboon_stevensonarce.png>
-Package pdftex.def Info: ../out/cbaboon_stevensonarce.png  used on input line 2
-96.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/cbaboon_burkers.png, id=45, 513.92pt x 513.92pt>
+Package pdftex.def Info: ../out/cbaboon_stevensonarce.png  used on input line 3
+16.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/cbaboon_burkers.png, id=51, 513.92pt x 513.92pt>
 File: ../out/cbaboon_burkers.png Graphic file (type png)
 <use ../out/cbaboon_burkers.png>
-Package pdftex.def Info: ../out/cbaboon_burkers.png  used on input line 298.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/cbaboon_sierra.png, id=46, 513.92pt x 513.92pt>
+Package pdftex.def Info: ../out/cbaboon_burkers.png  used on input line 318.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/cbaboon_sierra.png, id=52, 513.92pt x 513.92pt>
 File: ../out/cbaboon_sierra.png Graphic file (type png)
 <use ../out/cbaboon_sierra.png>
-Package pdftex.def Info: ../out/cbaboon_sierra.png  used on input line 300.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/cbaboon_stucki.png, id=47, 513.92pt x 513.92pt>
+Package pdftex.def Info: ../out/cbaboon_sierra.png  used on input line 320.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/cbaboon_stucki.png, id=53, 513.92pt x 513.92pt>
 File: ../out/cbaboon_stucki.png Graphic file (type png)
 <use ../out/cbaboon_stucki.png>
-Package pdftex.def Info: ../out/cbaboon_stucki.png  used on input line 302.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
-<../out/cbaboon_jarvis.png, id=48, 513.92pt x 513.92pt>
+Package pdftex.def Info: ../out/cbaboon_stucki.png  used on input line 322.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/cbaboon_jarvis.png, id=54, 513.92pt x 513.92pt>
 File: ../out/cbaboon_jarvis.png Graphic file (type png)
 <use ../out/cbaboon_jarvis.png>
-Package pdftex.def Info: ../out/cbaboon_jarvis.png  used on input line 304.
-(pdftex.def)             Requested size: 113.81102pt x 113.80771pt.
+Package pdftex.def Info: ../out/cbaboon_jarvis.png  used on input line 324.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+ [5 <../out/baboon_floydsteinberg.png (PNG copy)> <../out/baboon_stevensonarce.
+png (PNG copy)> <../out/baboon_burkers.png (PNG copy)> <../out/baboon_sierra.pn
+g (PNG copy)> <../out/baboon_stucki.png (PNG copy)> <../out/baboon_jarvis.png (
+PNG copy)> <../out/zbaboon_floydsteinberg.png (PNG copy)> <../out/zbaboon_steve
+nsonarce.png (PNG copy)> <../out/zbaboon_burkers.png (PNG copy)> <../out/zbaboo
+n_sierra.png (PNG copy)> <../out/zbaboon_stucki.png (PNG copy)> <../out/zbaboon
+_jarvis.png (PNG copy)>]
+<../out/czbaboon_floydsteinberg.png, id=59, 513.92pt x 513.92pt>
+File: ../out/czbaboon_floydsteinberg.png Graphic file (type png)
+<use ../out/czbaboon_floydsteinberg.png>
+Package pdftex.def Info: ../out/czbaboon_floydsteinberg.png  used on input line
+ 337.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/czbaboon_stevensonarce.png, id=60, 513.92pt x 513.92pt>
+File: ../out/czbaboon_stevensonarce.png Graphic file (type png)
+<use ../out/czbaboon_stevensonarce.png>
+Package pdftex.def Info: ../out/czbaboon_stevensonarce.png  used on input line 
+339.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/czbaboon_burkers.png, id=61, 513.92pt x 513.92pt>
+File: ../out/czbaboon_burkers.png Graphic file (type png)
+<use ../out/czbaboon_burkers.png>
+Package pdftex.def Info: ../out/czbaboon_burkers.png  used on input line 341.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/czbaboon_sierra.png, id=62, 513.92pt x 513.92pt>
+File: ../out/czbaboon_sierra.png Graphic file (type png)
+<use ../out/czbaboon_sierra.png>
+Package pdftex.def Info: ../out/czbaboon_sierra.png  used on input line 343.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/czbaboon_stucki.png, id=63, 513.92pt x 513.92pt>
+File: ../out/czbaboon_stucki.png Graphic file (type png)
+<use ../out/czbaboon_stucki.png>
+Package pdftex.def Info: ../out/czbaboon_stucki.png  used on input line 345.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<../out/czbaboon_jarvis.png, id=64, 513.92pt x 513.92pt>
+File: ../out/czbaboon_jarvis.png Graphic file (type png)
+<use ../out/czbaboon_jarvis.png>
+Package pdftex.def Info: ../out/czbaboon_jarvis.png  used on input line 347.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
  [6 <../out/cbaboon_floydsteinberg.png (PNG copy)> <../out/cbaboon_stevensonarc
 e.png (PNG copy)> <../out/cbaboon_burkers.png (PNG copy)> <../out/cbaboon_sierr
 a.png (PNG copy)> <../out/cbaboon_stucki.png (PNG copy)> <../out/cbaboon_jarvis
-.png (PNG copy)>] (./main.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+.png (PNG copy)> <../out/czbaboon_floydsteinberg.png (PNG copy)> <../out/czbabo
+on_stevensonarce.png (PNG copy)> <../out/czbaboon_burkers.png (PNG copy)> <../o
+ut/czbaboon_sierra.png (PNG copy)> <../out/czbaboon_stucki.png (PNG copy)> <../
+out/czbaboon_jarvis.png (PNG copy)>]
+[7] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7135 strings out of 481239
- 105258 string characters out of 5920378
- 526302 words of memory out of 5000000
- 22328 multiletter control sequences out of 15000+600000
- 538738 words of font info for 47 fonts, out of 8000000 for 9000
+ 7220 strings out of 481239
+ 107707 string characters out of 5920378
+ 526284 words of memory out of 5000000
+ 22398 multiletter control sequences out of 15000+600000
+ 539449 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,10n,63p,1067b,1142s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texm
-f/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (6 pages, 5149884 bytes).
+ 53i,10n,63p,1064b,1142s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (7 pages, 8719527 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 118 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

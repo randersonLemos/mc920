@@ -159,26 +159,28 @@ O programa \textbf{main.py} é responsável pela aplicação de todas as técnic
 	\item ao parâmetro \textbf{imagem\_entrada} deve-se fornecer o nome do arquivo da imagem a ser utilizada para aplicação das técnicas de meios-tons por difusão de erro selecionadas.
 \end{itemize}
 	
-\noindent
-
-O programa \textbf{main.py} disponibiliza todas as imagens resultantes da aplicação das técnicas de meios-tons em duas versões: uma versão preto e branco e outra versão colorida. Todas essas imagens são salvas dentro da pasta \textbf{out} localizada dentro da pasta do projeto \textbf{trab2}. Há também uma imagem de controle, na qualquer se aplicou uma técnica de meio-tom rudimentar, isto é, apenas considerando o limiar de 128 e não utilizando a difusão de erro. Esta imagem também está salva na pasta \textbf{trab2}.
+\noindent 
+O programa \textbf{main.py} disponibiliza todas as imagens resultantes da aplicação das técnicas de meios-tons em duas versões: uma versão preto e branco e outra versão colorida. Todas essas imagens são salvas dentro da pasta \textbf{out} localizada dentro da pasta do projeto \textbf{trab2}. Há também uma imagem de controle, na qual se aplicou uma técnica de meio-tom rudimentar, isto é, apenas considerando o limiar de 128 e não utilizando a difusão de erro. Esta imagem também está salva na pasta \textbf{trab2}.
 
 Um exemplo de como executar o programa \textbf{main.py} utilizando os recursos contidos dentro do próprio projeto é: \lstinline{python3 main.py -imagem_entrada=png/baboon.png}.
 
-Sobre a direção de varredura para aplicação das técnicas de meios-tons optou-se por seguir com a direção que percorre a imagem da esquerda para a direita e de cima para baixo como ilustrado em Imagem \ref{fig:direcao_varredura}.
+Sobre a direção de varredura para aplicação das técnicas de meios-tons optou-se por seguir com a direção que percorre a imagem da esquerda para a direita e de cima para baixo (direção \textit{default}) e com a direção da esquerda para direita com alternância e de cima para baixo (direção zig-zag) como ilustrado na imagem da Figura \ref{fig:direcao_varredura}.
 
-\begin{figure}[htp]%
+\begin{figure}[!htp]%
 	\centering
-	\includegraphics[width=5cm]{./varredura.png} %
-	\caption{Direção de varredura considerada para aplicação das técnicas de meios-tons (fonte: imagem extraida do documento pdf com as orientações deste trabalho).}%
+	\subfloat[\centering Direção de varredura da esquerda para direita (\textit{default})]{{ \includegraphics[width=4cm]{varredura.png} }}%
+	\qquad
+	\subfloat[\centering Direção de varredura da esquerda para direita com alternância (zig-zag)]{{ \includegraphics[width=4cm]{varredura_zigzag.png} }}%	
+	\caption{Direção de varredura considerada para aplicação das técnicas de meios-tons (fonte: imagem extraida do documento pdf com as orientações deste trabalho).}%	
 	\label{fig:direcao_varredura}%
 \end{figure}
 
-Essa opção de varredura foi considera porque a aparência visual das imagens resultantes se mostrou satisfatório, não havendo padrões estranhos que causassem desconforto ao olhar do observador.
+\noindent
+Essas opções de varredura foram consideras porque a aparência visual das imagens resultantes se mostrou satisfatório, não havendo padrões estranhos que causassem desconforto ao olhar do observador.
 
 Para o processo de aplicação das técnicas de meios-tons em imagens coloridas optou-se por trabalhar no mapa de cores HSV cujas letras são abreviações de \textit{Hue} (matiz), \textit{Saturation} (saturação) e \textit{Value} (valor). Assim, as imagens que, quando carregadas pelo opencv, eram disponibilizadas no mapa de cores BGR tiveram este mapa de cores convertido para o mapa HSV. Já no mapa de cores HSV, apenas o canal V (Value) da imagem (que é o que contém a intensidade luminosa) foi passado para as funções responsáveis pela aplicação das técnicas de meios-tons por difusão de erro. Obtido o canal V em meios-tons, este foi integrado ao esquema HSV original e a nova imagem foi reconvertida para o mapa de cores BGR.
 
-Um dos destaques das implementações realizadas é a classe \textbf{Mask}. Essa classe ficou responsável pelo encapsulamento da lógica de recuperação dos pesos das mascaras das técnicas de meios-tons por difusão de erro bem como das posições nas quais estes pesos deveriam ser aplicados na imagem original. Dessa maneira, para o usuário, só ficou necessário passar a matriz da mascara da técnica de meio-tom em questão e a posição de referência do posicionamento na mascara do pixel \textbf{f(x,y)} da imagem original. Essa classe foi implementada como um objeto \textbf{iterador} do Python de modo que a obtenção dos pesos bem como da posição de aplicação destes na imagem original era facilmente alcançada dentro de uma estrutura de laço de repetição. Isso tornou bastante conveniente a integração da instancia da classe \textbf{Mask} dentro da função responsável por construir a imagem \textbf{g(x, y)} possuidora dos pixels em meios-tons. A implementação da classe \textbf{Mask} é apresentada a baixo.
+Um dos destaques das implementações realizadas é a classe \textbf{Mask}. Essa classe ficou responsável pelo encapsulamento da lógica de recuperação dos pesos das mascaras das técnicas de meios-tons por difusão de erro bem como das posições nas quais estes pesos devem ser aplicados na imagem original. Dessa maneira, para o usuário, só ficou necessário passar a matriz da mascara da técnica de meio-tom em questão e a posição de referência do posicionamento na mascara do pixel \textbf{f(x,y)} da imagem original. Essa classe foi implementada como um objeto \textbf{iterador} do Python de modo que a obtenção dos pesos bem como da posição de aplicação destes na imagem original era facilmente alcançada dentro de uma estrutura de laço de repetição. Isso tornou bastante conveniente a integração da instancia da classe \textbf{Mask} dentro da função responsável por construir a imagem \textbf{g(x, y)} possuidora dos pixels em meios-tons. A implementação da classe \textbf{Mask} é apresentada a baixo.
 
 \begin{lstlisting}
 class Mask:
@@ -227,7 +229,6 @@ class Mask:
   raise StopIteration
 \end{lstlisting}
 
-
 Para demais informações acerca das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
 
 %
@@ -237,16 +238,16 @@ Os resultados levantados são provenientes da aplicação do programa \textbf{ma
 
 \begin{figure}[!htp]%
 	\centering
-	\subfloat[\centering Versão colorida da imagem Baboon (original)]{{ \includegraphics[width=4cm]{../out/cbaboon.png} }}%
+	\subfloat[\centering Vesão colorida da imagem Baboon (original)]{{ \includegraphics[width=5cm]{../out/cbaboon.png} }}%
 	\qquad
-	\subfloat[\centering Versão em escala de cinza da imagem Baboon (convertida)]{{ \includegraphics[width=4cm]{../out/baboon.png} }}%	
+	\subfloat[\centering Versão em escala de cinza da imagem Baboon (convertida)]{{ \includegraphics[width=5cm]{../out/baboon.png} }}%	
 	\caption{Imagens utilizadas para aplicação das técnicas de meios-tons por difusão de erro.}%	
 	\label{fig:imagem:entrada}%
 \end{figure}
 
-Para comparação com as imagens resultantes das técinicas de meios-tons por difusão de erro, gerou-se imagens denominadas controle a partir da aplicação da técnica de meio-tom que utiliza apenas o limiar de 128 para tomada de decisão se a um pixel será atribuído o valor zero (0) ou o valor (1). As imagens controle da imagem Baboon nas versões colorida e em escala de cinza são apresentadas na Figura \ref{fig:imagem:controle}.
+Para comparação com as imagens resultantes das técnicas de meios-tons por difusão de erro, gerou-se imagens denominadas controle a partir da aplicação da técnica de meio-tom que utiliza apenas o limiar de 128 para tomada de decisão se a um pixel será atribuído o valor zero (0) ou o valor (1). As imagens controle da imagem Baboon nas versões colorida e em escala de cinza são apresentadas na Figura \ref{fig:imagem:controle}.
 
-\begin{figure}[htp]%
+\begin{figure}[!htp]%
 	\centering
 	
 	\subfloat[\centering Imagem controle na versão colorida]{{ \includegraphics[width=5cm]{../out/cbaboon_control.png} }}%
@@ -260,59 +261,99 @@ Para comparação com as imagens resultantes das técinicas de meios-tons por di
 
 Na sequência, teremos a apresentação das imagens resultantes da aplicação das técnias de meios-tons por difusão de erro sobre a imagem Baboon na sua versão colorida e em escala de cinza.
 
-
-
-\subsection{Técnicas de meios-tons sobre images em escala de cinza}
-Aqui serão apresentados as imagens resultados da aplicação das técnicas de meios-tons sobre a imagem de entrada em escala de cinza.
+%
+\subsection{Técnicas de meios-tons sobre images em escala de cinza (varredura \textit{default})}
+Aqui serão apresentados as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada em escala de cinza.
 
 \begin{figure}[!htp]%
 	\centering
-	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=4cm]{../out/baboon_floydsteinberg.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/baboon_floydsteinberg.png} }}%
 	\qquad
-    \subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=4cm]{../out/baboon_stevensonarce.png} }}%
+    \subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/baboon_stevensonarce.png} }}%
 	\qquad
-    \subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=4cm]{../out/baboon_burkers.png} }}%
+    \subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/baboon_burkers.png} }}%
 
-	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=4cm]{../out/baboon_sierra.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/baboon_sierra.png} }}%
     \qquad
-   	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=4cm]{../out/baboon_stucki.png} }}%
+   	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/baboon_stucki.png} }}%
    	\quad
- 	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=4cm]{../out/baboon_jarvis.png} }}%
+ 	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/baboon_jarvis.png} }}%
 	
-	\caption{Imagens resultantes em escala de cinza da aplicação das técnicas de meios-tons por difusão de erro em questão.}%
-	\label{fig:imagem:plano:baboon}%
+	\caption{Imagens resultantes em escala de cinza da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura \textit{default}.}%
+	\label{fig:imagem:plano:baboon:cinza:1}%
 \end{figure}	
 
-Nota-se que dentro das dimensões apresentadas, todas as técnicas de meios-tons apresentaram resultados similares.
-
-\newpage
-\subsection{Técnicas de meios-tons sobre images coloridas}
-Temos a seguir apresentadas as imagens resultados da aplicação das técnicas de meios-tons sobre a imagem de entrada colorida.
+%
+\subsection{Técnicas de meios-tons sobre images em escala de cinza (varredura zig-zag)}
+Aqui serão apresentados as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada em escala de cinza.
 
 \begin{figure}[!htp]%
 	\centering
-	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=4cm]{../out/cbaboon_floydsteinberg.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/zbaboon_floydsteinberg.png} }}%
 	\qquad
-	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=4cm]{../out/cbaboon_stevensonarce.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/zbaboon_stevensonarce.png} }}%
 	\qquad
-	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=4cm]{../out/cbaboon_burkers.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/zbaboon_burkers.png} }}%
 	
-	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=4cm]{../out/cbaboon_sierra.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/zbaboon_sierra.png} }}%
 	\qquad
-	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=4cm]{../out/cbaboon_stucki.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/zbaboon_stucki.png} }}%
 	\quad
-	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=4cm]{../out/cbaboon_jarvis.png} }}%
+	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/zbaboon_jarvis.png} }}%
 	
-	\caption{Imagens resultantes coloridas da aplicação das técnicas de meios-tons por difusão de erro em questão.}%
-	\label{fig:imagem:plano:baboon}%
+	\caption{Imagens resultantes em escala de cinza da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura zig-zag.}%
+	\label{fig:imagem:plano:baboon:cinza:2}%
+\end{figure}	
+
+%
+\subsection{Técnicas de meios-tons sobre images coloridas (varredura \textit{default})}
+Temos a seguir apresentadas as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada colorida.
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/cbaboon_floydsteinberg.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/cbaboon_stevensonarce.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/cbaboon_burkers.png} }}%
+	
+	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/cbaboon_sierra.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/cbaboon_stucki.png} }}%
+	\quad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/cbaboon_jarvis.png} }}%
+	
+	\caption{Imagens resultantes coloridas da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura \textit{default}.}%
+	\label{fig:imagem:plano:baboon:colorido:1}%
 \end{figure}
 
-Nota-se que dentro das dimensões apresentadas, todas as técnicas de meios-tons apresentaram resultados similares.
 
-\section{Conclusão}
+%
+\subsection{Técnicas de meios-tons sobre images coloridas (varredura zig-zag)}
+Temos a seguir apresentadas as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada colorida.
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/czbaboon_floydsteinberg.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/czbaboon_stevensonarce.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/czbaboon_burkers.png} }}%
+	
+	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/czbaboon_sierra.png} }}%
+	\qquad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/czbaboon_stucki.png} }}%
+	\quad
+	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/czbaboon_jarvis.png} }}%
+	
+	\caption{Imagens resultantes coloridas da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura zig-zag.}%
+	\label{fig:imagem:planocolorido:2}%
+\end{figure}
+
+\section{Dicussão e Conclusão}
 Do apresentado, podemos concluir que as técnicas de meios-tons foram aplicadas satisfatoriamente tanto sobre imagens coloridas quanto sobre imagens em escala de cinza. Para a imagem utilizada e dentro das dimensões consideradas, as ténicas de meios-tons tiveram resultados visuais semelhantes e bastante satisfatórios. Agora, dentro de uma análise mais minuciosa (ampliando-se as imagens) a técnica de meio-tom de Floyd e Steinberg apresentou uma imagem resultante com algumas falhas e vazios pretos na imagem resultante que não foram apresentados pelas imagens resultantes da aplicação das outras técnicas de meios-tons. Desse modo, quanto ao criterio visual, pode-se afirmar que a técnica de meio-tom de Floyd Steinberg apresentou os resultados menos interessantes com relação a harmonia visual da imagem resultante. Por outro lado, a aplicação da técnica de meio-tom de Floyd Steinberg é a menos custosa computacionalmente, dado que dispõe da menor mascara.
 
-Sobre a direção de varredura, notamos que a direção selecionada não foi um empeditivo para obtenção de boas imagens em meios-tons. Talvez para aplicações mais sofisticadas em que a qualidade das imagens em meios-tons seja crítica, a utilização de padrões de varredura mais complexos seja justificado, o que não é o caso dentro do contexto deste trabalho.
+Sobre as duas varreduras utilizadas, verifica-se que o resultante de ambas foi visualmente similar para a imagem utilizada. A diferença mais notável, foi que as imagens resultantes da aplicação das técnicas de meios-tons pela varredura em zig-zag ficaram com maior contraste que as imagens resultantes da varredura \textit{default}. Talvez para aplicações mais sofisticadas em que a qualidade das imagens em meios-tons seja crítica, a utilização de padrões de varredura mais complexos seja justificado, o que não é o caso dentro do contexto deste trabalho.
 
 %Do apresentado neste trabalho, podemos concluir que a esteganografia é uma técnica interessante e promissora de ocultação de mensagens em imagens sem que estas apresentem modificações visuais ao olho humano. De qualquer maneira, mesmo que visualmente as imagens não sejam alteradas, verificamos que ainda sim é possível identificar que a imagem está modifica e, assim, possivelmente com alguma mensagem escondida. Neste trabalho, essa verificação foi feita pela análise dos planos de bits das imagens modificadas. Nesse verificação, foi possível visualizar uma alteração do padrão de bits do plano de bits 0 (plano onde foi inserida a mensagem) em ambas as imagens Baboon e Watch utilizadas. A única exceção aconteceu com a imagem Baboon e a mensagem escondida \textbf{texto1.txt} que se deu, principalmente, porque a mensagem utilizada é muito pequena.
 

@@ -1,0 +1,15 @@
+name: mc920-trab3
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - opencv
+  - pip
+  - python
+  - ipython
+
+  - pip:
+    - numpy
+    - scipy
+    - pandas
+    - matplotlib

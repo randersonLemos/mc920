@@ -20,14 +20,7 @@ class ABCPixels:
 
 
     def analyze_frame(self, frame):
-        self.num_analyzed_frames += 1
-        if self.last is None:
-            self.last = frame
-            self.height = frame.shape[0]
-            self.width  = frame.shape[1]
-            return
-
-        self.is_different(frame)
+        raise NotImplemented
 
 
     def if_different(self, frame):
@@ -60,11 +53,23 @@ class PixelsDifferences(ABCPixels):
         self.max_pixel_num_per = max_pixel_num_per
 
 
-    def is_different(self, frame):
-        left  = self.brightness(frame) 
-        right = self.brightness(self.last)
+    def analyze_frame(self, frame):
+        self.num_analyzed_frames += 1
+        if self.last is None:
+            self.last = frame
+            self.height = frame.shape[0]
+            self.width  = frame.shape[1]
+            return
 
-        diff = abs(left - right)
+        self.is_different(frame)
+        self.last = frame
+
+
+    def is_different(self, frame):
+        curr = self.brightness(frame) 
+        last = self.brightness(self.last)
+
+        diff = abs(curr - last) / 255
         viol = diff > self.max_pixel_distance
 
         nume = viol.sum()
@@ -79,7 +84,7 @@ class PixelsDifferences(ABCPixels):
     def suggested_stem(self, video_name):
         stg = ''
         stg += video_name
-        stg += '_mpd_{}'.format(self.max_pixel_distance)
+        stg += '_mpd_{}%'.format(int(100*self.max_pixel_distance))
         stg += '_mpnp_{}%'.format(int(100*self.max_pixel_num_per))
         stg += '_nframe_{:05d}'.format(len(self.violation))
         return stg
@@ -120,12 +125,21 @@ class BlocksDifferences(ABCPixels):
             self.block_num = self.block_num_height*self.block_num_width
             return
 
-        blocks = self._get_blocks(frame)
-        print('I am in analyze frame')
-        import IPython; IPython.embed()
         self.is_different(frame)
-
+        self.last = frame
     
+
+    def is_different(self, frame):
+        bcurrs  = self._get_blocks( self.brightness(frame) )
+        blasts = self._get_blocks( self.brightness(self.last) )
+
+        diffs = np.zeros( self.block_num )
+        for idx, (bcurr, blast) in enumerate(zip(bcurrs, blasts)):
+            diffs[idx] = ( ( ( bcurr - blast )**2 ) / 255**2 ).sum()
+
+        import IPython; IPython.embed()
+
+
     def _get_blocks(self, frame):
         blocks = []
         inc = self.block_inc
@@ -136,18 +150,40 @@ class BlocksDifferences(ABCPixels):
         return blocks 
 
 
-    def is_different(self, frame):
-        left  = self.brightness(frame) 
-        right = self.brightness(self.last)
-
-
     def strategy_name(self):
         return 'Diferença entre blocos'
 
 
+def main_blocks_differences(path, stem):
+    mbms = [50, 100, 150, 200, 250] # max_block_mse
+    mbps = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60] # max_block_num_per
+
+    product = itertools.product(mbms, mbps)
+    for mbm, mbp in product:
+        cap = cv2.VideoCapture(path)
+        bd = BlocksDifferences(max_block_mse=mbm, max_block_num_per=mbp, block_dim='8x8')
+        
+        while True:
+            ret, frame = cap.read() # Captura frame por frame
+
+            if ret == True:   
+                #hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
+                #value = hsv[:,:,2]
+                #cv2.imshow('frame', value); cv2.waitKey(5) 
+                bd.analyze_frame(frame)
+
+            else:
+                break
+
+
+    #    print('---')
+    #    print(pd.num_analyzed_frames)
+    #    print(len(pd.violation))
+
+
 def main_pixels_differences(path, stem):
-    mpds = [50, 100, 150, 200, 250] # max_pixel_distances
-    mpps = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60] # max_pixel_num_per
+    mpds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max_pixel_distances
+    mpps = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max_pixel_num_per
 
 
     product = itertools.product(mpds, mpps)
@@ -237,32 +273,4 @@ if __name__ == '__main__':
     stem = name[:-4]
 
     #main_pixels_differences(path, stem)
-
-
-    mbms = [50, 100, 150, 200, 250] # max_block_mse
-    mbps = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60] # max_block_num_per
-
-
-    product = itertools.product(mbms, mbps)
-    for mbm, mbp in product:
-        cap = cv2.VideoCapture(path)
-        bd = BlocksDifferences(max_block_mse=mbm, max_block_num_per=mbp, block_dim='8x8')
-        
-        while True:
-            ret, frame = cap.read() # Captura frame por frame
-
-            if ret == True:   
-                #hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
-                #value = hsv[:,:,2]
-                #cv2.imshow('frame', value); cv2.waitKey(5) 
-                bd.analyze_frame(frame)
-
-            else:
-                break
-
-
-    #    print('---')
-    #    print(pd.num_analyzed_frames)
-    #    print(len(pd.violation))
-
-
+    main_blocks_differences(path, stem)

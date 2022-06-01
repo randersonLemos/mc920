@@ -8,150 +8,7 @@ import matplotlib.pyplot as plt
 from multiprocessing import Process
 
 
-class ABCPixels:
-    def __init__(self):
-        self.last = None
-
-        self.all = {}
-        
-        self.violation = {}
-
-        self.num_analyzed_frames = 0
-
-
-    def analyze_frame(self, frame):
-        raise NotImplemented
-
-
-    def if_different(self, frame):
-        raise NotImplemented
-
-
-    def brightness(self, frame):
-        if len(frame.shape) == 2:
-            brightness = frame
-        elif len(frame.shape) == 3:
-            if frame.shape[2] == 3:
-                hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
-                brightness = hsv[:,:,2]
-        else:
-            raise Exception('Frame must be of shape (A,B) or (A,B,3)')
-
-        return brightness
-
-
-    def suggested_stem(self, video_name):
-        raise NotImplemented
-
- 
-    
-class PixelsDifferences(ABCPixels):
-    def __init__(self, max_pixel_distance, max_pixel_num_per):
-        super().__init__()
-
-        self.max_pixel_distance = max_pixel_distance
-        self.max_pixel_num_per = max_pixel_num_per
-
-
-    def analyze_frame(self, frame):
-        self.num_analyzed_frames += 1
-        if self.last is None:
-            self.last = frame
-            self.height = frame.shape[0]
-            self.width  = frame.shape[1]
-            return
-
-        self.is_different(frame)
-        self.last = frame
-
-
-    def is_different(self, frame):
-        curr = self.brightness(frame) 
-        last = self.brightness(self.last)
-
-        diff = abs(curr - last) / 255
-        viol = diff > self.max_pixel_distance
-
-        nume = viol.sum()
-
-        max_pixel_num = int(self.max_pixel_num_per*self.height*self.width)
-
-        if nume > max_pixel_num:
-            self.violation[self.num_analyzed_frames] = ( frame, nume  )
-        self.all[self.num_analyzed_frames] = ( frame, nume  )
-
-
-    def suggested_stem(self, video_name):
-        stg = ''
-        stg += video_name
-        stg += '_mpd_{}%'.format(int(100*self.max_pixel_distance))
-        stg += '_mpnp_{}%'.format(int(100*self.max_pixel_num_per))
-        stg += '_nframe_{:05d}'.format(len(self.violation))
-        return stg
-
-
-    def strategy_name(self):
-        return 'Diferença entre pixels'
-
-
-class BlocksDifferences(ABCPixels):
-    def __init__(self, max_block_mse, max_block_num_per, block_dim):
-        super().__init__()
-
-        self.max_block_mse = max_block_mse
-        self.max_block_num_per = max_block_num_per
-
-        if block_dim not in ['8x8', '16x16']:
-            raise ValueError('Parameter block_dim must be 8x8 or 16x16')
-
-        self.block_dim = block_dim
-
-        if block_dim == '8x8':
-            self.block_inc = 8
-        else:
-            self.block_inc = 16
-
-
-    def analyze_frame(self, frame):
-        self.num_analyzed_frames += 1
-        if self.last is None:
-            self.last = frame
-
-            self.height = frame.shape[0]
-            self.width  = frame.shape[1]
-
-            self.block_num_height = int(self.height / self.block_inc)
-            self.block_num_width  = int(self.width  / self.block_inc)
-            self.block_num = self.block_num_height*self.block_num_width
-            return
-
-        self.is_different(frame)
-        self.last = frame
-    
-
-    def is_different(self, frame):
-        bcurrs  = self._get_blocks( self.brightness(frame) )
-        blasts = self._get_blocks( self.brightness(self.last) )
-
-        diffs = np.zeros( self.block_num )
-        for idx, (bcurr, blast) in enumerate(zip(bcurrs, blasts)):
-            diffs[idx] = ( ( ( bcurr - blast )**2 ) / 255**2 ).sum()
-
-        import IPython; IPython.embed()
-
-
-    def _get_blocks(self, frame):
-        blocks = []
-        inc = self.block_inc
-        for h in range(self.block_num_height):
-            for w in range(self.block_num_width):
-                block = frame[h*inc : (h+1)*inc:, w*inc : (w+1)*inc]
-                blocks.append(block)
-        return blocks 
-
-
-    def strategy_name(self):
-        return 'Diferença entre blocos'
+from classes.pixelsdifferences import PixelsDifferences
 
 
 def main_blocks_differences(path, stem):
@@ -182,14 +39,14 @@ def main_blocks_differences(path, stem):
 
 
 def main_pixels_differences(path, stem):
-    mpds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max_pixel_distances
-    mpps = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max_pixel_num_per
+    mpnds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. pixel normalized distance
+    mpnns = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. pixel normalized number
 
 
-    product = itertools.product(mpds, mpps)
-    for mpd, mpp in product:
+    product = itertools.product(mpnds, mpnns)
+    for mpnd, mpnn in product:
         cap = cv2.VideoCapture(path)
-        pd = PixelsDifferences(max_pixel_distance=mpd, max_pixel_num_per=mpp)
+        pd = PixelsDifferences(max_pixel_norm_dist=mpnd, max_pixel_norm_nume=mpnn)
 
         while True:
             ret, frame = cap.read() # Captura frame por frame
@@ -221,39 +78,25 @@ def main_pixels_differences(path, stem):
                 writer.write(frame)
 
         
-        fig, ax = plt.subplots(figsize=(8,5))
+        fig, ax = plt.subplots( figsize=(8,5) )
         keys = sorted( list( pd.all.keys() ) )
         xs = []; ys = []
-        ymin = 999999999
-        ymax = 0
         for key in keys:
             tup = pd.all[key]
             frame, num = tup
             xs.append(key)
             ys.append(num)
 
-            if ymin > num:
-                ymin = num
-            if ymax < num:
-                ymax = num
-
         ax.plot(xs, ys)
-        T2 = mpp*pd.height*pd.width
-        ax.axhline(y=T2, color='r')
+        ax.axhline(y=mpnn, color='r')
         
-        if ymin > T2:
-            ymin = T2
-        if ymax < T2:
-            ymax = T2
-
-        interval = ymax - ymin
-        pad = interval*0.05
-        ax.set_ylim([ymin-pad, ymax+pad])
+        ax.set_ylim([-0.1, 1.1])
 
         title = ''
-        title += 'DISTÂNCIA ENTRE QUADROS PARA A ESTRATÉGIA: {}\n'.format(pd.strategy_name().upper())
-        title += 'max. dist. entre pixels (T1): {}\n'.format(mpd)
-        title += 'max. de violações por quadro (T2): {} ({}%)\n'.format(int(T2), int(100*mpp))
+        title += 'RESUMO DE VÍDEO PELA ESTRATÉGIA: {}\n'.format(pd.strategy_name().upper())
+        title += 'max. norm. dist. entre pixels (T1): {:0.2f}\n'.format( mpnd )
+        title += 'max. norm. nume. de violações entre quadros (T2): {:0.2f}\n'.format( mpnn )
+        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(pd.all),  len(pd.violation), len(pd.all), ( len(pd.all) - len(pd.violation) )/len(pd.all) )
         ax.set_title(title)
         ax.set_xlabel('Número do quadro')
         ax.set_ylabel('Distancia T2')
@@ -268,9 +111,10 @@ if __name__ == '__main__':
     parser.add_argument('-video_entrada', required=True, help='Video que se deseja buscas mudancas abruptas')
 
     args  = parser.parse_args()
+
     path = args.video_entrada
     name = path.split('/')[-1]
     stem = name[:-4]
 
-    #main_pixels_differences(path, stem)
-    main_blocks_differences(path, stem)
+    main_pixels_differences(path, stem)
+    #main_blocks_differences(path, stem)

@@ -10,11 +10,13 @@ from multiprocessing import Process
 
 from classes.pixelsdifferences import PixelsDifferences
 from classes.blocksdifferences import BlocksDifferences
+from classes.histogramdifferences import HistogramDifferences
 
 
 def main_blocks_differences(path, stem):
     mbnds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized squared distance
     mbnns = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized number
+
 
     product = itertools.product(mbnds, mbnns)
     for mbnd, mbnn in product:
@@ -78,7 +80,6 @@ def main_blocks_differences(path, stem):
 
         plt.savefig('out/{}.{}'.format(bd.suggested_stem(stem), 'png'))
  
-
 
 def main_pixels_differences(path, stem):
     mpnds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. pixel normalized distance
@@ -159,4 +160,35 @@ if __name__ == '__main__':
     stem = name[:-4]
 
     #main_pixels_differences(path, stem)
-    main_blocks_differences(path, stem)
+    #main_blocks_differences(path, stem)
+
+    mbnds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized squared distance
+    mbnns = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized number
+
+
+    product = itertools.product(mbnds, mbnns)
+    for mbnd, mbnn in product:
+        cap = cv2.VideoCapture(path)
+        hd = HistogramDifferences(max_threshold=0.01, alpha=3)
+        
+        while True:
+            ret, frame = cap.read() # Captura frame por frame
+
+            if ret == True:   
+                #hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV) # Converte de BGR para HSV
+                #value = hsv[:,:,2]
+                #cv2.imshow('frame', value); cv2.waitKey(5) 
+                hd.analyze_frame(frame)
+
+            else:
+                break
+
+
+        print('---')
+        print(hd.num_analyzed_frames)
+        print(len(hd.violation))
+
+
+        break
+
+

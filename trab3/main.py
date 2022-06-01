@@ -51,32 +51,32 @@ def main_blocks_differences(path, stem):
                 writer.write(frame)
 
         
-        #fig, ax = plt.subplots( figsize=(8,5) )
-        #keys = sorted( list( pd.all.keys() ) )
-        #xs = []; ys = []
-        #for key in keys:
-        #    tup = pd.all[key]
-        #    frame, num = tup
-        #    xs.append(key)
-        #    ys.append(num)
+        fig, ax = plt.subplots( figsize=(8,5) )
+        keys = sorted( list( bd.all.keys() ) )
+        xs = []; ys = []
+        for key in keys:
+            tup = bd.all[key]
+            frame, num = tup
+            xs.append(key)
+            ys.append(num)
 
-        #ax.plot(xs, ys)
-        #ax.axhline(y=mpnn, color='r')
-        #
-        #ax.set_ylim([-0.1, 1.1])
+        ax.plot(xs, ys)
+        ax.axhline(y=mbnn, color='r')
+        
+        ax.set_ylim([-0.1, 1.1])
 
-        #title = ''
-        #title += 'RESUMO DE VÍDEO PELA ESTRATÉGIA: {}\n'.format(pd.strategy_name().upper())
-        #title += 'max. norm. dist. entre pixels (T1): {:0.2f}\n'.format( mpnd )
-        #title += 'max. norm. nume. de violações entre quadros (T2): {:0.2f}\n'.format( mpnn )
-        #title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(pd.all),  len(pd.violation), len(pd.all), ( len(pd.all) - len(pd.violation) )/len(pd.all) )
-        #ax.set_title(title)
-        #ax.set_xlabel('Número do quadro')
-        #ax.set_ylabel('Distancia T2')
+        title = ''
+        title += 'RESUMO DE VÍDEO PELA ESTRATÉGIA: {}\n'.format(bd.strategy_name().upper())
+        title += 'max. norm. dist. entre blocos (T1): {:0.2f}\n'.format( mbnd )
+        title += 'max. norm. nume. de violações entre quadros (T2): {:0.2f}\n'.format( mbnn )
+        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(bd.all),  len(bd.violation), len(bd.all), ( len(bd.all) - len(bd.violation) )/len(bd.all) )
+        ax.set_title(title)
+        ax.set_xlabel('Número do quadro')
+        ax.set_ylabel('Distancia T2')
 
-        #plt.tight_layout(pad=1.10)
+        plt.tight_layout(pad=1.10)
 
-        #plt.savefig('out/{}.{}'.format(pd.suggested_stem(stem), 'png'))
+        plt.savefig('out/{}.{}'.format(bd.suggested_stem(stem), 'png'))
  
 
 

@@ -1,11 +1,13 @@
+import cv2
+import numpy as np
 from classes.abcpixels import ABCPixels
 
 class BlocksDifferences(ABCPixels):
-    def __init__(self, max_block_mse, max_block_num_per, block_dim):
+    def __init__(self, max_block_norm_dist, max_block_norm_nume, block_dim):
         super().__init__()
-
-        self.max_block_mse = max_block_mse
-        self.max_block_num_per = max_block_num_per
+            
+        self.max_block_norm_dist = max_block_norm_dist
+        self.max_block_norm_nume = max_block_norm_nume
 
         if block_dim not in ['8x8', '16x16']:
             raise ValueError('Parameter block_dim must be 8x8 or 16x16')
@@ -32,18 +34,28 @@ class BlocksDifferences(ABCPixels):
             return
 
         self.is_different(frame)
+
         self.last = frame
     
 
     def is_different(self, frame):
-        bcurrs  = self._get_blocks( self.brightness(frame) )
-        blasts = self._get_blocks( self.brightness(self.last) )
+        bcurrs  = self._get_blocks( self.brightness(frame).astype('int') )
+        blasts = self._get_blocks( self.brightness(self.last).astype('int') )
 
         diffs = np.zeros( self.block_num )
         for idx, (bcurr, blast) in enumerate(zip(bcurrs, blasts)):
             diffs[idx] = ( ( ( bcurr - blast )**2 ) / 255**2 ).sum()
 
-        import IPython; IPython.embed()
+        viols = np.zeros( self.block_num )
+        for idx, diff in enumerate(diffs):
+            viols[idx] = diff > self.max_block_norm_dist
+
+        block_nume = viols.sum()
+        block_norm_nume = block_nume / self.block_num
+
+        if block_norm_nume > self.max_block_norm_nume:
+            self.violation[self.num_analyzed_frames] = ( frame, block_norm_nume) 
+        self.all[self.num_analyzed_frames] = ( frame, block_norm_nume )
 
 
     def _get_blocks(self, frame):
@@ -54,6 +66,16 @@ class BlocksDifferences(ABCPixels):
                 block = frame[h*inc : (h+1)*inc:, w*inc : (w+1)*inc]
                 blocks.append(block)
         return blocks 
+
+
+    def suggested_stem(self, video_name):
+        stg = ''
+        stg += video_name
+        stg += '_blockdiff'
+        stg += '_mbnd_{}%'.format(int(100*self.max_block_norm_dist))
+        stg += '_mbnn_{}%'.format(int(100*self.max_block_norm_nume))
+        stg += '_nframe_{:05d}'.format(len(self.violation))
+        return stg
 
 
     def strategy_name(self):

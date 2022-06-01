@@ -39,6 +39,7 @@ class PixelsDifferences(ABCPixels):
     def suggested_stem(self, video_name):
         stg = ''
         stg += video_name
+        stg += '_pixeldiff'
         stg += '_mpnd_{}%'.format(int(100*self.max_pixel_norm_dist))
         stg += '_mpnn_{}%'.format(int(100*self.max_pixel_norm_nume))
         stg += '_nframe_{:05d}'.format(len(self.violation))

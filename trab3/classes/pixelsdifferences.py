@@ -32,8 +32,16 @@ class PixelsDifferences(ABCDifferences):
         pixel_norm_nume = pixel_nume / (self.height*self.width)
 
         if pixel_norm_nume > self.max_pixel_norm_nume:
-            self.violation[self.num_analyzed_frames] = ( frame, pixel_norm_nume  )
-        self.all[self.num_analyzed_frames] = ( frame, pixel_norm_nume  )
+            self._violation[self.num_analyzed_frames] = ( frame, pixel_norm_nume  )
+        self._all[self.num_analyzed_frames] = ( frame, pixel_norm_nume  )
+
+
+    def get_violation(self):
+        return self._violation
+
+
+    def get_all(self):
+        return self._all
 
 
     def suggested_stem(self, video_name):
@@ -42,7 +50,7 @@ class PixelsDifferences(ABCDifferences):
         stg += '_pixeldiff'
         stg += '_mpnd_{}%'.format(int(100*self.max_pixel_norm_dist))
         stg += '_mpnn_{}%'.format(int(100*self.max_pixel_norm_nume))
-        stg += '_nframe_{:05d}'.format(len(self.violation))
+        stg += '_nframe_{:05d}'.format(len(self._violation))
         return stg
 
 

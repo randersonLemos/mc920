@@ -42,31 +42,35 @@ def main_pixels_differences(path, stem):
 
         print('---')
         print(pd.num_analyzed_frames)
-        print(len(pd.violation))
+        print(len(pd.get_violation()))
 
         
         frame_heigh = pd.height
         frame_width = pd.width
-        if pd.violation:
-            fps = 10
-            writer = cv2.VideoWriter('out/{}.{}'.format(pd.suggested_stem(stem), 'mp4'),cv2.VideoWriter_fourcc('M','J','P','G'), fps, (frame_width,frame_heigh))
-            keys = sorted( list( pd.violation.keys() ) )
+        if pd.get_violation():
+            fps = int( len( pd.get_violation() ) / VIDEO_DURACAO ) + 1
+            writer = cv2.VideoWriter('out/{}.{}'.format(pd.suggested_stem(stem), 'mp4')
+                                     , cv2.VideoWriter_fourcc('M','J','P','G')
+                                     , fps
+                                     , (frame_width,frame_heigh)
+                                    )
+            keys = sorted( list( pd.get_violation().keys() ) )
             for key in keys:
-                tup = pd.violation[key]
+                tup = pd.get_violation()[key]
                 frame, num = tup
                 writer.write(frame)
 
         
         fig, ax = plt.subplots( figsize=(8,5) )
-        keys = sorted( list( pd.all.keys() ) )
+        keys = sorted( list( pd.get_all().keys() ) )
         xs = []; ys = []
         for key in keys:
-            tup = pd.all[key]
+            tup = pd.get_all()[key]
             frame, num = tup
             xs.append(key)
             ys.append(num)
 
-        ax.plot(xs, ys)
+        ax.plot(xs, ys, 'bo')
         ax.axhline(y=mpnn, color='r')
         
         ax.set_ylim([-0.1, 1.1])
@@ -75,7 +79,7 @@ def main_pixels_differences(path, stem):
         title += 'RESUMO DE VÍDEO PELA ESTRATÉGIA: {}\n'.format(pd.strategy_name().upper())
         title += 'max. norm. dist. entre pixels (T1): {:0.2f}\n'.format( mpnd )
         title += 'max. norm. nume. de violações entre quadros (T2): {:0.2f}\n'.format( mpnn )
-        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(pd.all),  len(pd.violation), len(pd.all), ( len(pd.all) - len(pd.violation) )/len(pd.all) )
+        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(pd.get_all()),  len(pd.get_violation()), len(pd.get_all()), (len(pd.get_all()) - len(pd.get_violation()))/len(pd.get_all()) )
         ax.set_title(title)
         ax.set_xlabel('Número do quadro')
         ax.set_ylabel('Distancia T2')
@@ -293,9 +297,9 @@ if __name__ == '__main__':
     name = path.split('/')[-1]
     stem = name[:-4]
 
-    #main_pixels_differences(path, stem)
+    main_pixels_differences(path, stem)
     #main_blocks_differences(path, stem)
     #main_histog_differences(path, stem)
-    main_edges_differences(path, stem)
+    #main_edges_differences(path, stem)
 
 

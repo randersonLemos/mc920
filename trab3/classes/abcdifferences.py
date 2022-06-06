@@ -1,6 +1,6 @@
 import cv2
 
-class ABCPixels:
+class ABCDifferences:
     def __init__(self):
         self.last = None
 

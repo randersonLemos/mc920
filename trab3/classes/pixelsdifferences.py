@@ -1,6 +1,6 @@
-from classes.abcpixels import ABCPixels
+from classes.abcdifferences import ABCDifferences
 
-class PixelsDifferences(ABCPixels):
+class PixelsDifferences(ABCDifferences):
     def __init__(self, max_pixel_norm_dist, max_pixel_norm_nume):
         super().__init__()
 

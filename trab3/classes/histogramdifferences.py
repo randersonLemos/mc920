@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
-from classes.abcpixels import ABCPixels
+from classes.abcdifferences import ABCDifferences
 
 
-class HistogramDifferences(ABCPixels):
+class HistogramDifferences(ABCDifferences):
     def __init__(self, alpha):
         super().__init__()
 

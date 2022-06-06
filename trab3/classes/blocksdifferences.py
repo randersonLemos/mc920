@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
-from classes.abcpixels import ABCPixels
+from classes.abcdifferences import ABCDifferences
 
-class BlocksDifferences(ABCPixels):
+class BlocksDifferences(ABCDifferences):
     def __init__(self, max_block_norm_dist, max_block_norm_nume, block_dim):
         super().__init__()
             

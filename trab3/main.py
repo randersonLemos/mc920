@@ -150,21 +150,9 @@ def main_pixels_differences(path, stem):
         plt.tight_layout(pad=1.10)
 
         plt.savefig('out/{}.{}'.format(pd.suggested_stem(stem), 'png'))
-        
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Script para busca de mudanças abruptas em videos ')
-    parser.add_argument('-video_entrada', required=True, help='Video que se deseja buscas mudancas abruptas')
 
-    args  = parser.parse_args()
-
-    path = args.video_entrada
-    name = path.split('/')[-1]
-    stem = name[:-4]
-
-    #main_pixels_differences(path, stem)
-    #main_blocks_differences(path, stem)
-
+def main_histog_differences(path, stem):
     alphas = [3, 4, 5, 6] # max. block normalized squared distance
 
     for alpha in alphas:
@@ -185,7 +173,7 @@ if __name__ == '__main__':
 
         print('---')
         print(hd.num_analyzed_frames)
-        print( len( hd.get_violation() ))
+        print( len( hd.get_violation() ) )
 
         frame_heigh = hd.height
         frame_width = hd.width
@@ -229,3 +217,20 @@ if __name__ == '__main__':
         plt.tight_layout(pad=1.10)
 
         plt.savefig('out/{}.{}'.format(hd.suggested_stem(stem), 'png'))
+        
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Script para busca de mudanças abruptas em videos ')
+    parser.add_argument('-video_entrada', required=True, help='Video que se deseja buscas mudancas abruptas')
+
+    args  = parser.parse_args()
+
+    path = args.video_entrada
+    name = path.split('/')[-1]
+    stem = name[:-4]
+
+    #main_pixels_differences(path, stem)
+    #main_blocks_differences(path, stem)
+    main_histog_differences(path, stem)
+
+

@@ -13,6 +13,9 @@ from classes.blocksdifferences import BlocksDifferences
 from classes.histogramdifferences import HistogramDifferences
 
 
+VIDEO_DURACAO = 5 # SEGUNDOS
+
+
 def main_blocks_differences(path, stem):
     mbnds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized squared distance
     mbnns = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized number
@@ -162,14 +165,11 @@ if __name__ == '__main__':
     #main_pixels_differences(path, stem)
     #main_blocks_differences(path, stem)
 
-    mbnds = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized squared distance
-    mbnns = [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70] # max. block normalized number
+    alphas = [3, 4, 5, 6] # max. block normalized squared distance
 
-
-    product = itertools.product(mbnds, mbnns)
-    for mbnd, mbnn in product:
+    for alpha in alphas:
         cap = cv2.VideoCapture(path)
-        hd = HistogramDifferences(max_threshold=0.01, alpha=3)
+        hd = HistogramDifferences(alpha=alpha)
         
         while True:
             ret, frame = cap.read() # Captura frame por frame
@@ -183,12 +183,49 @@ if __name__ == '__main__':
             else:
                 break
 
-
         print('---')
         print(hd.num_analyzed_frames)
-        print(len(hd.violation))
+        print( len( hd.get_violation() ))
 
+        frame_heigh = hd.height
+        frame_width = hd.width
+        if hd.get_violation():
+            fps = int( len( hd.get_violation() ) / VIDEO_DURACAO ) + 1
+            writer = cv2.VideoWriter('out/{}.{}'.format(hd.suggested_stem(stem), 'mp4')
+                                     , cv2.VideoWriter_fourcc('M','J','P','G')
+                                     , fps
+                                     , (frame_width,frame_heigh)
+                                    )
 
-        break
+            keys = sorted( list( hd.get_violation().keys() ) )
+            for key in keys:
+                tup = hd.get_violation()[key]
+                frame, num = tup
+                writer.write(frame)
 
+        fig, ax = plt.subplots( figsize=(8,5) )
+        keys = sorted( list( hd.get_all().keys() ) )
+        xs = []; ys = []
+        for key in keys:
+            tup = hd.get_all()[key]
+            frame, num = tup
+            xs.append(key)
+            ys.append(num)
 
+        ax.plot(xs, ys, 'bo')
+        ax.axhline(y=hd.threshold, color='r')
+        
+        #ax.set_ylim([-0.1, 1.1])
+
+        title = ''
+        title += 'RESUMO DE VÍDEO PELA ESTRATÉGIA: {}\n'.format(hd.strategy_name().upper())
+        title += 'alpha: {:0.2f}\n'.format( alpha )
+        title += 'threshold: {:0.2f}\n'.format( hd.threshold )
+        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format( len(hd.get_all()),  len(hd.get_violation()), len(hd.get_all()), ( len(hd.get_all()) - len(hd.get_violation()) )/len(hd.get_all()) )
+        ax.set_title(title)
+        ax.set_xlabel('Número do quadro')
+        ax.set_ylabel('Distancia T2')
+
+        plt.tight_layout(pad=1.10)
+
+        plt.savefig('out/{}.{}'.format(hd.suggested_stem(stem), 'png'))

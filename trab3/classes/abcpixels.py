@@ -4,9 +4,9 @@ class ABCPixels:
     def __init__(self):
         self.last = None
 
-        self.all = {}
+        self._all = {}
         
-        self.violation = {}
+        self._violation = {}
 
         self.num_analyzed_frames = 0
 
@@ -33,4 +33,12 @@ class ABCPixels:
 
 
     def suggested_stem(self, video_name):
+        raise NotImplemented
+
+
+    def get_all(self):
+        raise NotImplemented
+
+
+    def get_violation(self):
         raise NotImplemented

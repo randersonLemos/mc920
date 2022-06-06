@@ -15,7 +15,7 @@ class ABCDifferences:
         raise NotImplemented
 
 
-    def if_different(self, frame):
+    def is_different(self, frame):
         raise NotImplemented
 
 

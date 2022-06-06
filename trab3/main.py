@@ -114,31 +114,31 @@ def main_blocks_differences(path, stem):
 
         print('---')
         print(bd.num_analyzed_frames)
-        print(len(bd.violation))
+        print(len(bd.get_violation()))
 
 
         frame_heigh = bd.height
         frame_width = bd.width
-        if bd.violation:
-            fps = 10
+        if bd.get_violation():
+            fps = int( len( bd.get_violation() ) / VIDEO_DURACAO ) + 1
             writer = cv2.VideoWriter('out/{}.{}'.format(bd.suggested_stem(stem), 'mp4'), cv2.VideoWriter_fourcc('M','J','P','G'), fps, (frame_width,frame_heigh))
-            keys = sorted( list(bd.violation.keys() ) )
+            keys = sorted( list(bd.get_violation().keys() ) )
             for key in keys:
-                tup = bd.violation[key]
+                tup = bd.get_violation()[key]
                 frame, num = tup
                 writer.write(frame)
 
         
         fig, ax = plt.subplots( figsize=(8,5) )
-        keys = sorted( list( bd.all.keys() ) )
+        keys = sorted( list( bd.get_all().keys() ) )
         xs = []; ys = []
         for key in keys:
-            tup = bd.all[key]
+            tup = bd.get_all()[key]
             frame, num = tup
             xs.append(key)
             ys.append(num)
 
-        ax.plot(xs, ys)
+        ax.plot(xs, ys, 'bo')
         ax.axhline(y=mbnn, color='r')
         
         ax.set_ylim([-0.1, 1.1])
@@ -147,7 +147,7 @@ def main_blocks_differences(path, stem):
         title += 'RESUMO DE VÍDEO PELA ESTRATÉGIA: {}\n'.format(bd.strategy_name().upper())
         title += 'max. norm. dist. entre blocos (T1): {:0.2f}\n'.format( mbnd )
         title += 'max. norm. nume. de violações entre quadros (T2): {:0.2f}\n'.format( mbnn )
-        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(bd.all),  len(bd.violation), len(bd.all), ( len(bd.all) - len(bd.violation) )/len(bd.all) )
+        title += 'eficiência de resumo: ({}-{})/{}={:0.2f}'.format(len(bd.get_all()),  len(bd.get_violation()), len(bd.get_all()), ( len(bd.get_all()) - len(bd.get_violation()) )/len(bd.get_all()) )
         ax.set_title(title)
         ax.set_xlabel('Número do quadro')
         ax.set_ylabel('Distancia T2')
@@ -298,8 +298,8 @@ if __name__ == '__main__':
     stem = name[:-4]
 
     main_pixels_differences(path, stem)
-    #main_blocks_differences(path, stem)
-    #main_histog_differences(path, stem)
-    #main_edges_differences(path, stem)
+    main_blocks_differences(path, stem)
+    main_histog_differences(path, stem)
+    main_edges_differences(path, stem)
 
 

@@ -54,8 +54,8 @@ class BlocksDifferences(ABCDifferences):
         block_norm_nume = block_nume / self.block_num
 
         if block_norm_nume > self.max_block_norm_nume:
-            self.violation[self.num_analyzed_frames] = ( frame, block_norm_nume) 
-        self.all[self.num_analyzed_frames] = ( frame, block_norm_nume )
+            self._violation[self.num_analyzed_frames] = ( frame, block_norm_nume) 
+        self._all[self.num_analyzed_frames] = ( frame, block_norm_nume )
 
 
     def _get_blocks(self, frame):
@@ -68,13 +68,21 @@ class BlocksDifferences(ABCDifferences):
         return blocks 
 
 
+    def get_violation(self):
+        return self._violation
+
+
+    def get_all(self):
+        return self._all
+
+
     def suggested_stem(self, video_name):
         stg = ''
         stg += video_name
         stg += '_blockdiff'
         stg += '_mbnd_{}%'.format(int(100*self.max_block_norm_dist))
         stg += '_mbnn_{}%'.format(int(100*self.max_block_norm_nume))
-        stg += '_nframe_{:05d}'.format(len(self.violation))
+        stg += '_nframe_{:05d}'.format(len(self._violation))
         return stg
 
 

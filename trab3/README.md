@@ -21,5 +21,5 @@ Pronto, seu ambiente de trabalho que se chama **mc920-trab3** está configurado 
 # Rodando o programa main.py
 
 ```
-python3 main.py -video_entrada=assets/toy.mp4
+python3 main.py -video_entrada=assets/lisa.mpg
 ```

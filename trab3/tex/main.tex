@@ -2,6 +2,8 @@
 
 \usepackage[utf8]{inputenc}
 
+\usepackage{hyperref}
+
 \usepackage{amsmath}
 
 \usepackage{scrextend}
@@ -159,7 +161,7 @@ em que $d_ai$ é a distância quadrática normalizada dos a-ésimos blocos entre
 Para comparação com o limiar $T_2$, o número total de blocos que violam a tolerância $T_1$ é levantado e, se esse valor ultrapassar o limiar $T_2$, os quadros consecutivos utilizados na comparação por meio dos seus blocos são considerados como possuidores de transições abruptas. Os valore utilizados em $T_2$ estão normalizados pelo número total de blocos que cabe nos quadros do vídeo analisado e por isso também estão contidos dentro do intervalo $[0,1]$.
 %
 \subsubsection{Detalhes de implementação e execução}
-Como requisitado no trabalho, a classe \textbf{BlocksDifferences} é capaz de trabalhar com blocos de $8\times8$ ou $16\times16$. No entanto para os resultados mostrados, apenas execuções com blocos de tamanho $8\times8$ foram considerados. Sobre o problema do casamento exato ou não entre as dimensões dos blocos (que pode ser de $8\times8$ ou $16\times16$) e as dimensões da imagem o tratamento dado foi: Começar sempre a subdivisão da imagem em blocos a partir da posição $(0,0)$ e, caso ocorra, desconsideras as possíveis bordas presentes na parte da direita ou na parte de baixo da imagem.
+Como requisitado no trabalho, a classe \textbf{BlocksDifferences} é capaz de trabalhar com blocos de $8\times8$ ou $16\times16$. No entanto para os resultados mostrados, apenas execuções com blocos de tamanho $8\times8$ foram considerados. Sobre o problema do casamento exato ou não entre as dimensões dos blocos (que pode ser de $8\times8$ ou $16\times16$) e as dimensões da imagem o tratamento dado foi: Começar sempre a subdivisão da imagem em blocos a partir da posição $(0,0)$ e, caso ocorra, as possíveis bordas presentes na parte da direita ou na parte de baixo da imagem são desconsideradas.
 
 
 %
@@ -171,7 +173,7 @@ Esse função roda a classe \textbf{HistogramDifferences} sobre o conjunto dos v
 que são os valores sugeridos na descrição do trabalho. Nenhuma modificação na forma de se calcular a diferença dos histogramas de quadros consecutivos foi realizada de modo que tal cálculo já está explicitado na parte da secção de introdução que trata desse técnica de identificação de mudanças abruptas entre quadros. No entanto vale destacar que os histogramas foram normalizados de modo que a soma dos valores de seus \textit{bins} totaliza 1.
 %
 \subsubsection{Detalhes de implementação e execução}
-Para o cálculo dos histogramas, optou-se por utilizar uma implementação própria ao invés de usar alguma função disponibilizadas pelos módulos do opencv ou do numpy.
+Para o cálculo dos histogramas, optou-se por utilizar uma implementação própria ao invés de usar alguma função disponibilizada pelos módulos do opencv ou do numpy.
 
 
 %
@@ -180,18 +182,101 @@ Essa função roda a classe \textbf{EdgesDifferences} sobre o conjuto de valores
 \[
     MENDS = [0.010, 0.015, 0.020, 0.025, 0.030, 0.035].
 \]
-MENDS é sigla de \textit{Maximum Edges Normalized Difference}. Os valores desse conjunto estão dentro do itervalo $[0,1]$ e eles representam a diferença máxima normalizada de bordas entre quadros consecutivos tolerada. A normalização é feita considerando a diferença máxima de bordas entre quadros consecutivos possível que ocorre quando um quadro não teria nenhuma borda e o outro quadro teria apenas `bordas'. Logo a diferença máxima possível é igual ao número de pixels dos quadros do vídeo analisado.
+MENDS é sigla de \textit{Maximum Edges Normalized Difference}. Os valores desse conjunto estão dentro do itervalo $[0,1]$ e eles representam a diferença máxima normalizada de bordas entre quadros consecutivos tolerada. A normalização é feita considerando a diferença máxima de bordas entre quadros consecutivos possível que ocorreria quando um quadro não teria nenhuma borda e o outro quadro teria apenas `bordas'. Logo a diferença máxima possível, nessa situação, seria igual ao número de pixels dos quadros do vídeo analisado.
 
 
 %
 \subsubsection{Detalhes de implementação e execução}
-Para o cálculo do mapa de bordas, foi utilizado o famoso algoritmo Canny que foi desenvolvido por John F. Canny. Esse algoritmo é bastante popular devido a sua versatilidade e robustez. Ele contempla etapas de redução de ruídos, determinação das intensidades do gradiente da imagem, e aplicação de supressão não máxima e teste de hipóteses. Utilizou-se a versão do algoritmo disponibilizada pelo módulo do opencv $Canny$ com os parâmetros de entra fixos. O parâmetro de valor mínimo de 100 e o parâmetro de valor máximo de 200. 
+Para o cálculo do mapa de bordas, foi utilizado o famoso algoritmo Canny que foi desenvolvido por John F. Canny. Esse algoritmo é bastante popular devido a sua versatilidade e robustez. Ele contempla etapas de redução de ruídos, determinação das intensidades do gradiente da imagem, e aplicação de supressão não máxima e teste de hipóteses. Utilizou-se a versão do algoritmo disponibilizada pelo módulo do opencv $Canny$ com os parâmetros de entrada fixos. O parâmetro de valor mínimo de 100 e o parâmetro de valor máximo de 200. 
 
 Mesmo o algoritmo de detecção de bordas de Canny já conter um etapa de suavização de ruídos, optou-se antes de aplicá-lo, suavizar o quadro de interesse bom um filtro Gaussiano (passa-baixo) de dimensão $5\times5$.
 
 
+\section{Resultado}
+Todos os resultados apresentados foram gerados pelo processamento do vídeo \textbf{lisa.mpg} que está dentro da pasta \textbf{assets}. Devido ao grande número de combinações de parâmetros das quatro técnicas de identificação de mudanças abruptas entre quadros considerados e, consequentemente, o grade número de conteúdo gerado (entre vídeos e gráficos) serão apresentados aqui apenas um subconjunto desses materiais (caso haja interesse do leitor em verificar a totalidade desse conteúdo basta acessá-los dentro da pasta \textbf{out}). Primeiro serão apresentados os gráficos gerados que evidenciam o quão diferentes são dois quadros consecutivos e o número de quadros que foram considerados como detenedores de uma transição abrupta. Depois, traremos algumas análises e discussões.
+
+\newpage
+\subsection{Diferenças entre pixels}
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/BLa\_RR3D7Hw}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_10_nframe_00218.png} 
+	}}%
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/dqFbqMDnW90}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_30_nframe_00009.png} 
+	}}%	
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/9uXixvLlcV4}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_50_nframe_00004.png} 
+	}}%	
+	\caption{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
+	\label{fig:diferenca_pixels}%
+\end{figure}
+
+\newpage
+\subsection{Diferenças entre blocos}
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/mm43T9BhlUU}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_10_nframe_00375.png} 
+	}}%
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/r4TxG6zJtIg}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_30_nframe_00108.png} 
+	}}%	
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/5yxTwq2srKw}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_50_nframe_00014.png} 
+	}}%	
+	\caption{Imagem com gráficos do número de blocos (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
+	\label{fig:diferenca_blocos}%
+\end{figure}
 
 
+\newpage
+\subsection{Diferenças entre histograma}
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=3$ (veja vídeo: \url{https://youtu.be/taISwMqDRO4}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_3_thres_0.578_nframe_00011.png} 
+	}}%
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=4$ (veja vídeo: \url{https://youtu.be/hoMm_-U1uqY}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_4_thres_0.723_nframe_00009.png} 
+	}}%	
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=5$ (veja vídeo: \url{https://youtu.be/-NX1KpQSwvM}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_5_thres_0.867_nframe_00005.png} 
+	}}%	
+	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferença entre histogramas.}%	
+	\label{fig:diferenca_histogramas}%
+\end{figure}
+
+
+\newpage
+\subsection{Diferenças entre borda}
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.01$ (veja vídeo: \url{https://youtu.be/OpjOwV45uxY}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.0_nframe_00014.png} 
+	}}%
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.015$ (veja vídeo: \url{https://youtu.be/ICLpevnXpGE}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.5_nframe_00008.png} 
+	}}%	
+	\\
+	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.02$ (veja vídeo: \url{https://youtu.be/Qkp-s1RcZSM}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_2.0_nframe_00002.png} 
+	}}%	
+	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.}%	
+	\label{fig:diferenca_bordas}%
+\end{figure}
+%\begin{figure}[!htp]%
+%	\centering
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.2$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/BLa\_RR3D7Hw}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_20_mpnn_10_nframe_00056.png} 
+%	}}%
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.2$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/dqFbqMDnW90}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_20_mpnn_30_nframe_00004.png} 
+%	}}%	
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.2$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/9uXixvLlcV4}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_20_mpnn_50_nframe_00002.png} 
+%	}}%	
+%	\caption{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
+%	\label{fig:diferenca_blocos}%
+%\end{figure}
 
 
 
@@ -264,8 +349,7 @@ Mesmo o algoritmo de detecção de bordas de Canny já conter um etapa de suaviz
 
 %
 %%
-\section{Resultado}
-Os resultados levantados são provenientes da aplicação do programa \textbf{main.py} sobre as imagens apresentadas na Figura \ref{fig:imagem:entrada}. 
+ 
 
 %\begin{figure}[!htp]%
 %	\centering

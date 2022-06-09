@@ -193,7 +193,7 @@ Mesmo o algoritmo de detecção de bordas de Canny já conter um etapa de suaviz
 
 
 \section{Resultado}
-Todos os resultados apresentados foram gerados pelo processamento do vídeo \textbf{lisa.mpg} que está dentro da pasta \textbf{assets}. Devido ao grande número de combinações de parâmetros das quatro técnicas de identificação de mudanças abruptas entre quadros considerados e, consequentemente, o grade número de conteúdo gerado (entre vídeos e gráficos) serão apresentados aqui apenas um subconjunto desses materiais (caso haja interesse do leitor em verificar a totalidade desse conteúdo basta acessá-los dentro da pasta \textbf{out}). Primeiro serão apresentados os gráficos gerados que evidenciam o quão diferentes são dois quadros consecutivos e o número de quadros que foram considerados como detenedores de uma transição abrupta. Depois, traremos algumas análises e discussões.
+Todos os resultados apresentados foram gerados pelo processamento do vídeo \textbf{lisa.mpg} que está dentro da pasta \textbf{assets}. Devido ao grande número de combinações de parâmetros das quatro técnicas de identificação de mudanças abruptas entre quadros considerados e, consequentemente, o grade número de conteúdo gerado (entre vídeos e gráficos) serão apresentados aqui apenas um subconjunto desses materiais (caso haja interesse do leitor em verificar a totalidade desse conteúdo basta acessá-los dentro da pasta \textbf{out}). Aquim, serão apresentados os gráficos gerados que evidenciam o quão diferentes são dois quadros consecutivos e o número de quadros que foram considerados como detenedores de uma transição abrupta.
 
 \newpage
 \subsection{Diferenças entre pixels}
@@ -264,213 +264,18 @@ Todos os resultados apresentados foram gerados pelo processamento do vídeo \tex
 	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.}%	
 	\label{fig:diferenca_bordas}%
 \end{figure}
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.2$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/BLa\_RR3D7Hw}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_20_mpnn_10_nframe_00056.png} 
-%	}}%
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.2$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/dqFbqMDnW90}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_20_mpnn_30_nframe_00004.png} 
-%	}}%	
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.2$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/9uXixvLlcV4}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_20_mpnn_50_nframe_00002.png} 
-%	}}%	
-%	\caption{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
-%	\label{fig:diferenca_blocos}%
-%\end{figure}
-
-
-
-%Sobre a direção de varredura para aplicação das técnicas de meios-tons optou-se por seguir com a direção que percorre a imagem da esquerda para a direita e de cima para baixo (direção \textit{default}) e com a direção da esquerda para direita com alternância e de cima para baixo (direção zig-zag) como ilustrado na imagem da Figura \ref{fig:direcao_varredura}.
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Direção de varredura da esquerda para direita (\textit{default})]{{ \includegraphics[width=4cm]{varredura.png} }}%
-%	\qquad
-%	\subfloat[\centering Direção de varredura da esquerda para direita com alternância (zig-zag)]{{ \includegraphics[width=4cm]{varredura_zigzag.png} }}%	
-%	\caption{Direção de varredura considerada para aplicação das técnicas de meios-tons (fonte: imagem extraida do documento pdf com as orientações deste trabalho).}%	
-%	\label{fig:direcao_varredura}%
-%\end{figure}
-%
-%\noindent
-%Essas opções de varredura foram consideras porque a aparência visual das imagens resultantes se mostrou satisfatório, não havendo padrões estranhos que causassem desconforto ao olhar do observador.
-%
-%Para o processo de aplicação das técnicas de meios-tons em imagens coloridas optou-se por trabalhar no mapa de cores HSV cujas letras são abreviações de \textit{Hue} (matiz), \textit{Saturation} (saturação) e \textit{Value} (valor). Assim, as imagens que, quando carregadas pelo opencv, eram disponibilizadas no mapa de cores BGR tiveram este mapa de cores convertido para o mapa HSV. Já no mapa de cores HSV, apenas o canal V (Value) da imagem (que é o que contém a intensidade luminosa) foi passado para as funções responsáveis pela aplicação das técnicas de meios-tons por difusão de erro. Obtido o canal V em meios-tons, este foi integrado ao esquema HSV original e a nova imagem foi reconvertida para o mapa de cores BGR.
-%
-%Um dos destaques das implementações realizadas é a classe \textbf{Mask}. Essa classe ficou responsável pelo encapsulamento da lógica de recuperação dos pesos das mascaras das técnicas de meios-tons por difusão de erro bem como das posições nas quais estes pesos devem ser aplicados na imagem original. Dessa maneira, para o usuário, só ficou necessário passar a matriz da mascara da técnica de meio-tom em questão e a posição de referência do posicionamento na mascara do pixel \textbf{f(x,y)} da imagem original. Essa classe foi implementada como um objeto \textbf{iterador} do Python de modo que a obtenção dos pesos bem como da posição de aplicação destes na imagem original era facilmente alcançada dentro de uma estrutura de laço de repetição. Isso tornou bastante conveniente a integração da instancia da classe \textbf{Mask} dentro da função responsável por construir a imagem \textbf{g(x, y)} possuidora dos pixels em meios-tons. A implementação da classe \textbf{Mask} é apresentada a baixo.
-%
-%\begin{lstlisting}
-%class Mask:
-%  def __init__(self, mask):
-%    self.name = mask.name
-%    self.mask = mask.mask
-%    self.ref = mask.ref
-%
-%
-%  def __iter__(self):
-%    self._r = 0
-%    self._c = -1 
-%    return self
-%
-%
-%  def __next__(self):
-%    mask = self.mask
-%    row, col = mask.shape
-%    _r = self._r; _c = self._c
-%
-%    _c += 1
-%    if _c == col:
-%      _r += 1 
-%      _c = _c % col
-%
-%    while True:
-%      if _r < row:
-%        val = mask[_r][_c]
-%
-%        if val:
-%          self._r = _r
-%          self._c = _c
-%          inc = (_r - self.ref[0] , _c - self.ref[1], )
-%          return val, inc # retorna o peso a ser multiplicado pelo erro e o incremento
-%                          # a ser adicionando no pixel (x,y) da imagem f para difusao
-%                          # do erro
-%
-%        _c += 1
-%        if _c == col:
-%          _r += 1 
-%          _c = _c % col
-%
-%      else:
-%        break
-%
-%  raise StopIteration
-%\end{lstlisting}
-%
-%Para demais informações acerca das implementações ou algoritmos utilizados, consultar o código fonte. Lá existem comentários que abrangem esse tipo de informação.
-
 %
 %%
- 
+\section{Discussão e Conclusão}
+É possível verificar, dos gráficos apresentados, que as diferentes técnicas de identificação de transições abruptas discriminam os quadros consecutivos de maneira significativamente diferente. Esse afirmação se sustenta pelos diferentes padrões de distribuição dos valores do eixo y ao longo do eixo x. Nesse aspecto (dos padrões de descriminação), há uma aproximação entre os comportamentos das técnicas de diferenças entre pixel e diferenças entre bloco (Figuras \ref{fig:diferenca_pixels} e \ref{fig:diferenca_blocos}) e entre os comportamentos das técnicas de diferenças entre histograma e diferenças entre borda (Figuras \ref{fig:diferenca_histogramas} e \ref{fig:diferenca_bordas})). Percebe-se que as técnicas de diferenças entre pixel e diferenças entre borda apresentam maior dificuldade em discriminar os quadros consecutivos com transições abruptas que as técnicas de diferenças entre histograma e de diferenças entre borda já que nas duas primeiras técnicas há maior amplitude nos valores de distância do eixo y que nas duas últimas técnicas.
 
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Vesão colorida da imagem Baboon (original)]{{ \includegraphics[width=5cm]{../out/cbaboon.png} }}%
-%	\qquad
-%	\subfloat[\centering Versão em escala de cinza da imagem Baboon (convertida)]{{ \includegraphics[width=5cm]{../out/baboon.png} }}%	
-%	\caption{Imagens utilizadas para aplicação das técnicas de meios-tons por difusão de erro.}%	
-%	\label{fig:imagem:entrada}%
-%\end{figure}
-%
-%Para comparação com as imagens resultantes das técnicas de meios-tons por difusão de erro, gerou-se imagens denominadas controle a partir da aplicação da técnica de meio-tom que utiliza apenas o limiar de 128 para tomada de decisão se a um pixel será atribuído o valor zero (0) ou o valor (1). As imagens controle da imagem Baboon nas versões colorida e em escala de cinza são apresentadas na Figura \ref{fig:imagem:controle}.
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	
-%	\subfloat[\centering Imagem controle na versão colorida]{{ \includegraphics[width=5cm]{../out/cbaboon_control.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem controle na versão em preto e branco]{{ \includegraphics[width=5cm]{../out/baboon_control.png} }}%	
-%	
-%	\caption{Imagens controle para comparação com as imagens resultantes da aplicação da técnicas de meios-tons por difusão de erro.}%
-%	
-%	\label{fig:imagem:controle}%
-%\end{figure}
-%
-%Na sequência, teremos a apresentação das imagens resultantes da aplicação das técnias de meios-tons por difusão de erro sobre a imagem Baboon na sua versão colorida e em escala de cinza.
-%
-%%
-%\subsection{Técnicas de meios-tons sobre images em escala de cinza (varredura \textit{default})}
-%Aqui serão apresentados as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada em escala de cinza.
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/baboon_floydsteinberg.png} }}%
-%	\qquad
-%    \subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/baboon_stevensonarce.png} }}%
-%	\qquad
-%    \subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/baboon_burkers.png} }}%
-%
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/baboon_sierra.png} }}%
-%    \qquad
-%   	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/baboon_stucki.png} }}%
-%   	\quad
-% 	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/baboon_jarvis.png} }}%
-%	
-%	\caption{Imagens resultantes em escala de cinza da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura \textit{default}.}%
-%	\label{fig:imagem:plano:baboon:cinza:1}%
-%\end{figure}	
-%
-%%
-%\subsection{Técnicas de meios-tons sobre images em escala de cinza (varredura zig-zag)}
-%Aqui serão apresentados as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada em escala de cinza.
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/zbaboon_floydsteinberg.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/zbaboon_stevensonarce.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/zbaboon_burkers.png} }}%
-%	
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/zbaboon_sierra.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/zbaboon_stucki.png} }}%
-%	\quad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/zbaboon_jarvis.png} }}%
-%	
-%	\caption{Imagens resultantes em escala de cinza da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura zig-zag.}%
-%	\label{fig:imagem:plano:baboon:cinza:2}%
-%\end{figure}	
-%
-%%
-%\subsection{Técnicas de meios-tons sobre images coloridas (varredura \textit{default})}
-%Temos a seguir apresentadas as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada colorida.
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/cbaboon_floydsteinberg.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/cbaboon_stevensonarce.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/cbaboon_burkers.png} }}%
-%	
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/cbaboon_sierra.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/cbaboon_stucki.png} }}%
-%	\quad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/cbaboon_jarvis.png} }}%
-%	
-%	\caption{Imagens resultantes coloridas da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura \textit{default}.}%
-%	\label{fig:imagem:plano:baboon:colorido:1}%
-%\end{figure}
-%
-%
-%%
-%\subsection{Técnicas de meios-tons sobre images coloridas (varredura zig-zag)}
-%Temos a seguir apresentadas as imagens resultantes da aplicação das técnicas de meios-tons sobre a imagem de entrada colorida.
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Floyd e Steinberg]{{ \includegraphics[width=3cm]{../out/czbaboon_floydsteinberg.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Stevenson e Arce]{{ \includegraphics[width=3cm]{../out/czbaboon_stevensonarce.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Burkers]{{ \includegraphics[width=3cm]{../out/czbaboon_burkers.png} }}%
-%	
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Sierra]{{ \includegraphics[width=3cm]{../out/czbaboon_sierra.png} }}%
-%	\qquad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Stucki]{{ \includegraphics[width=3cm]{../out/czbaboon_stucki.png} }}%
-%	\quad
-%	\subfloat[\centering Imagem em meio-tom pela técnica de Javis, Judice e Ninke]{{ \includegraphics[width=3cm]{../out/czbaboon_jarvis.png} }}%
-%	
-%	\caption{Imagens resultantes coloridas da aplicação das técnicas de meios-tons por difusão de erro em questão usando a varredura zig-zag.}%
-%	\label{fig:imagem:planocolorido:2}%
-%\end{figure}
-%
-%\section{Dicussão e Conclusão}
-%Do apresentado, podemos concluir que as técnicas de meios-tons foram aplicadas satisfatoriamente tanto sobre imagens coloridas quanto sobre imagens em escala de cinza. Para a imagem utilizada e dentro das dimensões consideradas, as ténicas de meios-tons tiveram resultados visuais semelhantes e bastante satisfatórios. Agora, dentro de uma análise mais minuciosa (ampliando-se as imagens) a técnica de meio-tom de Floyd e Steinberg apresentou uma imagem resultante com algumas falhas e vazios pretos na imagem resultante que não foram apresentados pelas imagens resultantes da aplicação das outras técnicas de meios-tons. Desse modo, quanto ao criterio visual, pode-se afirmar que a técnica de meio-tom de Floyd Steinberg apresentou os resultados menos interessantes com relação a harmonia visual da imagem resultante. Por outro lado, a aplicação da técnica de meio-tom de Floyd Steinberg é a menos custosa computacionalmente, dado que dispõe da menor mascara.
-%
-%Sobre as duas varreduras utilizadas, verifica-se que o resultante de ambas foi visualmente similar para a imagem utilizada. A diferença mais notável, foi que as imagens resultantes da aplicação das técnicas de meios-tons pela varredura em zig-zag ficaram com maior contraste que as imagens resultantes da varredura \textit{default}. Talvez para aplicações mais sofisticadas em que a qualidade das imagens em meios-tons seja crítica, a utilização de padrões de varredura mais complexos seja justificado, o que não é o caso dentro do contexto deste trabalho.
-%
-%%Do apresentado neste trabalho, podemos concluir que a esteganografia é uma técnica interessante e promissora de ocultação de mensagens em imagens sem que estas apresentem modificações visuais ao olho humano. De qualquer maneira, mesmo que visualmente as imagens não sejam alteradas, verificamos que ainda sim é possível identificar que a imagem está modifica e, assim, possivelmente com alguma mensagem escondida. Neste trabalho, essa verificação foi feita pela análise dos planos de bits das imagens modificadas. Nesse verificação, foi possível visualizar uma alteração do padrão de bits do plano de bits 0 (plano onde foi inserida a mensagem) em ambas as imagens Baboon e Watch utilizadas. A única exceção aconteceu com a imagem Baboon e a mensagem escondida \textbf{texto1.txt} que se deu, principalmente, porque a mensagem utilizada é muito pequena.
+Por outro lado, as técnicas de diferenças entre pixel e diferenças entre borda se mostraram menos custosas em termos computacionais que as técnicas de diferenças entre histograma e diferenças entre borda.
 
+É também facilmente verificável que o desempenho das técnicas, no sentido de encontrar uma quantidade aceitável de quadros significativos, é  intimamente relacionado com os valores dos seus parâmetros. Por exemplo, na técnica de diferença entre blocos encontrou-se para os parâmetros $T_1=0.40$ e $T_2=0.10$ o número de $375$ quadros significativos de um total de $649$ quadros (um resultado pouco animador). No entanto, essa mesma técnicas, para os valores de parâmetros $T_1=0.40$ e $T_2=0.50$, encontrou um total de $14$ quadros com transições abruptas de uma total de $649$ quadros (um resultado bem mais interessante) (Figura \ref{fig:diferenca_blocos}).
 
+Para o vídeo utilizado nesse trabalho, as técnicas de diferenças entre histograma e diferenças entre borda se mostraram mais interessantes. Essas técnicas encontraram um conjunto significativamente pequeno de quadros com transições abruptas (afirmação que pode ser comprovada visualizando os vídeos disponibilizados no youtube). Para a técnica de diferenças entre histograma com a configuração de $\alpha=5$ foram encontrados 5 quadros significativos (com transições abruptas) )(Figura \ref{fig:diferenca_histogramas}). Já para a técnica de diferenças entre bordas para $T=0.015$ (Figura \ref{fig:diferenca_bordas}), foram encontrados 8 quadros com transições abruptas. Esses números são bastante impressionantes e trazem uma eficiência de redução de vídeos de aproximadamente $99\%$.
+
+Do apresentado, podemos verificar que as técnicas (umas melhores que outras) foram capazes de identificar quadros associados a transições abruptas do vídeo analisado. 
+
+Caso haja necessidade de uma solução de identificação de transições abruptas entre quadros consecutivos mais robusta, uma alternativa seria experimentar o desempenho de um técnica resultante da combinação linear das técnicas aqui implementadas. Por fim, a técnicas foram satisfatoriamente implementadas e testadas.
 \end{document}

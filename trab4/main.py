@@ -8,10 +8,27 @@ import numpy as np
 
 class Interpolation:
     @classmethod
-    def nearneighbours(cls, w, h):
+    def nearneighbours(cls, w, h, ch, mat, width, height):
         w = int(w + 0.5) 
         h = int(h + 0.5) 
-        return w, h
+
+        if (w >= 0) and (h >= 0):
+            if (w < width) and (h < height):
+                return mat[h, w, ch]
+        return 0
+
+    @classmethod
+    def bilinear(cls, w, h, ch, mat, width, height):
+        x, y = int(w), int(h)
+        dx = w - x
+        dy = h - y
+        try:
+            return (1-dx)*(1-dy)*mat[y,x,ch] + \
+                       dx*(1-dy)*mat[y,x+1,ch] + \
+                          (1-dx)*(dy)*mat[y+1,x,ch] + \
+                              dx*dy*mat[y+1,x+1,ch]
+        except:
+            return 0
 
 
 class Projection:
@@ -38,28 +55,28 @@ class Scale(Geometric):
 
 
     def apply(self, scale, img):
+        if len(M.shape) == 3:
+            height, width, channel = M.shape
+        else:
+            height, width = M.shape; channel = 1
+
         T = scale*self._T
-        self.MT = self._apply(T, img)
+        self.MT = self._apply(T, img, height, width, channel)
+
         return self.MT
          
 
-    def _apply(self, T, M):
-        try:
-            height, width, channel = M.shape
-        except:
-            height, width = M.shape; channel = 1
-
+    def _apply(self, T, M, height, width, channel):
         TI = T.I
         MT = np.zeros(M.shape).astype('uint8')
         product = itertools.product(range(height), range(width), range(channel))
         for het, wit, cht in product:
             xt = np.matrix([[wit], [het]])
             x = TI*xt
-            wi, he = self.inter_func(x.item(0,0), x.item(1,0)); ch = cht
 
-            if (wi >= 0) and (he >= 0):
-                if (wi < width) and (he < height):
-                    MT[het, wit, cht] = M[he, wi, ch]
+            wi, he = x.item(0,0), x.item(1,0); ch = cht
+            px = self.inter_func(wi, he, ch, M, width, height)
+            MT[het, wit, cht] = px
 
         return MT
 
@@ -80,34 +97,35 @@ class Rotation(Geometric):
 
 
     def apply(self, degree, img):
+        if len(M.shape) == 3:
+            height, width, channel = M.shape
+        else:
+            height, width = M.shape; channel = 1
+
+
         T = self._T(-degree)
-        self.MT = self._apply(T, img)
+        self.MT = self._apply(T, img, height, width, channel)
         return self.MT
          
 
-    def _apply(self, T, M):
-        try:
-            height, width, channel = M.shape
-        except:
-            height, width = M.shape; channel = 1
-
+    def _apply(self, T, M, height, width, channel):
         TI = T.I
         MT = np.zeros(M.shape).astype('uint8')
         product = itertools.product(range(height), range(width), range(channel))
         for het, wit, cht in product:
             xt = np.matrix([[wit], [het]])
             x = TI*xt
-            wi, he = self.inter_func(x.item(0,0), x.item(1,0)); ch = cht
-            
-            if (wi >= 0) and (he >= 0):
-                if (wi < width) and (he < height):
-                    MT[het, wit, cht] = M[he, wi, ch]
+
+            wi, he = x.item(0,0), x.item(1,0); ch = cht
+            px = self.inter_func(wi, he, ch, M, width, height)
+            MT[het, wit, cht] = px
 
         return MT
 
 
 inter_func = {}
 inter_func['nearneighbours'] = Interpolation.nearneighbours
+inter_func['bilinear'] = Interpolation.bilinear
 inter_keys = inter_func.keys()
 
 

@@ -8,10 +8,11 @@ import numpy as np
 
 class Interpolation:
     @classmethod
-    def nearnighbours(cls, w, h):
+    def nearneighbours(cls, w, h):
         w = int(w + 0.5) 
         h = int(h + 0.5) 
         return w, h
+
 
 class Projection:
     def apply(self, T, M):
@@ -19,11 +20,19 @@ class Projection:
 
 
 class Geometric(Projection):
-    pass
+    @classmethod
+    def set_inter_func(cls, inter_func):
+        cls.inter_func = inter_func
+
+
+    def __init__(self):
+        if not hasattr(self, 'inter_func'):
+            raise Exception('inter_func method must be set!')
 
 
 class Scale(Geometric):
     def __init__(self):
+        super().__init__()
         self._T = np.matrix([[1,0], [0,1]])
         self.MT = None
 
@@ -46,11 +55,11 @@ class Scale(Geometric):
         for het, wit, cht in product:
             xt = np.matrix([[wit], [het]])
             x = TI*xt
-            wi, he = Interpolation.nearnighbours(x.item(0,0), x.item(1,0)); ch = cht
-            try:
-                MT[het, wit, cht] = M[he, wi, ch]
-            except:
-                pass
+            wi, he = self.inter_func(x.item(0,0), x.item(1,0)); ch = cht
+
+            if (wi >= 0) and (he >= 0):
+                if (wi < width) and (he < height):
+                    MT[het, wit, cht] = M[he, wi, ch]
 
         return MT
 
@@ -65,6 +74,7 @@ class Rotation(Geometric):
 
 
     def __init__(self):
+        super().__init__()
         self._T = self.R
         self.MT = None
 
@@ -87,34 +97,38 @@ class Rotation(Geometric):
         for het, wit, cht in product:
             xt = np.matrix([[wit], [het]])
             x = TI*xt
-            wi, he = Interpolation.nearnighbours(x.item(0,0), x.item(1,0)); ch = cht
-            try:
-                MT[het, wit, cht] = M[he, wi, ch]
-            except:
-                pass
+            wi, he = self.inter_func(x.item(0,0), x.item(1,0)); ch = cht
+            
+            if (wi >= 0) and (he >= 0):
+                if (wi < width) and (he < height):
+                    MT[het, wit, cht] = M[he, wi, ch]
 
         return MT
 
+
+inter_func = {}
+inter_func['nearneighbours'] = Interpolation.nearneighbours
+inter_keys = inter_func.keys()
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Script para aplicacao de projecoes perspectiva e geometrica ')
     parser.add_argument('-imagem_entrada', required=True,  help='Imagem para aplicação da projecao selecionada')
-    parser.add_argument('-e'             , required=False, help='Fator de escala a ser aplicado na imagem')
-    parser.add_argument('-a'             , required=False, help='Angulo de rotacao em graus a ser aplicado na imagem')
+    parser.add_argument('-e'             , required=False, type=float, default=1, help='Fator de escala a ser aplicado na imagem')
+    parser.add_argument('-a'             , required=False, type=float, default=0, help='Angulo de rotacao em graus a ser aplicado na imagem')
+    parser.add_argument('-m'             , required=False, help='Método de interpolacao. Opcoes: {}'.format(inter_keys))
     
     args = parser.parse_args()
 
     M = cv2.imread(args.imagem_entrada)
 
-    if args.e:
-        scale = float(args.e)
-        sc = Scale()
-        MT = sc.apply(scale, M)
+    inter_func = inter_func[args.m]
+    Geometric.set_inter_func(inter_func)
 
-    elif args.a:
-        angle = float(args.a)
-        rt = Rotation()
-        MT = rt.apply(angle, M)
+    sc = Scale()
+    rt = Rotation()
+    MT = rt.apply(args.a, sc.apply(args.e, M))
 
-    cv2.imshow('MT', MT); cv2.waitKey()
+    stem, ext = args.imagem_entrada.split('/')[-1].split('.')
+    name = '{}_sca_{:06d}_rot_{:06d}_int_{}.{}'.format(stem, int(args.e*1000), int(args.a*1000), args.m, ext)
+    cv2.imwrite('out' + '/' + name, MT)

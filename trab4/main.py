@@ -9,12 +9,12 @@ import numpy as np
 class Interpolation:
     @classmethod
     def nearneighbours(cls, w, h, ch, mat, width, height):
-        w = int(w + 0.5) 
-        h = int(h + 0.5) 
+        x = int(w + 0.5) 
+        y = int(h + 0.5) 
 
-        if (w >= 0) and (h >= 0):
-            if (w < width) and (h < height):
-                return mat[h, w, ch]
+        if (x >= 0) and (x < width) \
+            and (y >= 0) and (y < height):
+                return mat[y, x, ch]
         return 0
 
     @classmethod
@@ -22,13 +22,19 @@ class Interpolation:
         x, y = int(w), int(h)
         dx = w - x
         dy = h - y
-        try:
+        x1, y1 = x+1, y+1
+        if     (x  >= 0) and (x  < width) \
+           and (x1 >= 0) and (x1 < width) \
+           and (y  >= 0) and (y  < height) \
+           and (y1 >= 0) and (y1 < height):
+
             return (1-dx)*(1-dy)*mat[y,x,ch] + \
-                       dx*(1-dy)*mat[y,x+1,ch] + \
-                          (1-dx)*(dy)*mat[y+1,x,ch] + \
-                              dx*dy*mat[y+1,x+1,ch]
-        except:
-            return 0
+                       dx*(1-dy)*mat[y,x1,ch] + \
+                          (1-dx)*(dy)*mat[y1,x,ch] + \
+                              dx*dy*mat[y1,x1,ch]
+        return 0
+
+
 
 
 class Projection:

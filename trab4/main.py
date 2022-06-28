@@ -48,19 +48,26 @@ class Geometric(Projection):
 
 
 class Scale(Geometric):
+    @classmethod
+    def S(cls, scalex, scaley):
+        T = np.matrix([[scalex, 0], [0, scaley]])
+        return T
+
+
+
     def __init__(self):
         super().__init__()
-        self._T = np.matrix([[1,0], [0,1]])
+        self._T = self.S
         self.MT = None
 
 
-    def apply(self, scale, img):
+    def apply(self, scalex, scaley, img):
         if len(M.shape) == 3:
             height, width, channel = M.shape
         else:
             height, width = M.shape; channel = 1
 
-        T = scale*self._T
+        T = self._T(scalex, scaley)
         self.MT = self._apply(T, img, height, width, channel)
 
         return self.MT
@@ -131,22 +138,43 @@ inter_keys = inter_func.keys()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Script para aplicacao de projecoes perspectiva e geometrica ')
-    parser.add_argument('-imagem_entrada', required=True,  help='Imagem para aplicação da projecao selecionada')
-    parser.add_argument('-e'             , required=False, type=float, default=1, help='Fator de escala a ser aplicado na imagem')
-    parser.add_argument('-a'             , required=False, type=float, default=0, help='Angulo de rotacao em graus a ser aplicado na imagem')
+    parser.add_argument('-imagem_entrada', required=True,               help='Imagem para aplicação da projecao selecionada')
+    parser.add_argument('-e'             , required=False, type=float,  help='Fator de escala a ser aplicado na imagem')
+    parser.add_argument('-d'             , required=False,              help='largura e altura')
+    parser.add_argument('-a'             , required=False, type=float,  help='Angulo de rotacao em graus a ser aplicado na imagem')
     parser.add_argument('-m'             , required=False, help='Método de interpolacao. Opcoes: {}'.format(inter_keys))
     
     args = parser.parse_args()
-
     M = cv2.imread(args.imagem_entrada)
 
     inter_func = inter_func[args.m]
     Geometric.set_inter_func(inter_func)
 
-    sc = Scale()
-    rt = Rotation()
-    MT = rt.apply(args.a, sc.apply(args.e, M))
+    if args.e:
+        scalex = args.e
+        scaley = args.e
+        rotation = 0
+        sc = Scale()
+        MT = sc.apply(scalex, scaley, M)
+
+    elif args.d:
+        largura, altura = map(int, args.d.split(','))
+        height, width, _ = M.shape
+        scalex = largura / width
+        scaley = altura / height
+        rotation = 0
+        sc = Scale()
+        MT = sc.apply(scalex, scaley, M)
+ 
+    elif args.a:
+        scalex = 1
+        scaley = 1
+        rotation = args.a
+        rt = Rotation()
+        MT = rt.apply(rotation, M)
+    else:
+        pass
 
     stem, ext = args.imagem_entrada.split('/')[-1].split('.')
-    name = '{}_sca_{:06d}_rot_{:06d}_int_{}.{}'.format(stem, int(args.e*1000), int(args.a*1000), args.m, ext)
+    name = '{}_scax_{:06d}_scay_{:06d}_rot_{:06d}_int_{}.{}'.format(stem, int(scalex*1000), int(scaley*1000), int(rotation*1000), args.m, ext)
     cv2.imwrite('out' + '/' + name, MT)

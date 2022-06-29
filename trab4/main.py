@@ -215,7 +215,7 @@ inter_keys = inter_func.keys()
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Script para aplicacao de projecoes perspectiva e geometrica ')
+    parser = argparse.ArgumentParser(description='Script para aplicacao de projecoes geometrica')
     parser.add_argument('-imagem_entrada', required=True,               help='Imagem para aplicação da projecao selecionada')
     parser.add_argument('-e'             , required=False, type=float,  help='Fator de escala a ser aplicado na imagem')
     parser.add_argument('-d'             , required=False,              help='largura e altura')

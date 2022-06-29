@@ -34,8 +34,35 @@ class Interpolation:
                               dx*dy*mat[y1,x1,ch]
         return 0
 
+    
+    @classmethod
+    def P(cls, t):
+        return t if t > 0 else 0
+
+    @classmethod
+    def R(cls, s):
+        return 1/6*( cls.P(s+2)**3 -4*cls.P(s+1)**3 +6*cls.P(s)**3 -4*cls.P(s-1)**3 )
 
 
+    @classmethod
+    def bicubic(cls, w, h, ch, mat, width, height):
+        x, y = int(w), int(h)
+        dx = w - x
+        dy = h - y
+
+        px = 0
+        for m in range(-1,3):
+            for n in range(-1,3):
+                xm, yn = x+m, y+n
+                if ( xm >= 0 ) and ( xm < width ) \
+                   and ( yn >= 0 ) and ( yn < height ):
+                    a = mat[yn, xm, ch]
+                    rx = cls.R(m-dx)
+                    ry = cls.R(dy-n)
+                    px += a*rx*ry
+                else:
+                    return 0
+        return px
 
 class Projection:
     def apply(self, T, M):
@@ -58,7 +85,6 @@ class Scale(Geometric):
     def S(cls, scalex, scaley):
         T = np.matrix([[scalex, 0], [0, scaley]])
         return T
-
 
 
     def __init__(self):
@@ -139,6 +165,7 @@ class Rotation(Geometric):
 inter_func = {}
 inter_func['nearneighbours'] = Interpolation.nearneighbours
 inter_func['bilinear'] = Interpolation.bilinear
+inter_func['bicubic'] = Interpolation.bicubic
 inter_keys = inter_func.keys()
 
 

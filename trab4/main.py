@@ -234,9 +234,10 @@ if __name__ == '__main__':
         rotation = 0
         sc = Scale()
         MT = sc.apply(scalex, scaley, M)
+        args.d = 'x'.join(map(str,MT.shape[:2]))
 
     elif args.d:
-        largura, altura = map(int, args.d.split(','))
+        largura, altura = map(int, args.d.split('x'))
         height, width, _ = M.shape
         scalex = largura / width
         scaley = altura / height
@@ -250,9 +251,10 @@ if __name__ == '__main__':
         rotation = args.a
         rt = Rotation()
         MT = rt.apply(rotation, M)
+        args.d = 'x'.join(map(str,MT.shape[:2]))
     else:
         pass
 
     stem, ext = args.imagem_entrada.split('/')[-1].split('.')
-    name = '{}_scax_{:06d}_scay_{:06d}_rot_{:06d}_int_{}.{}'.format(stem, int(scalex*1000), int(scaley*1000), int(rotation*1000), args.m, ext)
+    name = '{}_scax_{:06d}_scay_{:06d}_rot_{:06d}_ld_{}_int_{}.{}'.format(stem, int(scalex*1000), int(scaley*1000), int(rotation*1000), args.d, args.m, ext)
     cv2.imwrite('out' + '/' + name, MT)

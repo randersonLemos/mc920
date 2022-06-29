@@ -18,8 +18,30 @@ source source.sh
 
 Pronto, seu ambiente de trabalho que se chama **mc920-trab4** está configurado e carregado.
 
-# Rodando o programa main.py
+# Rodando o programa main.py para projeção geometrica de escala
 
 ```
-python3 main.py -video_entrada=assets/lisa.mpg
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m lagrange
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m bicubic
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m bilinear
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m nearneighbours
+```
+
+
+# Rodando o programa main.py para projeção geometrica de rotação
+
+```
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m lagrange
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m bicubic
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m bilinear
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m nearneighbours
+```
+
+# Rodando o programa main.py para projeção geometrica de escala pela definição de largura e altura
+
+```
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m lagrange
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m bicubic
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m bilinear
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m nearneighbours
 ```

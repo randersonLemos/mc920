@@ -21,10 +21,23 @@
 \catcode `"\active 
 \babel@aux{portuguese}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introdução}{}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Diferenças entre pixels}{}{subsection.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Diferenças entre blocos}{}{subsection.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Diferenças entre histogramas}{}{subsection.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Diferenças entre bordas}{}{subsection.1.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Aplicação da matriz de transformação $\mathbf  {T}$ entre as imagens $\mathbf  {f}$ e $\mathbf  {f'}$ (\textbf  {fonte}: material de aula).\relax }}{}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:trans}{{1}{}{Aplicação da matriz de transformação $\mathbf {T}$ entre as imagens $\mathbf {f}$ e $\mathbf {f'}$ (\textbf {fonte}: material de aula).\relax }{figure.caption.1}{}}
+\newlabel{eq:trans}{{1}{}{Introdução}{equation.1.1}{}}
+\newlabel{eq:transinv}{{2}{}{Introdução}{equation.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Transformações geométricas}{}{subsection.1.1}\protected@file@percent }
+\newlabel{eq:transexp}{{3}{}{Transformações geométricas}{equation.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.1}Transformação de Escala}{}{subsubsection.1.1.1}\protected@file@percent }
+\newlabel{eq:transesc}{{4}{}{Transformação de Escala}{equation.1.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2}Transformação de Translação}{}{subsubsection.1.1.2}\protected@file@percent }
+\newlabel{eq:transtra}{{5}{}{Transformação de Translação}{equation.1.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3}Transformação de Rotação}{}{subsubsection.1.1.3}\protected@file@percent }
+\newlabel{eq:transrot}{{6}{}{Transformação de Rotação}{equation.1.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Transformações projetivas}{}{subsection.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Modelagem geométrica de transformação projetiva (\textbf  {fonte}: material de aula).\relax }}{}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:transpro}{{2}{}{Modelagem geométrica de transformação projetiva (\textbf {fonte}: material de aula).\relax }{figure.caption.2}{}}
+\newlabel{eq:transpes}{{7}{}{Transformações projetivas}{equation.1.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Solução}{}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Main.py}{}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}main\_pixels\_differences( path, stem )}{}{subsection.2.2}\protected@file@percent }
@@ -36,28 +49,3 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1}Detalhes de implementação e execução}{}{subsubsection.2.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Resultado}{}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Diferenças entre pixels}{}{subsection.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.\relax }}{}{figure.caption.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:diferenca_pixels}{{1}{}{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.\relax }{figure.caption.1}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.1$ (veja vídeo: \url {https://youtu.be/BLa\_RR3D7Hw}).}}}{}{subfigure.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.3$ (veja vídeo: \url {https://youtu.be/dqFbqMDnW90}).}}}{}{subfigure.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.5$ (veja vídeo: \url {https://youtu.be/9uXixvLlcV4}).}}}{}{subfigure.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Diferenças entre blocos}{}{subsection.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Imagem com gráficos do número de blocos (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.\relax }}{}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:diferenca_blocos}{{2}{}{Imagem com gráficos do número de blocos (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.1$ (veja vídeo: \url {https://youtu.be/mm43T9BhlUU}).}}}{}{subfigure.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.3$ (veja vídeo: \url {https://youtu.be/r4TxG6zJtIg}).}}}{}{subfigure.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.5$ (veja vídeo: \url {https://youtu.be/5yxTwq2srKw}).}}}{}{subfigure.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Diferenças entre histograma}{}{subsection.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferença entre histogramas.\relax }}{}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:diferenca_histogramas}{{3}{}{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferença entre histogramas.\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $\alpha =3$ (veja vídeo: \url {https://youtu.be/taISwMqDRO4}).}}}{}{subfigure.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $\alpha =4$ (veja vídeo: \url {https://youtu.be/hoMm_-U1uqY}).}}}{}{subfigure.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $\alpha =5$ (veja vídeo: \url {https://youtu.be/-NX1KpQSwvM}).}}}{}{subfigure.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Diferenças entre borda}{}{subsection.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.\relax }}{}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:diferenca_bordas}{{4}{}{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T=0.01$ (veja vídeo: \url {https://youtu.be/OpjOwV45uxY}).}}}{}{subfigure.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T=0.015$ (veja vídeo: \url {https://youtu.be/ICLpevnXpGE}).}}}{}{subfigure.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\centering Gráfico dos quadros com trasições abruptas para $T=0.02$ (veja vídeo: \url {https://youtu.be/Qkp-s1RcZSM}).}}}{}{subfigure.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussão e Conclusão}{}{section.4}\protected@file@percent }

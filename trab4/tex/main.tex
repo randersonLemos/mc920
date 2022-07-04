@@ -5,6 +5,7 @@
 \usepackage{hyperref}
 
 \usepackage{amsmath}
+\usepackage{bm}
 
 \usepackage{scrextend}
 
@@ -56,7 +57,7 @@
 
 
 \title{
-	Identificando transições abruptas em vídeos (trabalho 3) \\
+	Aplicando projeções perspectiva e geométrica (trabalho 4) \\
 	\Large Introdução ao Processamento de Imagem Digital \\
 	Randerson A. Lemos (103897)
 	2022-1S
@@ -71,31 +72,173 @@
 %
 %%
 \section{Introdução}
-Vídeos são compostos por quadros de mesma dimensão organizados temporalmente. Esses quadros, ao serem apresentados sequencialmente (no contexto do vídeo), podem mostrar transições suaves ou abruptas. Quando presentes, essas transições abruptas entre quadros podem indicar uma sequência significativamente nova de conteúdo no vídeo e, por isso, tais transições, quando identificadas, podem ser utilizadas como material de resumo do próprio vídeo. Neste trabalho, utilizaremos quatro técnicas capazes de identificar transições abruptas entre quadros de um vídeo de acordo com certas métricas de distância. As técnicas utilizadas são: \textbf{diferenças entre pixels}; \textbf{diferenças entre blocos}; \textbf{diferenças entre histogramas}; e \textbf{diferenças entre mapas de bordas}.
+Encontrar a correspondência entre pixels de diferentes imagens que capturam a mesma informação de ângulos, posições e perspectivas diferentes é uma problema muito comum abordado pelo processamento de imagens. Esses problemas são genericamente denominados de problemas de Registro e sua resolução normalmente se desenvolve pelo uso dos conhecimento de álgebra linear e suas ideias de espaços vetoriais e transformações entre tais espaços por meio de matrizes de transformação. Para exemplificar em termos práticos os problemas de registro, observe a Figura \ref{fig:trans} a seguir retirada do material de aula.
 
-%
-\subsection{Diferenças entre pixels}
-Aqui, para que dois quadros consecutivos sejam considerados diferentes é feita uma contagem do número de par de pixels (um de cada quadro) que são diferentes de acordo com uma tolerância $T_1$. Se essa contagem for superior a um limiar $T_2$, os quadros comparados são considerados diferentes e a transição entre eles entendida como abrupta. Tanto a tolerância $T_1$ quanto o limiar $T_2$ são parâmetros definidos pelo usuário e apresentam valores ótimos dependentes das características de cada vídeo analisado. Para o calculo da diferença entre pixels, cujo valor resultante é utilizado na comparação com a tolerância $T_1$, utiliza-se a norma 1, isto é, a diferença absoluta entre os níveis de cinza do par de pixels analisados dos quadros consecutivos.
+\begin{figure}[!htp]%
+	\centering
+	\includegraphics[width=10cm]{transformacao.png}
+	\caption{Aplicação da matriz de transformação $\mathbf{T}$ entre as imagens $\mathbf{f}$ e $\mathbf{f'}$ (\textbf{fonte}: material de aula).}%	
+	\label{fig:trans}%
+\end{figure}
 
-%
-\subsection{Diferenças entre blocos}
-Na diferenças entre blocos é necessário subdividir os quadros consecutivos em blocos (cada quadro com seu conjunto de blocos). Feito isso, os pares de blocos correspondentes entre os quadros consecutivos são comparados e, de acordo com uma tolerância $T_1$, são ou não considerados diferentes. O número de pares de blocos entre quadros consecutivos considerados diferentes é comparado a um limiar $T_2$ e, caso esse número seja superior a tal limiar, o quadros são considerados diferentes. O blocos que subdividem os quadros possuem ou dimensão de $8x8$ ou de $16x16$. Tanto a tolerância $T_1$ quando o limiar $T_2$ são definidos pelo usuário e seus valores ótimos são dependentes das características de cada vídeo analisado.
+\noindent
+Nesse figura, temos duas imagens $\mathbf{f}$ e $\mathbf{f'}$ cujo pixels estão relacionados pela matriz de transformação $\mathbf{T}$, ou seja
 
+\begin{equation}
+\mathbf{f'} = \mathbf{T}\mathbf{f}.
+\label{eq:trans}
+\end{equation}
+
+\noindent
+Na Equação \ref{eq:trans}, a matriz de transformação $\mathbf{T}$ está fazendo o mapeamento da imagem $\mathbf{f}$ para a imagem $\mathbf{f'}$. Tal mapeamento pode ser representado como $\mathbf{T}: \mathbf{f} \mapsto \mathbf{f'}$. Um aspecto importante que precisa ser levado em conta nos problemas de registro é o da natureza discreta das informações presentes, isto é: das imagens digitais. Devido a essa natureza, o mapeamento direto $\mathbf{T}: \mathbf{f} \mapsto \mathbf{f'}$ nem sempre vai conduzir um pixel válido da imagem de origem $\mathbf{f}$ para um pixel válido da imagem de destino $\mathbf{f'}$, uma vez que depois de aplicada a matriz de transformação não há garantias que o pixel transformado seja discreto e esteja contido dento do domínio da imagem de destino $\mathbf{f'}$. Para contornar esse aspecto prático da aplicação das matrizes de transformação em domínios discretos, a solução encontrada foi fazer uso da transformação inversa e de métodos de interpolação, isto é:
+
+\begin{equation}
+\mathbf{f} = \mathbf{T^{-1}}\mathbf{f'}.
+\label{eq:transinv}
+\end{equation}
+
+\noindent
+A aplicação da transformação inversa garante que todos os pixels da imagem de destino $\mathbf{f'}$ sejam considerados no problema de encontrar seu correspondente na imagem de origem $\mathbf{f}$ e a aplicação das técnicas de interpolação garante que todos os pixels transformados estejam associados a algum pixel válido da imagem de origem $\mathbf{f}$. Existem diversas técnicas de interpolação, sendo algumas das mais conhecidas as seguintes: Interpolação pelo Vizinho Mais Próximo, Interpolação Bilinear, Interpolação Bicúbica e Interpolação por Polinômios de Lagrange. Essas interpolações são amplamente discutidas no material da disciplina como também no documento de instruções desse trabalho.
+
+Os problemas de registro são principalmente organizados em problemas de transformações geométricas e problemas de transformações projetivas. Ambos esses problemas serão discutidos em mais detalhes a seguir.
+
+\subsection{Transformações geométricas}
+Os problemas de transformação geométricas consistem de uma transformação espacial e uma interpolação. A transformação espacial está associada as transformações afins de rotação, escala, translações, espelhamento e cisalhamento. Nessas transformações, o paralelismo das linhas e curvas da imagem transformada é preservado, mas dimensões lineares, de área ou volumétricas não. Em coordenadas homogêneas e considerando o caso bidimensional, essas transformações podem ser generalizadas por
+
+\begin{equation}
+\begin{bmatrix} 
+X'\\
+Y'\\
+W \\
+\end{bmatrix}
+=
+\begin{bmatrix} 
+a & b & c \\
+d & e & f \\
+g & h & i \\
+\end{bmatrix}
 %
-\subsection{Diferenças entre histogramas}
-Diferente das anteriores, nesta abordagem utilizaremos os histogramas dos quadros consecutivos, e não os valores dos pixels em si, como fonte para realização das comparações e, consequentemente, determinação de transições abruptas ou não entre tais quadros. A diferença $D_i$ entre histogramas de quadros consecutivos $i$ e $i+1$ de uma vídeo é calculada como
+\begin{bmatrix} 
+X \\
+Y \\
+W \\
+\end{bmatrix}.
+\label{eq:transexp}
+\end{equation}
+
+\noindent
+Cada uma das transformações de rotação, escala, translação, espelhamento e cisalhamento terão uma matriz de transformação específica (a matriz com os coeficientes $a,b,\cdots, i$). A seguir, vamos conhecer a forma das matrizes das transformações de escala, translação e rotação.
+
+\subsubsection{Transformação de Escala}
+A transformação de escala para o caso 2D pode ser realizada a partir da matriz de transformação em coordenadas homogêneas apresenta a seguir.
+
+\begin{equation}
+\begin{bmatrix} 
+X'\\
+Y'\\
+W \\
+\end{bmatrix}
+=
+\begin{bmatrix} 
+S_x & 0   & 0 \\
+0   & S_y & 0 \\
+0   & 0   & 1 \\
+\end{bmatrix}
+%
+\begin{bmatrix} 
+X \\
+Y \\
+W \\
+\end{bmatrix}.
+\label{eq:transesc}
+\end{equation}
+
+\noindent
+Então, para aplicar um aumento ou redução de escala da imagem, o usuário precisa definir o valor de escala $S_x$ a ser aplicado ao longo do eixo-x e o valor de escala $S_y$ a ser aplicado ao longo do eixo-y.
+ 
+\subsubsection{Transformação de Translação} 
+A transformação de translação para o caso 2D pode ser realizada a partir da matriz de transformação em coordenadas homogêneas apresenta a seguir.
+
+\begin{equation}
+\begin{bmatrix} 
+X'\\
+Y'\\
+W \\
+\end{bmatrix}
+=
+\begin{bmatrix} 
+1 & 0 & t_x \\
+0 & 1 & t_y \\
+0 & 0 & 1 \\
+\end{bmatrix}
+%
+\begin{bmatrix} 
+X \\
+Y \\
+W \\
+\end{bmatrix}.
+\label{eq:transtra}
+\end{equation}
+
+\noindent
+Então, para aplicar uma translação na imagem, o usuário precisa definir o valor de translação $t_x$ a ser apicado ao longo do eixo-x e o valor de translação $t_y$ a ser aplicado ao longo do eixo-y.
+
+\subsubsection{Transformação de Rotação} 
+A transformação de rotação para o caso 2D pode ser realizada a partir da matriz de transformação em coordenadas homogêneas apresenta a seguir.
+
+\begin{equation}
+\begin{bmatrix} 
+X'\\
+Y'\\
+W \\
+\end{bmatrix}
+=
+\begin{bmatrix} 
+cos(\alpha) & -sin(\alpha) & 0 \\
+sin(\alpha) & cos(\alpha)  & 0 \\
+0           & 0            & 1 \\
+\end{bmatrix}
+%
+\begin{bmatrix} 
+X \\
+Y \\
+W \\
+\end{bmatrix}.
+\label{eq:transrot}
+\end{equation}
+
+\noindent
+Então, para aplicar uma rotação na imagem, o usuário precisa definir o valor de rotação $\alpha$ a ser aplicado na imagem.
+
+\subsection{Transformações projetivas}
+As transformações projetivas estão associadas ao processo de projeção de pontos dispostos tridimensionalmente no espaço em um plano bidimensional. Esses transformações são principalmente do tipo ortográfica ou perspectiva. A projeção ortográfica é uma transformação que realiza o mapeamento de pontos tridimensionais sobre o plano da imagem, tal que os pontos são projetados ao longo de linhas paralelas na imagem (informação extraída do material de aula). Já as projeções perspectivas, apesar de haver o mesmo mapeamento de um espaço tridimensional para um espaço bidimensional (um plano), o tamanho do objecto projeto assim como algumas razões de suas medidas lineares e de área são dependentes do aumento da distância do centro de projeção. Essa dependência está associada a percepção de profundida do sistema visual humano. A ideia das transformações projetivas está apresentada na Figura \ref{fig:transpro}.
+
+\begin{figure}[!htp]%
+	\centering
+	\includegraphics[width=10cm]{transformacaoprojetiva.png}
+	\caption{Modelagem geométrica de transformação projetiva (\textbf{fonte}: material de aula).}%	
+	\label{fig:transpro}%
+\end{figure}
+
+\newpage
+Existem algumas maneiras de se calcular a matriz de transformação de uma transformação projetiva. No caso particular das projeções perspectivas, umas das formas de ser obter tal matriz é a partir de quatro pontos não colineares e a resolução das seguintes equações
+
+\begin{equation}
+X' = \frac{aX + bY + c}{iX + jY + 1}
+\qquad\qquad
+Y' = \frac{fX + eY + f}{iX + jY + 1}
+\label{eq:transpes}
+\end{equation}
+considerando-se os quatro pontos não colineares em questão. Os valores obtidos da resolução do sistema de equações para as variáveis $a,b,c,d,e,i,j$ são os coeficientes da matriz de transformação 
 \[
-D_i = \sum_{j=1}^{B} |H_i(j) - H_{i+1}(j)|,
+\begin{bmatrix} 
+	a & b & c \\
+	d & e & f \\
+	i & j & 1 \\
+\end{bmatrix}
 \]
-em que $B$ denota o número total de \textit{bins} no histograma e $H_i(j)$ é o valor do histograma para o i-ésimo quadro no nível $j$. Para avaliar se os quadros consecutivos são diferentes o suficiente para considerar que a transição correspondente seja abrupta, um limiar $T$ é calculado a partir do conjunto de todas as diferenças $D_i$ obtidas. Em posse da média $\mu$ e do desvio padrão $\sigma$ das diferenças $D_i$ o limiar $T$ é obtido pela equação
-\[
-T = \mu + \alpha\sigma,
-\]
-em que $\alpha$ é definido pelo usuário. Ao parâmetro $alpha$ é atribuído valores típicos entre $3$ e $6$.¨
+da projeção perspectiva em questão.
 
-%
-\subsection{Diferenças entre bordas}
-Na diferenças entre bordas, utiliza-se o mapa de bordas dos quadros consecutivos como fonte de informação para determinação ou não de uma transição abrupta entre esses quadros. A abordagem adotada para verificação da diferença entre quadros consecutivos foi a contagem do número de pixels das bordas de cada quadro seguida da subtração absoluta desses valores. O número resultante dessa operação é comparado com um limiar $T$. Caso tal número seja superior que esse limiar, os quadros são considerados diferentes e a transição correspondente abrupta. 
 %
 %%
 \section{Solução}
@@ -198,84 +341,84 @@ Todos os resultados apresentados foram gerados pelo processamento do vídeo \tex
 \newpage
 \subsection{Diferenças entre pixels}
 
-\begin{figure}[!htp]%
-	\centering
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/BLa\_RR3D7Hw}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_10_nframe_00218.png} 
-	}}%
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/dqFbqMDnW90}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_30_nframe_00009.png} 
-	}}%	
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/9uXixvLlcV4}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_50_nframe_00004.png} 
-	}}%	
-	\caption{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
-	\label{fig:diferenca_pixels}%
-\end{figure}
-
-\newpage
-\subsection{Diferenças entre blocos}
-
-\begin{figure}[!htp]%
-	\centering
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/mm43T9BhlUU}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_10_nframe_00375.png} 
-	}}%
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/r4TxG6zJtIg}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_30_nframe_00108.png} 
-	}}%	
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/5yxTwq2srKw}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_50_nframe_00014.png} 
-	}}%	
-	\caption{Imagem com gráficos do número de blocos (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
-	\label{fig:diferenca_blocos}%
-\end{figure}
-
-
-\newpage
-\subsection{Diferenças entre histograma}
-
-\begin{figure}[!htp]%
-	\centering
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=3$ (veja vídeo: \url{https://youtu.be/taISwMqDRO4}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_3_thres_0.578_nframe_00011.png} 
-	}}%
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=4$ (veja vídeo: \url{https://youtu.be/hoMm_-U1uqY}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_4_thres_0.723_nframe_00009.png} 
-	}}%	
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=5$ (veja vídeo: \url{https://youtu.be/-NX1KpQSwvM}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_5_thres_0.867_nframe_00005.png} 
-	}}%	
-	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferença entre histogramas.}%	
-	\label{fig:diferenca_histogramas}%
-\end{figure}
-
-
-\newpage
-\subsection{Diferenças entre borda}
-
-\begin{figure}[!htp]%
-	\centering
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.01$ (veja vídeo: \url{https://youtu.be/OpjOwV45uxY}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.0_nframe_00014.png} 
-	}}%
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.015$ (veja vídeo: \url{https://youtu.be/ICLpevnXpGE}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.5_nframe_00008.png} 
-	}}%	
-	\\
-	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.02$ (veja vídeo: \url{https://youtu.be/Qkp-s1RcZSM}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_2.0_nframe_00002.png} 
-	}}%	
-	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.}%	
-	\label{fig:diferenca_bordas}%
-\end{figure}
+%\begin{figure}[!htp]%
+%	\centering
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/BLa\_RR3D7Hw}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_10_nframe_00218.png} 
+%	}}%
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/dqFbqMDnW90}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_30_nframe_00009.png} 
+%	}}%	
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/9uXixvLlcV4}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_50_nframe_00004.png} 
+%	}}%	
+%	\caption{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
+%	\label{fig:diferenca_pixels}%
+%\end{figure}
 %
+%\newpage
+%\subsection{Diferenças entre blocos}
+%
+%\begin{figure}[!htp]%
+%	\centering
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/mm43T9BhlUU}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_10_nframe_00375.png} 
+%	}}%
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/r4TxG6zJtIg}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_30_nframe_00108.png} 
+%	}}%	
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/5yxTwq2srKw}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_50_nframe_00014.png} 
+%	}}%	
+%	\caption{Imagem com gráficos do número de blocos (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
+%	\label{fig:diferenca_blocos}%
+%\end{figure}
+%
+%
+%\newpage
+%\subsection{Diferenças entre histograma}
+%
+%\begin{figure}[!htp]%
+%	\centering
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=3$ (veja vídeo: \url{https://youtu.be/taISwMqDRO4}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_3_thres_0.578_nframe_00011.png} 
+%	}}%
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=4$ (veja vídeo: \url{https://youtu.be/hoMm_-U1uqY}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_4_thres_0.723_nframe_00009.png} 
+%	}}%	
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=5$ (veja vídeo: \url{https://youtu.be/-NX1KpQSwvM}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_5_thres_0.867_nframe_00005.png} 
+%	}}%	
+%	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferença entre histogramas.}%	
+%	\label{fig:diferenca_histogramas}%
+%\end{figure}
+%
+%
+%\newpage
+%\subsection{Diferenças entre borda}
+%
+%\begin{figure}[!htp]%
+%	\centering
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.01$ (veja vídeo: \url{https://youtu.be/OpjOwV45uxY}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.0_nframe_00014.png} 
+%	}}%
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.015$ (veja vídeo: \url{https://youtu.be/ICLpevnXpGE}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.5_nframe_00008.png} 
+%	}}%	
+%	\\
+%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.02$ (veja vídeo: \url{https://youtu.be/Qkp-s1RcZSM}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_2.0_nframe_00002.png} 
+%	}}%	
+%	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.}%	
+%	\label{fig:diferenca_bordas}%
+%\end{figure}
 %%
-\section{Discussão e Conclusão}
-É possível verificar, dos gráficos apresentados, que as diferentes técnicas de identificação de transições abruptas discriminam os quadros consecutivos de maneira significativamente diferente. Esse afirmação se sustenta pelos diferentes padrões de distribuição dos valores do eixo y ao longo do eixo x. Nesse aspecto (dos padrões de descriminação), há uma aproximação entre os comportamentos das técnicas de diferenças entre pixel e diferenças entre bloco (Figuras \ref{fig:diferenca_pixels} e \ref{fig:diferenca_blocos}) e entre os comportamentos das técnicas de diferenças entre histograma e diferenças entre borda (Figuras \ref{fig:diferenca_histogramas} e \ref{fig:diferenca_bordas})). Percebe-se que as técnicas de diferenças entre pixel e diferenças entre borda apresentam maior dificuldade em discriminar os quadros consecutivos com transições abruptas que as técnicas de diferenças entre histograma e de diferenças entre borda já que nas duas primeiras técnicas há maior amplitude nos valores de distância do eixo y que nas duas últimas técnicas.
-
-Por outro lado, as técnicas de diferenças entre pixel e diferenças entre borda se mostraram menos custosas em termos computacionais que as técnicas de diferenças entre histograma e diferenças entre borda.
-
-É também facilmente verificável que o desempenho das técnicas, no sentido de encontrar uma quantidade aceitável de quadros significativos, é  intimamente relacionado com os valores dos seus parâmetros. Por exemplo, na técnica de diferença entre blocos encontrou-se para os parâmetros $T_1=0.40$ e $T_2=0.10$ o número de $375$ quadros significativos de um total de $649$ quadros (um resultado pouco animador). No entanto, essa mesma técnicas, para os valores de parâmetros $T_1=0.40$ e $T_2=0.50$, encontrou um total de $14$ quadros com transições abruptas de uma total de $649$ quadros (um resultado bem mais interessante) (Figura \ref{fig:diferenca_blocos}).
-
-Para o vídeo utilizado nesse trabalho, as técnicas de diferenças entre histograma e diferenças entre borda se mostraram mais interessantes. Essas técnicas encontraram um conjunto significativamente pequeno de quadros com transições abruptas (afirmação que pode ser comprovada visualizando os vídeos disponibilizados no youtube). Para a técnica de diferenças entre histograma com a configuração de $\alpha=5$ foram encontrados 5 quadros significativos (com transições abruptas) )(Figura \ref{fig:diferenca_histogramas}). Já para a técnica de diferenças entre bordas para $T=0.015$ (Figura \ref{fig:diferenca_bordas}), foram encontrados 8 quadros com transições abruptas. Esses números são bastante impressionantes e trazem uma eficiência de redução de vídeos de aproximadamente $99\%$.
-
-Do apresentado, podemos verificar que as técnicas (umas melhores que outras) foram capazes de identificar quadros associados a transições abruptas do vídeo analisado. 
-
-Caso haja necessidade de uma solução de identificação de transições abruptas entre quadros consecutivos mais robusta, uma alternativa seria experimentar o desempenho de um técnica resultante da combinação linear das técnicas aqui implementadas. Por fim, a técnicas foram satisfatoriamente implementadas e testadas.
+%%%
+%\section{Discussão e Conclusão}
+%É possível verificar, dos gráficos apresentados, que as diferentes técnicas de identificação de transições abruptas discriminam os quadros consecutivos de maneira significativamente diferente. Esse afirmação se sustenta pelos diferentes padrões de distribuição dos valores do eixo y ao longo do eixo x. Nesse aspecto (dos padrões de descriminação), há uma aproximação entre os comportamentos das técnicas de diferenças entre pixel e diferenças entre bloco (Figuras \ref{fig:diferenca_pixels} e \ref{fig:diferenca_blocos}) e entre os comportamentos das técnicas de diferenças entre histograma e diferenças entre borda (Figuras \ref{fig:diferenca_histogramas} e \ref{fig:diferenca_bordas})). Percebe-se que as técnicas de diferenças entre pixel e diferenças entre borda apresentam maior dificuldade em discriminar os quadros consecutivos com transições abruptas que as técnicas de diferenças entre histograma e de diferenças entre borda já que nas duas primeiras técnicas há maior amplitude nos valores de distância do eixo y que nas duas últimas técnicas.
+%
+%Por outro lado, as técnicas de diferenças entre pixel e diferenças entre borda se mostraram menos custosas em termos computacionais que as técnicas de diferenças entre histograma e diferenças entre borda.
+%
+%É também facilmente verificável que o desempenho das técnicas, no sentido de encontrar uma quantidade aceitável de quadros significativos, é  intimamente relacionado com os valores dos seus parâmetros. Por exemplo, na técnica de diferença entre blocos encontrou-se para os parâmetros $T_1=0.40$ e $T_2=0.10$ o número de $375$ quadros significativos de um total de $649$ quadros (um resultado pouco animador). No entanto, essa mesma técnicas, para os valores de parâmetros $T_1=0.40$ e $T_2=0.50$, encontrou um total de $14$ quadros com transições abruptas de uma total de $649$ quadros (um resultado bem mais interessante) (Figura \ref{fig:diferenca_blocos}).
+%
+%Para o vídeo utilizado nesse trabalho, as técnicas de diferenças entre histograma e diferenças entre borda se mostraram mais interessantes. Essas técnicas encontraram um conjunto significativamente pequeno de quadros com transições abruptas (afirmação que pode ser comprovada visualizando os vídeos disponibilizados no youtube). Para a técnica de diferenças entre histograma com a configuração de $\alpha=5$ foram encontrados 5 quadros significativos (com transições abruptas) )(Figura \ref{fig:diferenca_histogramas}). Já para a técnica de diferenças entre bordas para $T=0.015$ (Figura \ref{fig:diferenca_bordas}), foram encontrados 8 quadros com transições abruptas. Esses números são bastante impressionantes e trazem uma eficiência de redução de vídeos de aproximadamente $99\%$.
+%
+%Do apresentado, podemos verificar que as técnicas (umas melhores que outras) foram capazes de identificar quadros associados a transições abruptas do vídeo analisado. 
+%
+%Caso haja necessidade de uma solução de identificação de transições abruptas entre quadros consecutivos mais robusta, uma alternativa seria experimentar o desempenho de um técnica resultante da combinação linear das técnicas aqui implementadas. Por fim, a técnicas foram satisfatoriamente implementadas e testadas.
 \end{document}

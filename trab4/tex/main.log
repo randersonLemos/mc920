@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.5)  4 JUL 2022 11:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.5)  4 JUL 2022 14:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -489,7 +489,7 @@ Package caption Info: End \AtBeginDocument code.
 
 LaTeX Warning: No \author given.
 
-<transformacao.png, id=89, 528.97626pt x 242.9075pt>
+<transformacao.png, id=85, 528.97626pt x 242.9075pt>
 File: transformacao.png Graphic file (type png)
 <use transformacao.png>
 Package pdftex.def Info: transformacao.png  used on input line 79.
@@ -497,7 +497,7 @@ Package pdftex.def Info: transformacao.png  used on input line 79.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./transformacao.png>]
-<transformacaoprojetiva.png, id=111, 643.40375pt x 269.005pt>
+<transformacaoprojetiva.png, id=107, 643.40375pt x 269.005pt>
 File: transformacaoprojetiva.png Graphic file (type png)
 <use transformacaoprojetiva.png>
 Package pdftex.def Info: transformacaoprojetiva.png  used on input line 218.
@@ -511,89 +511,202 @@ l.223 \newpage
 name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.262 O
-        programa \textbf{main.py} executa quatro funções principais, as qu...
-[3 <./transformacaoprojetiva.png>]pdfTeX warning (ext4): destination with the s
-ame identifier (name{page.}) has been already used, duplicate ignored
+l.266 \subsection
+                 {Main.py} [3 <./transformacaoprojetiva.png>]pdfTeX warning (ex
+t4): destination with the same identifier (name{page.}) has been already used, 
+duplicate ignored
 <to be read again> 
                    \relax 
-l.306 \subsubsection
-                    {Detalhes de implementação e execução} [4]pdfTeX warnin
-g (ext4): destination with the same identifier (name{page.}) has been already u
-sed, duplicate ignored
-<to be read again> 
-                   \relax 
-l.340 
-       [5]pdfTeX warning (ext4): destination with the same identifier (name{pag
-e.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.341 \newpage
-               [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 424.
+l.308 
+       [4]
+<baboon_perspectiva.png, id=151, 122.1196pt x 123.3408pt>
+File: baboon_perspectiva.png Graphic file (type png)
+<use baboon_perspectiva.png>
+Package pdftex.def Info: baboon_perspectiva.png  used on input line 320.
+(pdftex.def)             Requested size: 142.26378pt x 143.69647pt.
+<baboon_perspectiva_result.png, id=153, 513.92pt x 513.92pt>
+File: baboon_perspectiva_result.png Graphic file (type png)
+<use baboon_perspectiva_result.png>
+Package pdftex.def Info: baboon_perspectiva_result.png  used on input line 330.
+
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon.png, id=155, 30.8352pt x 30.8352pt>
+File: baboon.png Graphic file (type png)
+<use baboon.png>
+Package pdftex.def Info: baboon.png  used on input line 344.
+(pdftex.def)             Requested size: 142.26378pt x 142.29575pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.424 \end{document}
-                     [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 424.
+l.349 \newpage
+               [5 <./baboon_perspectiva.png> <./baboon_perspectiva_result.png (
+PNG copy)>]
+<baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_nearneighbours.png, i
+d=165, 513.92pt x 513.92pt>
+File: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_nearneighbours.p
+ng Graphic file (type png)
+<use baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_nearneighbours.pn
+g>
+Package pdftex.def Info: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_i
+nt_nearneighbours.png  used on input line 357.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bilinear.png, id=166,
+ 513.92pt x 513.92pt>
+File: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bilinear.png Gra
+phic file (type png)
+<use baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bilinear.png>
+Package pdftex.def Info: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_i
+nt_bilinear.png  used on input line 360.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bicubic.png, id=167, 
+513.92pt x 513.92pt>
+File: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bicubic.png Grap
+hic file (type png)
+<use baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bicubic.png>
+Package pdftex.def Info: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_i
+nt_bicubic.png  used on input line 363.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_lagrange.png, id=168,
+ 513.92pt x 513.92pt>
+File: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_lagrange.png Gra
+phic file (type png)
+<use baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_lagrange.png>
+Package pdftex.def Info: baboon_scax_001250_scay_001250_rot_000000_ld_512x512_i
+nt_lagrange.png  used on input line 366.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.371 \newpage
+               [6 <./baboon.png (PNG copy)> <./baboon_scax_001250_scay_001250_r
+ot_000000_ld_512x512_int_nearneighbours.png (PNG copy)> <./baboon_scax_001250_s
+cay_001250_rot_000000_ld_512x512_int_bilinear.png (PNG copy)> <./baboon_scax_00
+1250_scay_001250_rot_000000_ld_512x512_int_bicubic.png (PNG copy)> <./baboon_sc
+ax_001250_scay_001250_rot_000000_ld_512x512_int_lagrange.png (PNG copy)>]
+<baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_nearneighbours.png, i
+d=178, 513.92pt x 513.92pt>
+File: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_nearneighbours.p
+ng Graphic file (type png)
+<use baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_nearneighbours.pn
+g>
+Package pdftex.def Info: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_i
+nt_nearneighbours.png  used on input line 379.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bilinear.png, id=179,
+ 513.92pt x 513.92pt>
+File: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bilinear.png Gra
+phic file (type png)
+<use baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bilinear.png>
+Package pdftex.def Info: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_i
+nt_bilinear.png  used on input line 382.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bicubic.png, id=180, 
+513.92pt x 513.92pt>
+File: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bicubic.png Grap
+hic file (type png)
+<use baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bicubic.png>
+Package pdftex.def Info: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_i
+nt_bicubic.png  used on input line 385.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_lagrange.png, id=181,
+ 513.92pt x 513.92pt>
+File: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_lagrange.png Gra
+phic file (type png)
+<use baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_lagrange.png>
+Package pdftex.def Info: baboon_scax_000585_scay_000781_rot_000000_ld_300x400_i
+nt_lagrange.png  used on input line 388.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.394 \newpage
+               [7 <./baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_n
+earneighbours.png (PNG copy)> <./baboon_scax_000585_scay_000781_rot_000000_ld_3
+00x400_int_bilinear.png (PNG copy)> <./baboon_scax_000585_scay_000781_rot_00000
+0_ld_300x400_int_bicubic.png (PNG copy)> <./baboon_scax_000585_scay_000781_rot_
+000000_ld_300x400_int_lagrange.png (PNG copy)>]
+<baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_nearneighbours.png, i
+d=192, 513.92pt x 513.92pt>
+File: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_nearneighbours.p
+ng Graphic file (type png)
+<use baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_nearneighbours.pn
+g>
+Package pdftex.def Info: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_i
+nt_nearneighbours.png  used on input line 401.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bilinear.png, id=193,
+ 513.92pt x 513.92pt>
+File: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bilinear.png Gra
+phic file (type png)
+<use baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bilinear.png>
+Package pdftex.def Info: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_i
+nt_bilinear.png  used on input line 404.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bicubic.png, id=194, 
+513.92pt x 513.92pt>
+File: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bicubic.png Grap
+hic file (type png)
+<use baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bicubic.png>
+Package pdftex.def Info: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_i
+nt_bicubic.png  used on input line 407.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_lagrange.png, id=195,
+ 513.92pt x 513.92pt>
+File: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_lagrange.png Gra
+phic file (type png)
+<use baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_lagrange.png>
+Package pdftex.def Info: baboon_scax_001000_scay_001000_rot_001250_ld_512x512_i
+nt_lagrange.png  used on input line 410.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 498.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.498 \end{document}
+                     [8 <./baboon_scax_001000_scay_001000_rot_001250_ld_512x512
+_int_nearneighbours.png (PNG copy)> <./baboon_scax_001000_scay_001000_rot_00125
+0_ld_512x512_int_bilinear.png (PNG copy)> <./baboon_scax_001000_scay_001000_rot
+_001250_ld_512x512_int_bicubic.png (PNG copy)> <./baboon_scax_001000_scay_00100
+0_rot_001250_ld_512x512_int_lagrange.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 498.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 424.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 424.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: D7753170B39092582E3BD0E2A5A53D82;1732
-(rerunfilecheck)             After:  F9243FA72958995CDAEE52DE1E935A48;1423.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 424.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 498.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 498.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: AF4716007DC4C8A6F4A28B9D45F45347;1532.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 498.
  ) 
 Here is how much of TeX's memory you used:
- 11063 strings out of 481239
- 166088 string characters out of 5920378
- 488289 words of memory out of 5000000
- 26121 multiletter control sequences out of 15000+600000
- 543649 words of font info for 63 fonts, out of 8000000 for 9000
+ 11192 strings out of 481239
+ 172358 string characters out of 5920378
+ 552934 words of memory out of 5000000
+ 26203 multiletter control sequences out of 15000+600000
+ 542968 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,8n,63p,1105b,1159s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsection.1.6} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.1.5} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.1.4} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.1.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmtt8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (7 pages, 247609 bytes).
+ 53i,10n,63p,1191b,1159s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on main.pdf (8 pages, 7293858 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 187 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
- 179 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 224 compressed objects within 3 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

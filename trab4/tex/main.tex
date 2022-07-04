@@ -241,105 +241,179 @@ da projeção perspectiva em questão.
 
 %
 %%
+\section{Objetivo}
+O objetivo deste documento é o de fornecer uma relatório sobre as técnicas de registro solicitadas no documento de instrução do trabalho 4. De acordo com as instruções, é solicitado que seja desenvolvido um programa capaz de realiza as transformações espaciais de escala e rotação. Também é solicitado a implementação de um programa que realize uma projeção perspectiva sobre a imagem \textbf{baboon\_perspectiva\_result.png}.
+
+
+%
+%%
 \section{Solução}
-A solução utiliza a linguagem de programação Python e conta com o auxílio do gerenciador de projetos e pacotes Conda. Assumindo que o usuário tenha o Conda instalado em sua máquina, a configuração do projeto pode ser feita pela execução do comando \lstinline{conda env create -f environment.yml} a partir da pasta do projeto \textbf{trab3}. Esse comando cria o ambiente de trabalho \textbf{mc920-trab3} e instala os seguintes módulos: opencv, numpy, scipy, pandas, matplotlib. Finalizada a configuração do ambiente de trabalho em questão, o usuário deve executar o comando \lstinline{source source.sh}\footnote{O comando que configura o ambiente de trabalho mc920-trab3 precisa ser executado apenas um vez. Assim sendo, depois que este ambiente está configurado, o usuário precisa apenas executar o comando \lstinline{source source.sh}} para carregar as variáveis de ambiente adequadas e, assim, poder usar os programas do projeto dentro do próprio ambiente de trabalho recém configurado. 
+A solução utiliza a linguagem de programação Python e conta com o auxílio do gerenciador de projetos e pacotes Conda. Assumindo que o usuário tenha o Conda instalado em sua máquina, a configuração do projeto pode ser feita pela execução do comando \lstinline{conda env create -f environment.yml} a partir da pasta do projeto \textbf{trab4}. Esse comando cria o ambiente de trabalho \textbf{mc920-trab4} e instala os seguintes módulos: opencv, numpy, scipy, pandas, matplotlib. Finalizada a configuração do ambiente de trabalho em questão, o usuário deve executar o comando \lstinline{source source.sh}\footnote{O comando que configura o ambiente de trabalho mc920-trab4 precisa ser executado apenas um vez. Assim sendo, depois que este ambiente está configurado, o usuário precisa apenas executar o comando \lstinline{source source.sh}} para carregar as variáveis de ambiente adequadas e, assim, poder usar os programas do projeto dentro do próprio ambiente de trabalho recém configurado. 
 
-Dos arquivos presentes na pasta do projeto \textbf{trab3}, destacam-se as pastas \textbf{assets}, \textbf{classes}, \textbf{tex} e o programa \textbf{main.py}. A pasta \textbf{assets} contém vídeos no formato png ou mpg que podem ser utilizados para a aplicação das técnicas de identificação de transições abruptas implementadas. A pasta \textbf{classes} contém arquivos com as implementações das diferentes técnicas de identificação de transições abruptas em formato de classes. Os arquivos das classes das técnicas são: \textbf{blocksdifferences.py}, \textbf{edgesdifferences.py}, \textbf{histogramdifferences.py}, e \textbf{pixelsdifferences.py}. A pasta \textbf{tex} contém os arquivos Latex deste relatório. O programa \textbf{main.py} contém as implementações necessárias para aplicar as técnicas de identificação de transições abruptas no vídeo de entrada fornecido pelo usuário. Informações pertinentes das implementações serão apresentadas a seguir.
+Dos arquivos presentes na pasta do projeto \textbf{trab4}, destacam-se as pastas \textbf{assets} e \textbf{tex} e os programas \textbf{apply\_perspective.py} e \textbf{main.py}. A pasta \textbf{assets} contém imagens no formato png que podem ser utilizadas para a aplicação das técnicas de registro consideradas. A pasta \textbf{tex} contém os arquivos Latex deste relatório. O programa \textbf{main.py} contém as implementações necessárias para aplicar as técnicas de registro implementadas na imagem de entrada fornecida pelo usuário. Informações pertinentes das implementações serão apresentadas a seguir.
 
+%
+\subsection{Apply\_perspective.py}
+O programa \textbf{apply\_perspective.py} é responsável pela aplicação da projeção perspectiva requerida no trabalho. Para rodar tal programa, o usuário deve executar o seguinte comando:
+\begin{lstlisting}
+python3 apply_perspective.py
+\end{lstlisting}
+\noindent
+Depois de executado o programa \textbf{apply\_perspective.py}, a imagem transformada é salva na pasta \textbf{out} com nome adequado e alto explicativo.
+\subsubsection{Detalhes de implementação}
+A aplicação da transformação perspectiva é realizada com o auxílio da função \textbf{getPerspectiveTransform} disponibilizada pelo módulo do \textbf{opencv}. 
 %
 \subsection{Main.py}
-O programa \textbf{main.py} é responsável pela aplicação de todas as técnicas consideradas de identificação de transições abruptas entre quadros consecutivos de vídeos. Para ser executado, esse programa precisa receber o parâmetro de entrada \textbf{video\_entrada}:
+O programa \textbf{main.py} é responsável pela aplicação de todas as transformações espaciais implementadas. Este programa recebe diferentes parâmetros de entrada e pode ser executado de diferentes maneiras. Para executar transformações de escala com a escolha de uma determina forma de interpolação, o usuário pode usar alguns dos comandos de exemplo a seguir:
+\begin{lstlisting}
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m lagrange
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m bicubic
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m bilinear
+python3 main.py -imagem_entrada assets/baboon.png -e 1.25 -m nearneighbours
+\end{lstlisting}
 
-\begin{itemize}
-	\item ao parâmetro \textbf{video\_entrada} deve-se fornecer o nome do arquivo do vídeo a ser utilizado para aplicação das técnicas de identificação de transições abruptas.
-\end{itemize}
-	
-\noindent 
-O programa \textbf{main.py} disponibiliza tanto um vídeo no formato $mp4$ dos quadros considerados como pertencentes a transições abruptas como também gráficos em formato png da evolução dos valores de distância utilizados para determinação de transições abruptas ou não. Todo esse conteúdo é salvo dentro da pasta \textbf{out} que está localizada dentro da pasta do projeto \textbf{trab3}.
+\noindent
+Para executar a transformação de escala por meio da definição dos tamanhos de largura e comprimento, o usuário pode user alguns dos comandos exemplo a seguir:
+\begin{lstlisting}
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m lagrange
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m bicubic
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m bilinear
+python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m nearneighbours
+\end{lstlisting}
 
-Um exemplo de como executar o programa \textbf{main.py} utilizando os recursos contidos dentro do próprio projeto é: \lstinline{python3 main.py -video_entrada=assets/lisa.mpg}.
+\noindent
+Para executar transformações de rotação com a escolha de uma determinada forma de interpolação, o usuário pode usar alguns dos coandos de exemplo a seguir (a unidade considerada para o angulo de rotação é graus):
+\begin{lstlisting}
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m lagrange
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m bicubic
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m bilinear
+python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m nearneighbours
+\end{lstlisting}
 
-O programa \textbf{main.py} executa quatro funções principais, as quais são: \textbf{main\_pixels\_differences( path, stem )}; \textbf{main\_blocks\_differences( path, stem )}; \textbf{main\_histog\_differences( path, stem )}; e \textbf{main\_edges\_differences( path, stem )}. Cada uma dessas funções é responsável por executar a técnica de identificação de transições abruptas que encapsula várias vezes utilizando diferentes combinações de parâmetros de entrada (tolerâncias e limiares). Essas funções também estão encarregadas de salvar todo o conteúdo gerado (os vídeos e gráficos) com nomes intuitivos dentro da pasta \textbf{out}. A seguir olharemos para essas funções e, principalmente, para as técnicas de identificação de transições abruptas associadas.
 
-
-%
-\subsection{main\_pixels\_differences( path, stem )}
-Esse função roda a classe \textbf{PixelsDifferences} sobre as tuplas resultantes do produto cartesiano entre os conjuntos $MPNDS \times MPNNS$ cujos elementos são
-\[
-MPNDS = \{0.1; 0.2; 0.3; 0.4; 0.5; 0.6; 0.7 \}
-\]
-e
-\[
-MPNNS = \{0.1; 0.2; 0.3; 0.4; 0.5; 0.6; 0.7 \}.
-\]
-MPNDS é sigla de \textit{Maximum Pixel Normalized Distances} e MPNNS é sigla de \textit{Maximum Pixel Normalized Numbers}. Os valores do conjunto MPNDS fazem referência a tolerância $T_1$ utilizada para verificar se dois pixels são ou não significativamente diferentes. Os valores do conjunto NPNNS fazem referência ao limiar $T_2$, que é utilizado para determinar se o número final de pixels considerados diferentes é suficiente para que os quadros consecutivos sejam classificados como tendo uma transição abrupta. Ambos os valores dos conjuntos em questão apresentam domínio pertencente ao intervalo $[0,1]$ porque tanto o calculo da tolerância $T_1$ quando do limiar $T_2$ e feito de maneira normalizada. Para comparação com a tolerância $T_1$, o cômputo da distância entre pixels é feita da seguinte maneira
-\[
-	d_{xy} = | Q_i(x,y) - Q_{i+1}(x,y) | / 255,
-\]
-em que $Q_i(x,y)$ é o valor de intensidade do pixel da posição $(x,y)$ do i-ésimo quadro em escala de cinza do vídeo analisado. Como a diferença máxima entre pixels em escala de cinza representados com 1 bite é de 255, o valor da variável $d$ sempre vai pertencer ao intervalo $[0,1]$. Para comparação com o limiar $T_2$ o cômputo do numero de pixels que apresentam transições abruptas é feita assim
-\[
-D_i = \sum_{x=0}^{x=M}\sum_{y=0}^{y=N} (1 \text{  se  } d_{xy} > T_1 \text{  caso contrario  } 0.
-\]
-Caso $D_i$, isto é o número de pixels considerados diferentes de acordo com a tolerância $T_1$ entre o i-ésimo e (i+1)-ésimo quadros, for superior que o limiar $T_2$, o quadro (i+1)-ésimo é classificado como contendo uma transição abrupta.
+Em todas as suas diferentes formas de execução, o programa \textbf{main.py} salva na pasta \textbf{out} a imagem transformada com nome adequado e auto explicativo de modo a permitir ao usuátio associar as imagens salvas com as transformações realizadas sobre elas. O programa \textbf{main.py} dispões das seguintes classes \textbf{Interpolation}, \textbf{Scale} e \textbf{Rotation}. São os grupos de códigos dessas classes que encapsulam as lógicas das interpolações e das transformações de escala e rotação implementadas (logo, não só as implementações das técnicas de interpolação foram feitas, mas também as implementações das técncias de rotação e escala). Maior enfoque será dado a essas classes na sequência.
 
 
 %
-\subsection{main\_blocks\_differences( path, stem )}
-Esse função roda a classe \textbf{BlocksDifferences} sobre as tuplas resultantes do produto cartesiano entre os conjuntos $MBNDS \times MBNNS$ cujos elementos são
-\[
-MBNDS = \{0.1; 0.2; 0.3; 0.4; 0.5; 0.6; 0.7 \}
-\]
-e
-\[
-MBNNS = \{0.1; 0.2; 0.3; 0.4; 0.5; 0.6; 0.7 \}.
-\]
-MBNDS é sigla de \textit{Maximum Block Normalized Distances} e MBNNS é sigla de \textit{Maximum Block Normalized Numbers}. Os valores do conjunto MBNDS fazem referência a tolerância $T_1$ utilizada para verificar se dois blocos são ou não significativamente diferentes. Os valores do conjunto NBNNS fazem referência ao limiar $T_2$, que é utilizado para determinar se o número final de blocos considerados diferentes é suficiente para que os quadros consecutivos sejam classificados como tendo uma transição abrupta. Ambos os valores dos conjuntos em questão apresentam domínio pertencente ao intervalo $[0,1]$ porque tanto o calculo da tolerância $T_1$ quando do limiar $T_2$ e feito de maneira normalizada. 
-
-Para comparação com a tolerância $T_1$ o cômputo da distância entre blocos é feita da seguinte maneira
-\[
-d_ai = \sum_{w=0}^{8}\sum_{k=0}^{8}(B_{a_{i}}(w,k) - B_{a_{i+1}}(w,k))^2 / 255^2,
-\]
-em que $d_ai$ é a distância quadrática normalizada dos a-ésimos blocos entre os quadros $i$ e $i+1$. Logo $B_{a_{i}}(w,k)$ é o valor em escala de cinza do pixel que está na posição $(w,k)$ do a-ésimo bloco da i-ésima imagem. Os valores de $d_ai$ estão contidos no intervalo $[0,1]$ (o termo $255^2$ é um fator de normalização). 
-
-Para comparação com o limiar $T_2$, o número total de blocos que violam a tolerância $T_1$ é levantado e, se esse valor ultrapassar o limiar $T_2$, os quadros consecutivos utilizados na comparação por meio dos seus blocos são considerados como possuidores de transições abruptas. Os valore utilizados em $T_2$ estão normalizados pelo número total de blocos que cabe nos quadros do vídeo analisado e por isso também estão contidos dentro do intervalo $[0,1]$.
-%
-\subsubsection{Detalhes de implementação e execução}
-Como requisitado no trabalho, a classe \textbf{BlocksDifferences} é capaz de trabalhar com blocos de $8\times8$ ou $16\times16$. No entanto para os resultados mostrados, apenas execuções com blocos de tamanho $8\times8$ foram considerados. Sobre o problema do casamento exato ou não entre as dimensões dos blocos (que pode ser de $8\times8$ ou $16\times16$) e as dimensões da imagem o tratamento dado foi: Começar sempre a subdivisão da imagem em blocos a partir da posição $(0,0)$ e, caso ocorra, as possíveis bordas presentes na parte da direita ou na parte de baixo da imagem são desconsideradas.
-
+\subsection{Classe Scale}
+A classe \textbf{Scale} é responsável pela aplicação da transformação de escala sobre a imagem de entrada. A escala a ser aplicada na imagem de entrada é fornecida pelo usuário e pode ser um fator multiplicativo ou os valores das dimensões finais de largura e altura. Para o primeiro caso o usuário, deve fornecer para o programa principal o parâmetro \textbf{-e} seguido do valor de escala desejado. Para o segundo caso, o usuário deve fornecer o parâmetro de entrada \textbf{-d} seguido das dimensões finais de saída no formado \textbf{Largura x Altura}. Para conseguir aplicar a transformação de escala, essa classe precisa receber uma função capaz de realizar um método de interpolação. Essas funções estão agrupadas na classe \textbf{Interpolation} e serão discutidas mais adiante. A classe \textbf{Scale} retorna a matriz transformada de acordo com o fator de escala fornecido. Essa classe é capaz de realizar transformações de escala considerando valores flutuantes.
 
 %
-\subsection{main\_histog\_differences( path, stem )}
-Esse função roda a classe \textbf{HistogramDifferences} sobre o conjunto dos valores
-\[
-\alpha = \{3,4,5,6\},
-\]
-que são os valores sugeridos na descrição do trabalho. Nenhuma modificação na forma de se calcular a diferença dos histogramas de quadros consecutivos foi realizada de modo que tal cálculo já está explicitado na parte da secção de introdução que trata desse técnica de identificação de mudanças abruptas entre quadros. No entanto vale destacar que os histogramas foram normalizados de modo que a soma dos valores de seus \textit{bins} totaliza 1.
-%
-\subsubsection{Detalhes de implementação e execução}
-Para o cálculo dos histogramas, optou-se por utilizar uma implementação própria ao invés de usar alguma função disponibilizada pelos módulos do opencv ou do numpy.
-
+\subsection{Classe Rotation}
+A classe \textbf{Rotation} é resposável pela aplicação da transformação de rotação sobre a imagem de entrada. A rotação a ser aplicada na imagem de entrada é fornecida pelo usuário pelo parâmetro \textbf{-a} seguido do valor de rotação desejado. Para conseguir aplicar a transformação de rotação, essa classe precisa receber uma função capaz de realizar um método de interpolação. A classe \textbf{Rotation} retorna a matriz de transformação de acordo com a fator de rotação fornecido. É imporante salientar que essa classe sempre considera como origem, para aplicação da transformação de rotação, o ponto $(0,0)$ da imagem. Com isso, uma rotação, por exemplo de 30 graus, vai rotacionar a imagem em sentido anti-horário de modo que os pixels que avancem para além do domínio da imagem são descartados. Logo, uma rotação de 45 graus, resulta na perda de 50\% dos valores dos pixels da imagem de entrada e um rotação de 90 graus, resulta na perda de 100\% desses pixels. Essa classe é capaz de realizar transformações de rotação considerando valores flutuantes. Os valores de entrada para essa classe são em graus.
 
 %
-\subsection{main\_edges\_differences( path, stem )}
-Essa função roda a classe \textbf{EdgesDifferences} sobre o conjuto de valores
-\[
-    MENDS = [0.010, 0.015, 0.020, 0.025, 0.030, 0.035].
-\]
-MENDS é sigla de \textit{Maximum Edges Normalized Difference}. Os valores desse conjunto estão dentro do itervalo $[0,1]$ e eles representam a diferença máxima normalizada de bordas entre quadros consecutivos tolerada. A normalização é feita considerando a diferença máxima de bordas entre quadros consecutivos possível que ocorreria quando um quadro não teria nenhuma borda e o outro quadro teria apenas `bordas'. Logo a diferença máxima possível, nessa situação, seria igual ao número de pixels dos quadros do vídeo analisado.
-
-
-%
-\subsubsection{Detalhes de implementação e execução}
-Para o cálculo do mapa de bordas, foi utilizado o famoso algoritmo Canny que foi desenvolvido por John F. Canny. Esse algoritmo é bastante popular devido a sua versatilidade e robustez. Ele contempla etapas de redução de ruídos, determinação das intensidades do gradiente da imagem, e aplicação de supressão não máxima e teste de hipóteses. Utilizou-se a versão do algoritmo disponibilizada pelo módulo do opencv $Canny$ com os parâmetros de entrada fixos. O parâmetro de valor mínimo de 100 e o parâmetro de valor máximo de 200. 
-
-Mesmo o algoritmo de detecção de bordas de Canny já conter um etapa de suavização de ruídos, optou-se antes de aplicá-lo, suavizar o quadro de interesse bom um filtro Gaussiano (passa-baixo) de dimensão $5\times5$.
+\subsection{Classe Interpolation}
+A classe \textbf{Interpolation} é responsável por fornecer algumas das funções de interpolação implementadas para as classes \textbf{Scale} e \textbf{Rotation}. Por meio das funções dessas classes, é possível utilizar as seguintes interpolações: Interpolação pelo Vizinho Mais Próximo, Interpolação Bilinear, Interpolação Bicúbica e Interpolação por Polinômios de Lagrange (os detalhes dessas interpolações estão presentes no material da disciplina). Um ponto em comum dessas interpolações é que todas retorna o valor de nível de cinza igual a zero para todos os pixels que caem fora do domínio da imagem de origem.
 
 
 \section{Resultado}
-Todos os resultados apresentados foram gerados pelo processamento do vídeo \textbf{lisa.mpg} que está dentro da pasta \textbf{assets}. Devido ao grande número de combinações de parâmetros das quatro técnicas de identificação de mudanças abruptas entre quadros considerados e, consequentemente, o grade número de conteúdo gerado (entre vídeos e gráficos) serão apresentados aqui apenas um subconjunto desses materiais (caso haja interesse do leitor em verificar a totalidade desse conteúdo basta acessá-los dentro da pasta \textbf{out}). Aquim, serão apresentados os gráficos gerados que evidenciam o quão diferentes são dois quadros consecutivos e o número de quadros que foram considerados como detenedores de uma transição abrupta.
+Os resultados apresentados estão organizados em dois grupos: o primeiro grupo apresenta o resultado gerado pela aplicação da projeção perspectiva requerida no trabalho. O segundo grupo apresenta o resultado gerado pela aplicação de transformações geométricas. 
+
+
+\subsection{Projeção perspectiva}
+A projação perspectiva dos pontos (37, 51), (342, 42), (485, 467), (73, 380) para (0, 0), (511, 0),
+(511, 511), (0, 511) aplicada na imagem de entrada da Figura \ref{fig:projpers}
+
+\begin{figure}[!htp]%
+	\centering
+	\includegraphics[width=5cm]{baboon_perspectiva.png}
+	\caption{Imagem de entrada para aplicação de projeção perspectiva.}%	
+	\label{fig:projpers}%
+\end{figure}
+
+\noindent
+resulta na imagem da Figura \ref{fig:projpersres} a seguir:
+
+\begin{figure}[!htp]%
+	\centering
+	\includegraphics[width=5cm]{baboon_perspectiva_result.png}
+	\caption{Imagem resultante da aplicação da projeção perspectiva requirida no trabalho.}%	
+	\label{fig:projpersres}%
+\end{figure}
+
+\noindent
+Podemos ver que a aplicação da projeção perpectiva, resultou no formato original da conhecida imagem \textbf{baboon}.
+
+
+\subsection{Transformação geométrica}
+A seguir apresentaremos o resultado da aplicação das transformações geométricas considerando diferentes técnicas de interpolação. Todas as transformações foram aplicadas sobre a imagem da Figura \ref{fig:projgeoini}.
+
+\begin{figure}[!htp]%
+	\centering
+	\includegraphics[width=5cm]{baboon.png}
+	\caption{Imagem de entrada para aplicação de transformações geométricas.}%	
+	\label{fig:projgeoini}%
+\end{figure}
 
 \newpage
-\subsection{Diferenças entre pixels}
+\subsubsection{Transformação de escala usando o parâmetro -e}
+As imagens apresentadas da Figura \ref{fig:escalae} foram obtidas pela aplicação de um fator de escala de $1,25$ considerando as diferentes técnicas de interpolação requeridas.
+
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Imagem com nova escala com Interpolação do Vizinho Mais Próximo.]{{ \includegraphics[width=5cm]{baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_nearneighbours.png} 
+	}}%
+	%
+	\subfloat[\centering Imagem com nova escala com Interpolação Bilinear.]{{ \includegraphics[width=5cm]{baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bilinear.png} 
+	}}%	
+	\\
+	\subfloat[\centering Imagem com nova escala com Interpolação Bicubica.]{{ \includegraphics[width=5cm]{baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_bicubic.png} 
+	}}%	
+	%
+	\subfloat[\centering Imagem com nova escala com Interpolação de Lagrange.]{{ \includegraphics[width=5cm]{baboon_scax_001250_scay_001250_rot_000000_ld_512x512_int_lagrange.png} 
+	}}%	
+	\caption{Imagens com fator de escala de 1,25 para diferentes métodos de interpolação.}%	
+	\label{fig:escalae}%
+\end{figure}
+
+\newpage
+\subsubsection{Transformação de escala usando o parâmetro -d}
+As imagens apresentadas da Figura \ref{fig:escalad} foram obtidas pela aplicação de valores finais de largura 300 e de altura 400 considerando as diferentes tecnicas de interpolação requeridas.
+
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Imagem com nova escala com Interpolação do Vizinho Mais Próximo.]{{ \includegraphics[width=5cm]{baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_nearneighbours.png} 
+	}}%
+	%
+	\subfloat[\centering Imagem com nova escala com Interpolação Bilinear.]{{ \includegraphics[width=5cm]{baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bilinear.png} 
+	}}%	
+	\\
+	\subfloat[\centering Imagem com nova escala com Interpolação Bicubica.]{{ \includegraphics[width=5cm]{baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_bicubic.png} 
+	}}%	
+	%
+	\subfloat[\centering Imagem com nova escala com Interpolação de Lagrange.]{{ \includegraphics[width=5cm]{baboon_scax_000585_scay_000781_rot_000000_ld_300x400_int_lagrange.png} 
+	}}%	
+	\caption{Imagens com valores finais de largura 300 e de altura 400 para diferentes métodos de interpolação.}%	
+	\label{fig:escalad}%
+\end{figure}
+
+
+\newpage
+\subsubsection{Transformação de rotação}
+As imagens apresentadas da Figura \ref{fig:rotacao} foram obtidas pela aplicação do valor de rotação de 1,25 graus considerando as diferentes tecnicas de interpolação requeridas.
+
+\begin{figure}[!htp]%
+	\centering
+	\subfloat[\centering Imagem rotacionada com Interpolação do Vizinho Mais Próximo.]{{ \includegraphics[width=5cm]{baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_nearneighbours.png} 
+	}}%
+	%
+	\subfloat[\centering Imagem rotacionada com Interpolação Bilinear.]{{ \includegraphics[width=5cm]{baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bilinear.png} 
+	}}%	
+	\\
+	\subfloat[\centering Imagem rotacionada com Interpolação Bicubica.]{{ \includegraphics[width=5cm]{baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_bicubic.png} 
+	}}%	
+    %
+   	\subfloat[\centering Imagem rotacionada com Interpolação de Lagrange.]{{ \includegraphics[width=5cm]{baboon_scax_001000_scay_001000_rot_001250_ld_512x512_int_lagrange.png} 
+    }}%	
+	\caption{Imagens rotacionadas em 1.25 graus para diferentes métodos de interpolação.}%	
+	\label{fig:rotacao}%
+\end{figure}
+
+
+
 
 %\begin{figure}[!htp]%
 %	\centering

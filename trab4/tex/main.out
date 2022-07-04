@@ -4,14 +4,17 @@
 \BOOKMARK [3][-]{subsubsection.1.1.2}{Transforma\347\343o de Transla\347\343o}{subsection.1.1}% 4
 \BOOKMARK [3][-]{subsubsection.1.1.3}{Transforma\347\343o de Rota\347\343o}{subsection.1.1}% 5
 \BOOKMARK [2][-]{subsection.1.2}{Transforma\347\365es projetivas}{section.1}% 6
-\BOOKMARK [1][-]{section.2}{Solu\347\343o}{}% 7
-\BOOKMARK [2][-]{subsection.2.1}{Main.py}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.2}{main\137pixels\137differences\( path, stem \)}{section.2}% 9
-\BOOKMARK [2][-]{subsection.2.3}{main\137blocks\137differences\( path, stem \)}{section.2}% 10
-\BOOKMARK [3][-]{subsubsection.2.3.1}{Detalhes de implementa\347\343o e execu\347\343o}{subsection.2.3}% 11
-\BOOKMARK [2][-]{subsection.2.4}{main\137histog\137differences\( path, stem \)}{section.2}% 12
-\BOOKMARK [3][-]{subsubsection.2.4.1}{Detalhes de implementa\347\343o e execu\347\343o}{subsection.2.4}% 13
-\BOOKMARK [2][-]{subsection.2.5}{main\137edges\137differences\( path, stem \)}{section.2}% 14
-\BOOKMARK [3][-]{subsubsection.2.5.1}{Detalhes de implementa\347\343o e execu\347\343o}{subsection.2.5}% 15
-\BOOKMARK [1][-]{section.3}{Resultado}{}% 16
-\BOOKMARK [2][-]{subsection.3.1}{Diferen\347as entre pixels}{section.3}% 17
+\BOOKMARK [1][-]{section.2}{Objetivo}{}% 7
+\BOOKMARK [1][-]{section.3}{Solu\347\343o}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Apply\137perspective.py}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Detalhes de implementa\347\343o}{subsection.3.1}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Main.py}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{Classe Scale}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.4}{Classe Rotation}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.5}{Classe Interpolation}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{Resultado}{}% 15
+\BOOKMARK [2][-]{subsection.4.1}{Proje\347\343o perspectiva}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.2}{Transforma\347\343o geom\351trica}{section.4}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Transforma\347\343o de escala usando o par\342metro -e}{subsection.4.2}% 18
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Transforma\347\343o de escala usando o par\342metro -d}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Transforma\347\343o de rota\347\343o}{subsection.4.2}% 20

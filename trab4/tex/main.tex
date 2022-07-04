@@ -412,87 +412,12 @@ As imagens apresentadas da Figura \ref{fig:rotacao} foram obtidas pela aplicaç�
 	\label{fig:rotacao}%
 \end{figure}
 
-
-
-
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/BLa\_RR3D7Hw}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_10_nframe_00218.png} 
-%	}}%
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/dqFbqMDnW90}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_30_nframe_00009.png} 
-%	}}%	
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.1$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/9uXixvLlcV4}).]{{ \includegraphics[width=10cm]{lisa_pixeldiff_mpnd_10_mpnn_50_nframe_00004.png} 
-%	}}%	
-%	\caption{Imagem com gráficos do número de pixels (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
-%	\label{fig:diferenca_pixels}%
-%\end{figure}
 %
-%\newpage
-%\subsection{Diferenças entre blocos}
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.1$ (veja vídeo: \url{https://youtu.be/mm43T9BhlUU}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_10_nframe_00375.png} 
-%	}}%
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.3$ (veja vídeo: \url{https://youtu.be/r4TxG6zJtIg}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_30_nframe_00108.png} 
-%	}}%	
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T_1=0.4$ e $T_2=0.5$ (veja vídeo: \url{https://youtu.be/5yxTwq2srKw}).]{{ \includegraphics[width=10cm]{lisa_blockdiff_mbnd_40_mbnn_50_nframe_00014.png} 
-%	}}%	
-%	\caption{Imagem com gráficos do número de blocos (distância do limiar $T_2$) com diferenças de valores entre quadros consecutivos superiores a tolerância $T_1$.}%	
-%	\label{fig:diferenca_blocos}%
-%\end{figure}
-%
-%
-%\newpage
-%\subsection{Diferenças entre histograma}
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=3$ (veja vídeo: \url{https://youtu.be/taISwMqDRO4}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_3_thres_0.578_nframe_00011.png} 
-%	}}%
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=4$ (veja vídeo: \url{https://youtu.be/hoMm_-U1uqY}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_4_thres_0.723_nframe_00009.png} 
-%	}}%	
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $\alpha=5$ (veja vídeo: \url{https://youtu.be/-NX1KpQSwvM}).]{{ \includegraphics[width=10cm]{lisa_histdiff_alpha_5_thres_0.867_nframe_00005.png} 
-%	}}%	
-%	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferença entre histogramas.}%	
-%	\label{fig:diferenca_histogramas}%
-%\end{figure}
-%
-%
-%\newpage
-%\subsection{Diferenças entre borda}
-%
-%\begin{figure}[!htp]%
-%	\centering
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.01$ (veja vídeo: \url{https://youtu.be/OpjOwV45uxY}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.0_nframe_00014.png} 
-%	}}%
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.015$ (veja vídeo: \url{https://youtu.be/ICLpevnXpGE}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_1.5_nframe_00008.png} 
-%	}}%	
-%	\\
-%	\subfloat[\centering Gráfico dos quadros com trasições abruptas para $T=0.02$ (veja vídeo: \url{https://youtu.be/Qkp-s1RcZSM}).]{{ \includegraphics[width=10cm]{lisa_edgediff_mpnd_2.0_nframe_00002.png} 
-%	}}%	
-%	\caption{Imagem com gráficos da diferença entre quadro consecutivos por meio da técnica da diferenças entre borda.}%	
-%	\label{fig:diferenca_bordas}%
-%\end{figure}
 %%
-%%%
-%\section{Discussão e Conclusão}
-%É possível verificar, dos gráficos apresentados, que as diferentes técnicas de identificação de transições abruptas discriminam os quadros consecutivos de maneira significativamente diferente. Esse afirmação se sustenta pelos diferentes padrões de distribuição dos valores do eixo y ao longo do eixo x. Nesse aspecto (dos padrões de descriminação), há uma aproximação entre os comportamentos das técnicas de diferenças entre pixel e diferenças entre bloco (Figuras \ref{fig:diferenca_pixels} e \ref{fig:diferenca_blocos}) e entre os comportamentos das técnicas de diferenças entre histograma e diferenças entre borda (Figuras \ref{fig:diferenca_histogramas} e \ref{fig:diferenca_bordas})). Percebe-se que as técnicas de diferenças entre pixel e diferenças entre borda apresentam maior dificuldade em discriminar os quadros consecutivos com transições abruptas que as técnicas de diferenças entre histograma e de diferenças entre borda já que nas duas primeiras técnicas há maior amplitude nos valores de distância do eixo y que nas duas últimas técnicas.
-%
-%Por outro lado, as técnicas de diferenças entre pixel e diferenças entre borda se mostraram menos custosas em termos computacionais que as técnicas de diferenças entre histograma e diferenças entre borda.
-%
-%É também facilmente verificável que o desempenho das técnicas, no sentido de encontrar uma quantidade aceitável de quadros significativos, é  intimamente relacionado com os valores dos seus parâmetros. Por exemplo, na técnica de diferença entre blocos encontrou-se para os parâmetros $T_1=0.40$ e $T_2=0.10$ o número de $375$ quadros significativos de um total de $649$ quadros (um resultado pouco animador). No entanto, essa mesma técnicas, para os valores de parâmetros $T_1=0.40$ e $T_2=0.50$, encontrou um total de $14$ quadros com transições abruptas de uma total de $649$ quadros (um resultado bem mais interessante) (Figura \ref{fig:diferenca_blocos}).
-%
-%Para o vídeo utilizado nesse trabalho, as técnicas de diferenças entre histograma e diferenças entre borda se mostraram mais interessantes. Essas técnicas encontraram um conjunto significativamente pequeno de quadros com transições abruptas (afirmação que pode ser comprovada visualizando os vídeos disponibilizados no youtube). Para a técnica de diferenças entre histograma com a configuração de $\alpha=5$ foram encontrados 5 quadros significativos (com transições abruptas) )(Figura \ref{fig:diferenca_histogramas}). Já para a técnica de diferenças entre bordas para $T=0.015$ (Figura \ref{fig:diferenca_bordas}), foram encontrados 8 quadros com transições abruptas. Esses números são bastante impressionantes e trazem uma eficiência de redução de vídeos de aproximadamente $99\%$.
-%
-%Do apresentado, podemos verificar que as técnicas (umas melhores que outras) foram capazes de identificar quadros associados a transições abruptas do vídeo analisado. 
-%
-%Caso haja necessidade de uma solução de identificação de transições abruptas entre quadros consecutivos mais robusta, uma alternativa seria experimentar o desempenho de um técnica resultante da combinação linear das técnicas aqui implementadas. Por fim, a técnicas foram satisfatoriamente implementadas e testadas.
+\section{Discussão e Conclusão}
+É possível verificar dos resultados apresentados que as transformações geometricas e projetivas foram implementas e aplicadas corretamente, sendo a mesma afirmação válida para os diferentes tipos de interpolação considerados neste trabalho. Sobre a projeção perspectiva apresentada não resta assunto a ser desenvolvido para além da aplicação correta da técnica dado que a sua implementação foi baseado na utilização de uma função pronta do móludo do \textbf{opencv}. Sobre a transformação geométrica de escala, apesar desta ter sido implementada manualmente, também não resta miuto a ser discutido para além da corretudo de sua implementação. Sobre a transformação geométrica de rotação, é válido discutir a forma rudimentar que a aplicação da rotação é feita já que a rotação não é feita com relação ao centro da imagem, mas sim com relação a origem $(0,0)$. Tal forma de realizar a rotação causa um resultado não desejado pelo usuário que provavelmente espera que a rotação da imagem ocorra com relação ao seu ponto central.
+
+
+ Sobre as técnica de interpolações utilizadas, é pertinente discutir os gastos computacionais e a qualidade das imagens transformadas. Sobre os gastos computacionais, o seu aumento conforme o aumento da sofisticação da técnica de interpolação foi notório. Em ordem crescente de gasto computacional, temos a seguinte disposição das tecnicas de interpolação: Interpolação por Vizinho mais Próximo < Interpolação Bilinear < Interpolação Bicubica < Interpolação de Lagrange. Assim, o uso de técncias mais sofisticadas de interpolação deve ser considerado dentro de projetos específicos e demandas muito particulares uma vez que o uso dessas técnicas impactaram significativamente o desenpenho da solução associada. Sobre a qualidade das imagens resultantes, o autor deste documento particularmente não conseguiu verificar diferenças notáveis. Esse fato corrobora a afirmação de que o uso de técnicas de interpolação mais sofisticadas deve ser considerado dentro de problemas e demandas bem particulares.
+
 \end{document}

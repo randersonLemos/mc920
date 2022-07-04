@@ -18,6 +18,11 @@ source source.sh
 
 Pronto, seu ambiente de trabalho que se chama **mc920-trab4** está configurado e carregado.
 
+# Rodando o programa apply_perspective.py para projeção perspectiva sobre a imagem baboon_perspectiva.png
+```
+python3 apply_perspective.py
+```
+
 # Rodando o programa main.py para projeção geometrica de escala
 
 ```

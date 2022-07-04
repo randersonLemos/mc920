@@ -82,7 +82,7 @@ Encontrar a correspondência entre pixels de diferentes imagens que capturam a m
 \end{figure}
 
 \noindent
-Nesse figura, temos duas imagens $\mathbf{f}$ e $\mathbf{f'}$ cujo pixels estão relacionados pela matriz de transformação $\mathbf{T}$, ou seja
+Nesse figura, temos duas imagens $\mathbf{f}$ e $\mathbf{f'}$ cujos pixels estão relacionados pela matriz de transformação $\mathbf{T}$, ou seja
 
 \begin{equation}
 \mathbf{f'} = \mathbf{T}\mathbf{f}.
@@ -181,7 +181,7 @@ W \\
 \end{equation}
 
 \noindent
-Então, para aplicar uma translação na imagem, o usuário precisa definir o valor de translação $t_x$ a ser apicado ao longo do eixo-x e o valor de translação $t_y$ a ser aplicado ao longo do eixo-y.
+Então, para aplicar uma translação na imagem, o usuário precisa definir o valor de translação $t_x$ a ser aplicado ao longo do eixo-x e o valor de translação $t_y$ a ser aplicado ao longo do eixo-y.
 
 \subsubsection{Transformação de Rotação} 
 A transformação de rotação para o caso 2D pode ser realizada a partir da matriz de transformação em coordenadas homogêneas apresenta a seguir.
@@ -211,7 +211,7 @@ W \\
 Então, para aplicar uma rotação na imagem, o usuário precisa definir o valor de rotação $\alpha$ a ser aplicado na imagem.
 
 \subsection{Transformações projetivas}
-As transformações projetivas estão associadas ao processo de projeção de pontos dispostos tridimensionalmente no espaço em um plano bidimensional. Esses transformações são principalmente do tipo ortográfica ou perspectiva. A projeção ortográfica é uma transformação que realiza o mapeamento de pontos tridimensionais sobre o plano da imagem, tal que os pontos são projetados ao longo de linhas paralelas na imagem (informação extraída do material de aula). Já as projeções perspectivas, apesar de haver o mesmo mapeamento de um espaço tridimensional para um espaço bidimensional (um plano), o tamanho do objecto projeto assim como algumas razões de suas medidas lineares e de área são dependentes do aumento da distância do centro de projeção. Essa dependência está associada a percepção de profundida do sistema visual humano. A ideia das transformações projetivas está apresentada na Figura \ref{fig:transpro}.
+As transformações projetivas estão associadas ao processo de projeção de pontos dispostos tridimensionalmente no espaço em um plano bidimensional. Essas transformações são principalmente do tipo ortográfica ou perspectiva. A projeção ortográfica é uma transformação que realiza o mapeamento de pontos tridimensionais sobre o plano da imagem, tal que os pontos são projetados ao longo de linhas paralelas na imagem (informação extraída do material de aula). Já as projeções perspectivas, apesar de haver o mesmo mapeamento de um espaço tridimensional para um espaço bidimensional (um plano), o tamanho do objecto projeto assim como algumas razões de suas medidas lineares e de área são dependentes do aumento da distância do centro de projeção. Essa dependência está associada a percepção de profundida do sistema visual humano. A ideia das transformações projetivas está apresentada na Figura \ref{fig:transpro}.
 
 \begin{figure}[!htp]%
 	\centering
@@ -282,7 +282,7 @@ python3 main.py -imagem_entrada assets/baboon.png -d 300x400 -m nearneighbours
 \end{lstlisting}
 
 \noindent
-Para executar transformações de rotação com a escolha de uma determinada forma de interpolação, o usuário pode usar alguns dos coandos de exemplo a seguir (a unidade considerada para o angulo de rotação é graus):
+Para executar transformações de rotação com a escolha de uma determinada forma de interpolação, o usuário pode usar alguns dos comandos de exemplo a seguir (a unidade considerada para o ângulo de rotação é graus):
 \begin{lstlisting}
 python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m lagrange
 python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m bicubic
@@ -291,7 +291,7 @@ python3 main.py -imagem_entrada assets/baboon.png -a 1.25 -m nearneighbours
 \end{lstlisting}
 
 
-Em todas as suas diferentes formas de execução, o programa \textbf{main.py} salva na pasta \textbf{out} a imagem transformada com nome adequado e auto explicativo de modo a permitir ao usuátio associar as imagens salvas com as transformações realizadas sobre elas. O programa \textbf{main.py} dispões das seguintes classes \textbf{Interpolation}, \textbf{Scale} e \textbf{Rotation}. São os grupos de códigos dessas classes que encapsulam as lógicas das interpolações e das transformações de escala e rotação implementadas (logo, não só as implementações das técnicas de interpolação foram feitas, mas também as implementações das técncias de rotação e escala). Maior enfoque será dado a essas classes na sequência.
+Em todas as suas diferentes formas de execução, o programa \textbf{main.py} salva na pasta \textbf{out} a imagem transformada com nome adequado e auto explicativo de modo a permitir ao usuátio associar as imagens salvas com as transformações realizadas sobre elas. O programa \textbf{main.py} dispõem das seguintes classes \textbf{Interpolation}, \textbf{Scale} e \textbf{Rotation}. São os grupos de códigos dessas classes que encapsulam as lógicas das interpolações e das transformações de escala e rotação implementadas (logo, não só as implementações das técnicas de interpolação foram feitas, mas também as implementações das técncias de rotação e escala). Maior enfoque será dado a essas classes na sequência.
 
 
 %
@@ -304,7 +304,7 @@ A classe \textbf{Rotation} é resposável pela aplicação da transformação de
 
 %
 \subsection{Classe Interpolation}
-A classe \textbf{Interpolation} é responsável por fornecer algumas das funções de interpolação implementadas para as classes \textbf{Scale} e \textbf{Rotation}. Por meio das funções dessas classes, é possível utilizar as seguintes interpolações: Interpolação pelo Vizinho Mais Próximo, Interpolação Bilinear, Interpolação Bicúbica e Interpolação por Polinômios de Lagrange (os detalhes dessas interpolações estão presentes no material da disciplina). Um ponto em comum dessas interpolações é que todas retorna o valor de nível de cinza igual a zero para todos os pixels que caem fora do domínio da imagem de origem.
+A classe \textbf{Interpolation} é responsável por fornecer algumas das funções de interpolação implementadas para as classes \textbf{Scale} e \textbf{Rotation}. Por meio das funções dessas classes, é possível utilizar as seguintes interpolações: Interpolação pelo Vizinho Mais Próximo, Interpolação Bilinear, Interpolação Bicúbica e Interpolação por Polinômios de Lagrange (os detalhes dessas interpolações estão presentes no material da disciplina). Um ponto em comum dessas interpolações é que todas retornam o valor de nível de cinza igual a zero para todos os pixels que caem fora do domínio da imagem de origem.
 
 
 \section{Resultado}
@@ -328,7 +328,7 @@ resulta na imagem da Figura \ref{fig:projpersres} a seguir:
 \begin{figure}[!htp]%
 	\centering
 	\includegraphics[width=5cm]{baboon_perspectiva_result.png}
-	\caption{Imagem resultante da aplicação da projeção perspectiva requirida no trabalho.}%	
+	\caption{Imagem resultante da aplicação da projeção perspectiva requerida no trabalho.}%	
 	\label{fig:projpersres}%
 \end{figure}
 
@@ -415,9 +415,9 @@ As imagens apresentadas da Figura \ref{fig:rotacao} foram obtidas pela aplicaç�
 %
 %%
 \section{Discussão e Conclusão}
-É possível verificar dos resultados apresentados que as transformações geometricas e projetivas foram implementas e aplicadas corretamente, sendo a mesma afirmação válida para os diferentes tipos de interpolação considerados neste trabalho. Sobre a projeção perspectiva apresentada não resta assunto a ser desenvolvido para além da aplicação correta da técnica dado que a sua implementação foi baseado na utilização de uma função pronta do móludo do \textbf{opencv}. Sobre a transformação geométrica de escala, apesar desta ter sido implementada manualmente, também não resta miuto a ser discutido para além da corretudo de sua implementação. Sobre a transformação geométrica de rotação, é válido discutir a forma rudimentar que a aplicação da rotação é feita já que a rotação não é feita com relação ao centro da imagem, mas sim com relação a origem $(0,0)$. Tal forma de realizar a rotação causa um resultado não desejado pelo usuário que provavelmente espera que a rotação da imagem ocorra com relação ao seu ponto central.
+É possível verificar dos resultados apresentados que as transformações geometricas e projetivas foram implementas e aplicadas corretamente, sendo a mesma afirmação válida para os diferentes tipos de interpolação considerados neste trabalho. Sobre a projeção perspectiva apresentada não resta assunto a ser desenvolvido para além da aplicação correta da técnica dado que a sua implementação foi baseado na utilização de uma função pronta do móludo do \textbf{opencv}. Sobre a transformação geométrica de escala, apesar desta ter sido implementada manualmente, também não resta muito a ser discutido para além da corretudo de sua implementação. Sobre a transformação geométrica de rotação, é válido discutir a forma rudimentar que a aplicação da rotação é feita já que a rotação não é feita com relação ao centro da imagem, mas sim com relação a origem $(0,0)$. Tal forma de realizar a rotação causa um resultado não desejado pelo usuário que provavelmente espera que a rotação da imagem ocorra com relação ao seu ponto central.
 
 
- Sobre as técnica de interpolações utilizadas, é pertinente discutir os gastos computacionais e a qualidade das imagens transformadas. Sobre os gastos computacionais, o seu aumento conforme o aumento da sofisticação da técnica de interpolação foi notório. Em ordem crescente de gasto computacional, temos a seguinte disposição das tecnicas de interpolação: Interpolação por Vizinho mais Próximo < Interpolação Bilinear < Interpolação Bicubica < Interpolação de Lagrange. Assim, o uso de técncias mais sofisticadas de interpolação deve ser considerado dentro de projetos específicos e demandas muito particulares uma vez que o uso dessas técnicas impactaram significativamente o desenpenho da solução associada. Sobre a qualidade das imagens resultantes, o autor deste documento particularmente não conseguiu verificar diferenças notáveis. Esse fato corrobora a afirmação de que o uso de técnicas de interpolação mais sofisticadas deve ser considerado dentro de problemas e demandas bem particulares.
+Sobre as técnicas de interpolações utilizadas, é pertinente discutir os gastos computacionais e a qualidade das imagens transformadas. Sobre os gastos computacionais, o seu aumento conforme o aumento da sofisticação da técnica de interpolação foi notório. Em ordem crescente de gasto computacional, temos a seguinte disposição das tecnicas de interpolação: Interpolação por Vizinho mais Próximo $<$ Interpolação Bilinear $<$ Interpolação Bicubica $<$ Interpolação de Lagrange. Assim, o uso de técncias mais sofisticadas de interpolação deve ser considerado dentro de projetos específicos e demandas muito particulares uma vez que o uso dessas técnicas impactaram significativamente o desenpenho da solução associada. Sobre a qualidade das imagens resultantes, o autor deste documento particularmente não conseguiu verificar diferenças notáveis. Esse fato corrobora a afirmação de que o uso de técnicas de interpolação mais sofisticadas deve ser considerado dentro de problemas e demandas bem particulares.
 
 \end{document}
